@@ -36,7 +36,7 @@ When entering the site, users will see a clear call-to-action to generate new 3D
 
 Furthermore, the home page will feature an updating gallery with image thumbnails of previously generated objects. When a thumbnail is clicked, the user can interact with the 3D object using their mouse, with support for object revolution. The gallery will be searchable using the prompts associated with the objects (note that these prompts don’t need to be unique). The user can then download all files associated with an object. In particular, our product will support downloads of the thumbnail (.png), surface material (.mtl), geometry definition (.obj), and textures (.jpg). 
 
-##### [**👉 View our low-fiedelity prototype on Figma! →**](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=A9eFYF6kFeUOTlsQ-1)
+##### [**👉 View our low-fidelity prototype on Figma! →**](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=A9eFYF6kFeUOTlsQ-1)
 
 [^1]:https://tisl.cs.toronto.edu/ 
 [^2]:https://github.com/threestudio-project/threestudio

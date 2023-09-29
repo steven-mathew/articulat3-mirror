@@ -258,6 +258,7 @@ Our primary communication platform will be Discord, with dedicated channels for 
 For communication with our project partner, we will adhere to the agreed-upon biweekly meeting schedule and use Whatsapp for additional correspondence.
 
 #### 👥 Collaboration
+Based on our individual preferences (outlined in A1), we’ve compiled the following procedures and policies related to effective collaboration:
 
 ##### Accountability
 Each meeting, we will have a designated moderator to ensure that discussions stay on track, everyone has the opportunity to contribute, and notes are being taken. We expect everyone to attend the team meetings and that the team is notified in advance if someone is unable to attend. We will follow up on previous action items during our weekly team meetings to ensure they are being completed in a timely manner. Meeting minutes will be documented and shared, and tasks will be managed using the GitHub Project Board.

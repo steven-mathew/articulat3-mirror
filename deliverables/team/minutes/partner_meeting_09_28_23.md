@@ -22,7 +22,7 @@
   - Further questions
     - Product name ideas
       - Feedback: Anything is good
-    - Github - share repo to ashmrz, ashkan.m10@gmail.com
+    - Github - share repo to Ashkan
     - Threestudio deployment
       - If their self-deployment won't work
         - Can run on node GPU; if we can't get access to this, he may be able to help us
@@ -32,7 +32,7 @@ Actions Items:
 - \[Max] Update user stories with small detail
   - Get approval for the changes
 - \[Jasper] \[Neeco] \[Sarah] Update Figma prototype with the feedback
-- \[Neeco] Add Ashkan to Github: https://github.com/ashmrz
+- \[Neeco] Add Ashkan to Github
 - \[everyone] Update D1 to reflect removal of videos and settings options
 
 Meeting Summary

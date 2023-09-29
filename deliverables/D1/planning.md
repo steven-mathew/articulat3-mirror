@@ -77,6 +77,17 @@ Do a team-building activity in-person or online. This can be playing an online g
 * Provide a few sentences on what you did and share a picture or other evidence of your team building activity.
 * Share at least three fun facts from members of you team (total not 3 for each member).
 
+Our team recently met up for a fun team-building activity. We played an online trivia game together, allowing us to test our knowledge - and friendships! - with some friendly competition. It was a fantastic way to get to know each other on a more personal level while having a great time.
+
+📸 Here’s a picture of us:
+
+
+
+🎉 3 fun facts:
+* Steven, our Tech Lead, is a keyboard enthusiast with an impressive collection of six custom-built mechanical keyboards. He enjoys tinkering with them to create unique and personalized typing experiences.
+* Jasper, our scrum master, is a popular YouTuber with a channel dedicated to creative content, including university Q&A and travel vlogs. His channel has garnered a substantial following, and he's known for his engaging and informative college videos.
+* Max, our backend developer, is a gamer who achieved a remarkable feat by reaching the top 200 ranking (Challenger) in the popular video game "Teamfight Tactics" (TFT). 
+
 
 #### Q7: What are the roles & responsibilities on the team?
 

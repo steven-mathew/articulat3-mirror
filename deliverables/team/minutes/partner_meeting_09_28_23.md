@@ -12,7 +12,7 @@
     - For now, use dream fusion, disable fusion?
       - This can eliminate the settings button in the designs
     - For now, use the default settings
-  - Review (Figma prototype)[https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=rdSoRG59po0iTZgO-1]
+  - Review [Figma prototype](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=rdSoRG59po0iTZgO-1)
     - No video needed for "create"
     - Need to show progress
       - Starts by showing the image and update as we go through the training

@@ -19,7 +19,9 @@
 ## Product Details
  
 ### Q1: What is the product?
-
+<p align="center">
+  <img src="assets/articulat3-logo.png" width="50%" />
+</p>
  💻 The product we’ll be creating is a user-friendly web application for 3D content creation from user-given text prompts. Users will also be able to view existing 3D creations for inspiration and creative usage. 
 
 🤖 Our partner, Toronto Intelligent Systems Lab (TISL), enables robust interactive autonomy in robotics. Their research involves Robotics, Computer Vision, and Machine Learning[^1]. Their goal with this specific project is to make 3D generation as simple and accessible as possible. 

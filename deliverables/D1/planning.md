@@ -126,7 +126,7 @@ Our exact tech stack is subject to change, but our initial plan includes the fol
 - CI/CD: [Github Actions](https://docs.github.com/en/actions)
 - Deployment: [render](https://render.com/) or [k3s](https://k3s.io/) on a cheap, managed VM
 
-##### [**👉 View our architecture diagram to see how everything works together**](https://excalidraw.com/#json=IPIIOX9qDmh3N_GDrU6O9,W8GgGOZvRtsg1gZ4JPINaQ)
+##### [**👉 View our architecture diagram to see how everything works together**](https://excalidraw.com/#json=bxn0PEJTsOgW9Kc_NHfTt,bm8XqWn0_1tCSkgVEex9bA)
 
 ----
 ## Intellectual Property Confidentiality Agreement 

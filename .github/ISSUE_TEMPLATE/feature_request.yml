@@ -1,0 +1,24 @@
+name: Feature request ✨
+description: Suggest a new idea.
+labels: ["status: needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a searchable summary of the issue in the title above ⬆️.
+
+  - type: checkboxes
+    attributes:
+      label: Duplicates
+      description: Please [search the history](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/issues) to see if an issue already exists for the same problem.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: Summary
+      description: Describe how it should work.
+  - type: textarea
+    attributes:
+      label: Examples
+      description: Provide a link to the screenshots of the expected behavior.

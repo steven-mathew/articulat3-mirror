@@ -1,0 +1,40 @@
+name: Bug report 🐛
+description: Create a bug report.
+labels: ["status: needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a searchable summary of the issue in the title above ⬆️.
+  - type: checkboxes
+    attributes:
+      label: Duplicates
+      description: Please [search the history](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/issues) to see if an issue already exists for the same problem.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: |
+        **⚠️ Issues that can't be reproduced will be closed.**
+      value: |
+        Link to live example:
+
+        Steps:
+
+        1.
+        2.
+        3.
+  - type: textarea
+    attributes:
+      label: Current behavior
+      description: Describe what happens instead of the expected behavior.
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: Describe what should happen.
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Add any other context about the problem here.

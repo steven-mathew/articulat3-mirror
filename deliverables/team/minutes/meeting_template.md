@@ -1,8 +1,8 @@
 # Meeting Minutes ~ DATE
 
-_**Note-taker:**_ 
-
-_**Attendees:**_ 
+>_**Note-taker:**_
+>
+> _**Attendees:**_ 
 
 ## Meeting Agenda
          

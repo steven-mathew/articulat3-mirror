@@ -22,7 +22,7 @@
 #### Q2: Who are your target users?
 
 Our main target users are content creators, game designers, hardware creators, and animators. In general, the web app welcomes individuals who are interested in using, creating, or simply browsing 3D content and generation.
-<b>User Personas:<b> https://workspace68739247.xtensio.com/folder/82zhkpai
+<b>User Personas:</b> https://workspace68739247.xtensio.com/folder/82zhkpai
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 

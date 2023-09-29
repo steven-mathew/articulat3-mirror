@@ -70,6 +70,7 @@ Our main target users are content creators, game designers, hardware creators, a
 
 #### Story #5
 <p align=center><b><em>As a hardware creator, I want to export and download a 3D graphic as a 3D mesh .obj file in order to use it for 3D printing</em></b></p>
+
 **Acceptance Criteria:**
 
  * Given a 3D graphic on the web app, users can export and download the graphic as a 3D mesh .obj file

@@ -1,4 +1,4 @@
-# YOUR PRODUCT/TEAM NAME
+# articulat3 - Team Corndogs
 <!-- >_Note:_ This document will evolve throughout your project. You commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section). 
  > **This document will serve as a master plan between your team, your partner and your TA.** -->
 

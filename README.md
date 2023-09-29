@@ -33,7 +33,7 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 
 - A clear call-to-action to generate new 3D content and a input text box to enter the prompt
 - A searchable gallery featuring previously generated objects
-- An interactable panel with the 3D object
+- An interactable panel with the 3D object and an option to export the image and mesh
 
 *This section is in progress and will be completed once we start development.*
 ​

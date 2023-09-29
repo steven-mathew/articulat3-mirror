@@ -1,4 +1,4 @@
-# Meeting Minutes ~ DATE
+# Meeting Minutes | DATE
 
 >_**Note-taker:**_
 >

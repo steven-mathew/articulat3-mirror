@@ -102,7 +102,7 @@ Our team recently met up for a fun team-building activity. We played an online t
 
 📸 Here’s a picture of us:
 
-
+<img src="assets/us.jpg" />
 
 🎉 3 fun facts:
 * Steven, our Tech Lead, is a keyboard enthusiast with an impressive collection of six custom-built mechanical keyboards. He enjoys tinkering with them to create unique and personalized typing experiences.

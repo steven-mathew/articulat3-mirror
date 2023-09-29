@@ -14,11 +14,11 @@
     - Add more detail to user stories (ie. #5)
       - "What file format do I support?"
       - Make it easier to translate to actionable work
-- Updates from each sub-team
-  - Backend - Update for Deliverable 1 writing portion
+- Updates from each sub-team (each sub-team had meetings in the past week to work on the following)
+  - Backend (Allen, Steven, Max) - Update for Deliverable 1 writing portion
     - Completed user stories and team details on the planning doc
     - Currently working on the product details for the planning doc
-   - Frontend - Present [low-fidelity prototype](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0-1&mode=design&t=M4j3STrUBvMZG9ys-0) to the group
+   - Frontend (Jasper, Sarah, Neeco) - Present [low-fidelity prototype](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0-1&mode=design&t=M4j3STrUBvMZG9ys-0) to the group
       - Completed the low-fidelity prototype 
       - Working on the high-fidelity prototype now
 - Prep for partner meeting

@@ -40,3 +40,6 @@ Meeting Summary
 What Went Well
 - All our questions were answered by the TA
 - We were able to get good feedback for part of our D1
+
+What Didn't Go Well
+- N/A for this week

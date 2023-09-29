@@ -22,6 +22,7 @@
 #### Q2: Who are your target users?
 
 Our main target users are content creators, game designers, hardware creators, and animators. In general, the web app welcomes individuals who are interested in using, creating, or simply browsing 3D content and generation.
+
 <b>User Personas:</b> https://workspace68739247.xtensio.com/folder/82zhkpai
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
@@ -36,20 +37,22 @@ Our main target users are content creators, game designers, hardware creators, a
     * How does this align with your partner's organization's values/mission/mandate?
 
 #### Q4: What are the user stories that make up the Minumum Viable Product (MVP)?
-#### <u>Story #1</u>
+#### Story #1
 <p align=center><b><em>As a content creator, I want to generate a 3D graphic according to a desired description in order to save time and effort in designing and creating it myself</em></b></p>
 <b>Acceptance Criteria:</b>
 * Given an input prompt from a user, the web app will generate and output a 3D graphic matching the prompt in a reasonably fast time
 * Given the 3D object generated from an input prompt, users can export and download the object as an image
 
-#### <u>Story #2</u>
+#### Story #2
 <p align=center><b><em>As a content creator, I want to see the progress of my 3D graphic being generated and be able to cancel it in order to save time if it is not what I desire</em></b></p>
 <b>Acceptance Criteria:</b>
+
 * Given a 3D graphic in the process of being generated, users can view the image as it is generated and its progress, and cancel the generation if desired
 
 #### <u>Story #3</u>
 <p align=center><b><em>As a content creator, I want to search for and view existing 3D graphics and their information in order to draw inspiration and get ideas for my content</em></b></p>
 <b>Acceptance Criteria:</b>
+
 * Given the gallery page on the web app, users can view all users’ previously generated 3D graphics
 * Given the gallery page on the web app, users can search for existing 3D graphics
 * Given an existing 3D graphic on the web app, users can view the relevant prompt and 3D model generation data used to generate said 3D graphic
@@ -57,11 +60,13 @@ Our main target users are content creators, game designers, hardware creators, a
 #### <u>Story #4</u>
 <p align=center><b><em>As a video game designer, I want to view and interact with a 3D graphic in order to examine the 3D graphic and its suitability as an asset</em></b></p>
 <b>Acceptance Criteria:</b>
+
 * Given a 3D graphic anywhere on the web app, users can interact with and view the mesh from all angles and zoom levels
 
 #### <u>Story #5</u>
 <p align=center><b><em>As a hardware creator, I want to export and download a 3D graphic as a 3D mesh .obj file in order to use it for 3D printing</em></b></p>
 <b>Acceptance Criteria:</b>
+
 * Given a 3D graphic on the web app, users can export and download the graphic as a 3D mesh .obj file
 
 #### Q5: Have you decided on how you will build it? Share what you know now or tell us the options you are considering.

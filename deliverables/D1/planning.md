@@ -223,12 +223,12 @@ To organize our team effectively and ensure smooth project management, we will u
 
 #### Google Drive
 
-- **Artifact:** Relevant documentation and project write-ups will be stored and organized here for easy access and reference. This includes deliverable written drafts, meeting minutes, project requirements, design documents, and other important project-related documents.<br>
+- **Artifact:** Relevant documentation and project write-ups will be stored and organized here for easy access and reference. This includes deliverable written drafts, meeting minutes, project requirements, design documents, and other important project-related documents, before they are submitted on GitHub.<br>
 - **Purpose:** Google Drive will serve as our central repository for project documentation and drafts for deliverable submissions. This makes it accessible to all team members, the TA, and our project partner and ensures that everyone has access to essential project information. Additionally, this is where meeting minutes will be documented after every team and partner meeting. Meeting minutes provide a record of what was discussed and action items that arise; they help us track the status of work items and ensure that tasks are completed as planned. 
 
 #### GitHub Project Board
 
-- **Artifact:** We will use the GitHub project board to organize and track project tasks and issues. Tasks will be represented as GitHub issues, which can be assigned to team members, labeled with priorities, and categorized into project milestones and sub-teams.<br>
+- **Artifact:** We will use the GitHub project board to organize and track project tasks and issues. Tasks will be represented as GitHub issues, which can be assigned to team members, labeled with priorities, and categorized into project milestones and sub-teams. [**👉 View the project board**](https://github.com/orgs/csc301-2023-fall/projects/3)<br>
 - **Purpose:** The project board will help us keep track of what needs to get done, prioritize tasks, and assign them to specific team members. It provides a visual representation of our project's progress and allows for easy status tracking from inception to completion. This will also prevent overlaps where multiple team members accidentally work on the same task. With the help of tags on each issue, we’ll be able to assign prioritized tasks to the right team members based on sub-teams and type of issue.
 
 #### Discord

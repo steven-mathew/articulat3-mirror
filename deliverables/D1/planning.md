@@ -102,21 +102,27 @@ List each team member and:
  * Why did you choose them to take that role? Specify if they are interested in learning that part, experienced in it, or any other reasons. Do no make things up. This part is not graded but may be reviewed later.
 
 All team members have been assigned roles that align with their interests, skills, and experience, ensuring that they can contribute effectively to both the technical development and project management aspects of our project.
+
 Steven (Partner Liaison, Tech Lead, Backend Developer):
 Role: As the Partner Liaison, Tech Lead, and Backend Developer, Steven is responsible for overseeing the technical aspects of the project, including architecture, development, and deployment.
 Responsibilities: We appointed Steven with the role of dedicated partner liaison due to his excellent organizational and communication skills, which are crucial for maintaining a strong partnership with external stakeholders. On top of that, Steven will lead the backend development efforts (such as the wasm object renderer and backend server), ensuring that it is robust and efficient. Additionally, he will contribute to code reviews and mentor team members when needed. Steven's experience and technical expertise make him well-suited for this role.
+
 Jasper (Frontend Developer, Scrum Master):
 Role: Jasper serves as both a Frontend Developer and the Scrum Master. 
 Responsibilities: Jasper is responsible for facilitating the Scrum process and prioritizing tasks to ensure that the team stays on track. He has an interest in pursuing leadership and “path-mapping” roles in the industry, which is why he will be coordinating sprint planning, team meetings, and retrospectives. Additionally, he will focus on frontend development tasks. Jasper's existing leadership skills and passion for frontend development make him an ideal candidate for these roles.
+
 Allen (Backend Developer):
 Role: Allen's primary role is as a Backend Developer, focusing on server-side development.
 Responsibilities: Allen will work on implementing backend features, optimizing server performance, and maintaining databases. Allen's interest in backend development and his yearlong backend experience from past internships make him a valuable member of the backend team.
+
 Max (Backend Developer):
 Role: Max is another Backend Developer, specializing in server-side development.
 Responsibilities: Max’s responsibilities include developing backend components and databases, handling data processing, and ensuring server reliability. Max's programming skills and commitment to backend development make him a strong contributor to the team.
+
 Neeco (Frontend Developer, Project Manager):
 Role: Neeco takes on the roles of a Frontend Developer and Project Manager.
 Responsibilities: Neeco will work on implementing the web application’s frontend and take charge of project management duties such as ticket management, task allocation, and timeline tracking. Neeco's interest in both frontend development and project management makes him a versatile team member.
+
 Sarah (Frontend Developer, Project Manager, Designer):
 Role: Sarah has a multifaceted role encompassing Frontend Development, Project Management, and Design.
 Responsibilities: Sarah will handle tasks pertaining to the frontend development of the web application, contribute to project management activities, and is responsible for the project's visual design elements (ie. prototyping on Figma, making design decisions, etc.). She has a strong interest in the creative side of software development, especially in the area of UI/UX, which is why she took on these roles. Sarah's diverse skill set and willingness to take on various responsibilities make her a valuable asset to the team.

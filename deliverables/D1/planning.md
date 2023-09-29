@@ -36,7 +36,7 @@ When entering the site, users will see a clear call-to-action to generate new 3D
 
 Furthermore, the home page will feature an updating gallery with image thumbnails of previously generated objects. When a thumbnail is clicked, the user can interact with the 3D object using their mouse, with support for object revolution. The gallery will be searchable using the prompts associated with the objects (note that these prompts don’t need to be unique). The user can then download all files associated with an object. In particular, our product will support downloads of the thumbnail (.png), surface material (.mtl), geometry definition (.obj), and textures (.jpg). 
 
-##### [**👉 View our low-fidelity prototype on Figma! →**](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=A9eFYF6kFeUOTlsQ-1)
+##### [**👉 View our low-fidelity prototype on Figma!**](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=A9eFYF6kFeUOTlsQ-1)
 
 [^1]:https://tisl.cs.toronto.edu/ 
 [^2]:https://github.com/threestudio-project/threestudio
@@ -46,7 +46,7 @@ Furthermore, the home page will feature an updating gallery with image thumbnail
 
 Our main target users are content creators, game designers, hardware creators, and animators. In general, the web app welcomes individuals who are interested in using, creating, or simply browsing 3D content and generation.
 
-##### [**👉 View the user personas →**](https://workspace68739247.xtensio.com/folder/82zhkpai)
+##### [**👉 View the user personas**](https://workspace68739247.xtensio.com/folder/82zhkpai)
 
 ### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
@@ -254,7 +254,8 @@ We will have regular team meetings once a week (Mondays at 8:00 PM, and biweekly
 ##### Methods/Channels
 Our primary communication platform will be Discord, with dedicated channels for general discussions, technical queries, and meeting coordination. Google Drive will be used for document sharing, and GitHub Project Board will serve as our task management platform.
 
-##### Partner Communication For communication with our project partner, we will adhere to the agreed-upon biweekly meeting schedule and use Whatsapp for additional correspondence.
+##### Partner Communication 
+For communication with our project partner, we will adhere to the agreed-upon biweekly meeting schedule and use Whatsapp for additional correspondence.
 
 #### 👥 Collaboration
 

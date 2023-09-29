@@ -1,8 +1,8 @@
-# Meeting Minutes ~ Sep 22, 2023
+# Meeting Minutes | Sep 22, 2023
 
-_**Note-taker:**_ Sarah
-
-_**Attendees:**_ Allen, Jasper, Max, Neeco, Sarah, Steven; Ashkan
+>_**Note-taker:**_ Sarah
+>
+>_**Attendees:**_ Allen, Jasper, Max, Neeco, Sarah, Steven; Ashkan
 
 ## Meeting Agenda
 - Introductions

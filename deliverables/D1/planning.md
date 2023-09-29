@@ -36,7 +36,7 @@ When entering the site, users will see a clear call-to-action to generate new 3D
 
 Furthermore, the home page will feature an updating gallery with image thumbnails of previously generated objects. When a thumbnail is clicked, the user can interact with the 3D object using their mouse, with support for object revolution. The gallery will be searchable using the prompts associated with the objects (note that these prompts don’t need to be unique). The user can then download all files associated with an object. In particular, our product will support downloads of the thumbnail (.png), surface material (.mtl), geometry definition (.obj), and textures (.jpg). 
 
-➡️ View our **low-fidelity prototype** on Figma [here](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=A9eFYF6kFeUOTlsQ-1). ⬅️
+##### [**👉 View our low-fiedelity prototype on Figma! →**](https://www.figma.com/file/PiuZtndJxjyLuyAER2jeSh/Website-Prototype?type=design&node-id=0%3A1&mode=design&t=A9eFYF6kFeUOTlsQ-1)
 
 [^1]:https://tisl.cs.toronto.edu/ 
 [^2]:https://github.com/threestudio-project/threestudio
@@ -46,8 +46,7 @@ Furthermore, the home page will feature an updating gallery with image thumbnail
 
 Our main target users are content creators, game designers, hardware creators, and animators. In general, the web app welcomes individuals who are interested in using, creating, or simply browsing 3D content and generation.
 
-👤 <b>User Personas:</b> https://workspace68739247.xtensio.com/folder/82zhkpai
-
+##### [**👉 View the user personas →**](https://workspace68739247.xtensio.com/folder/82zhkpai)
 
 ### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
@@ -99,9 +98,6 @@ The current threestudio program involves cloning, building, installing dependenc
 *Acceptance Criteria:*
  * Given a 3D graphic on the web app, users can export and download the graphic as a 3D mesh .obj file
 
-
-🥳 **User Stories Approval**:
-
 <p align="center">
   <img src="assets/user_stories_approval.jpg" width="50%" />
 </p>
@@ -127,10 +123,10 @@ Our exact tech stack is subject to change, but our initial plan includes the fol
 - E2E Testing: [Cypress](https://www.cypress.io/)
 - Build system: [Bazel](https://bazel.build/) and [Nix](https://nixos.org/)
 - IaC: [OpenTofu](https://opentofu.org/) (fork of Terraform)
-- CI/CD: [Github Actions](https://docs.github.com/en/actions) (render for CD)
+- CI/CD: [Github Actions](https://docs.github.com/en/actions)
 - Deployment: [render](https://render.com/) or [k3s](https://k3s.io/) on a cheap, managed VM
 
-➡️ View our **architecture diagram** to see how everything works together [here](https://excalidraw.com/#json=rceu9XbNsKbpw0Ei2TYrg,KOf8JUazXSUhTB1wrgSZzA). ⬅️
+##### [**👉 View our architecture diagram to see how everything works together**](https://excalidraw.com/#json=IPIIOX9qDmh3N_GDrU6O9,W8GgGOZvRtsg1gZ4JPINaQ)
 
 ----
 ## Intellectual Property Confidentiality Agreement 

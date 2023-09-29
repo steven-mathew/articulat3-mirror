@@ -1,0 +1,7 @@
+i. Who are your partners? What’s their name, title, and email?
+    1. Are they your primary contact (e.g., developer you are working with and meeting regularly) or secondary contact (e.g., executive director who you met once)
+        Our partner is Ashkan Mirzaei (ashkan@cs.toronto.edu), a PhD student working in the Toronto Intelligent Systems Lab. 
+        Ashkan is also our primary contact.
+
+ii. Who is your TA and what’s their email?
+    Our TA is Sinclair Hudson (sinclair.hudson@mail.utoronto.ca).

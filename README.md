@@ -9,7 +9,7 @@ LOGO HERE
 </p>
 <p align="center">
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/deliverables/D1/planning.md">Planning</a> •
-    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/CONTRIBUTING.md">Contributing</a>
+    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md">Contributing</a>
 </p>
 <br />
 

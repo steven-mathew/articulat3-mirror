@@ -52,7 +52,7 @@
          
 ## Summary
 Actions Items:
-- \[Jasper] Create team x partner social groupchat (WhatsApp) 4379857649
+- \[Jasper] Create team x partner social groupchat (WhatsApp)
 - \[Steven] Give partner Github repo access
 - \[Jasper] Set up gcal meeting invites
   - Starting next week (focus on Figma back-and-forths)

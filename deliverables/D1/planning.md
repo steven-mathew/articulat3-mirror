@@ -101,6 +101,25 @@ List each team member and:
  * A description of their role(s) and responsibilities including the components they'll work on and non-software related work
  * Why did you choose them to take that role? Specify if they are interested in learning that part, experienced in it, or any other reasons. Do no make things up. This part is not graded but may be reviewed later.
 
+All team members have been assigned roles that align with their interests, skills, and experience, ensuring that they can contribute effectively to both the technical development and project management aspects of our project.
+Steven (Partner Liaison, Tech Lead, Backend Developer):
+Role: As the Partner Liaison, Tech Lead, and Backend Developer, Steven is responsible for overseeing the technical aspects of the project, including architecture, development, and deployment.
+Responsibilities: We appointed Steven with the role of dedicated partner liaison due to his excellent organizational and communication skills, which are crucial for maintaining a strong partnership with external stakeholders. On top of that, Steven will lead the backend development efforts (such as the wasm object renderer and backend server), ensuring that it is robust and efficient. Additionally, he will contribute to code reviews and mentor team members when needed. Steven's experience and technical expertise make him well-suited for this role.
+Jasper (Frontend Developer, Scrum Master):
+Role: Jasper serves as both a Frontend Developer and the Scrum Master. 
+Responsibilities: Jasper is responsible for facilitating the Scrum process and prioritizing tasks to ensure that the team stays on track. He has an interest in pursuing leadership and “path-mapping” roles in the industry, which is why he will be coordinating sprint planning, team meetings, and retrospectives. Additionally, he will focus on frontend development tasks. Jasper's existing leadership skills and passion for frontend development make him an ideal candidate for these roles.
+Allen (Backend Developer):
+Role: Allen's primary role is as a Backend Developer, focusing on server-side development.
+Responsibilities: Allen will work on implementing backend features, optimizing server performance, and maintaining databases. Allen's interest in backend development and his yearlong backend experience from past internships make him a valuable member of the backend team.
+Max (Backend Developer):
+Role: Max is another Backend Developer, specializing in server-side development.
+Responsibilities: Max’s responsibilities include developing backend components and databases, handling data processing, and ensuring server reliability. Max's programming skills and commitment to backend development make him a strong contributor to the team.
+Neeco (Frontend Developer, Project Manager):
+Role: Neeco takes on the roles of a Frontend Developer and Project Manager.
+Responsibilities: Neeco will work on implementing the web application’s frontend and take charge of project management duties such as ticket management, task allocation, and timeline tracking. Neeco's interest in both frontend development and project management makes him a versatile team member.
+Sarah (Frontend Developer, Project Manager, Designer):
+Role: Sarah has a multifaceted role encompassing Frontend Development, Project Management, and Design.
+Responsibilities: Sarah will handle tasks pertaining to the frontend development of the web application, contribute to project management activities, and is responsible for the project's visual design elements (ie. prototyping on Figma, making design decisions, etc.). She has a strong interest in the creative side of software development, especially in the area of UI/UX, which is why she took on these roles. Sarah's diverse skill set and willingness to take on various responsibilities make her a valuable asset to the team.
 
 #### Q8: How will you work as a team?
 
@@ -111,7 +130,26 @@ Describe meetings (and other events) you are planning to have.
  * You should have 2 meetings with your project partner (if you have one) before D1 is due. Describe them here:
    * You must keep track of meeting minutes and add them to your repo under "documents/minutes" folder
    * You must have a regular meeting schedule established for the rest of the term.  
-  
+
+As a team, we have a well-structured plan for how we will work together throughout the term. Here are the details of our meetings and other collaborative events.
+Team Meeting (Recurring Weekly Check-In):
+⏰ When: Every Monday at 8:00 PM (around Tutorial times)
+🏢 Where: Online (via Discord)
+ℹ️ Purpose: This recurring meeting serves as our weekly check-in to discuss project progress, address any challenges or roadblocks, and plan the upcoming week's tasks. It's an opportunity for team members to provide updates on their work, share insights, and coordinate efforts effectively. Meeting minutes will be recorded and stored in the "documents/minutes" folder in our repository.
+Partner Meeting with Project Partner (Recurring Biweekly):
+⏰ When: Every other Thursday from 4:00 PM to 5:00 PM
+🏢 Where: In-Person at Myhal or via online Google Meets
+ℹ️ Purpose: These biweekly meetings with our project partner are essential for gathering feedback, clarifying requirements, and aligning our project goals with the partner's expectations. We will discuss project milestones, review progress, and ensure that our work is meeting the partner's needs. Meeting minutes for these sessions will also be documented and stored in the "documents/minutes" folder in our repository.
+Ad Hoc Meetings:
+⏰ When: Ad hoc
+🏢 Where: Online (via Discord) and In-Person on campus
+ℹ️ Purpose: In addition to the two recurring meetings, we will have ad hoc coding sessions, code reviews, and quick weekly sync meetings online (and in-person) as needed. The purpose of these additional events is to collaborate on specific coding tasks, review and refine code, and maintain close communication within the team. While we have established a regular meeting schedule, we remain flexible and open to scheduling extra meetings when necessary to ensure project success and effective teamwork.
+Partner Meeting Summary
+1️⃣ First Meeting Minutes - Sept 22, 2023 4PM-5PM
+In the initial partner meeting, we engaged in a comprehensive discussion with our partner. They clarified project details, established a common understanding of the technology stack and MVP concept, and emphasized the desire for an interactive platform for model generation. Design considerations were also touched upon, with plans to draft designs on Figma that emphasize a simple and user-friendly interface. Technical ideas that were written up by our team, such as architecture, deployment preferences, and future cluster setups, were presented and evaluated. Additionally, the team sought background information about the partner's research and the broader goals of the lab, while addressing potential intellectual property considerations. Overall, the meeting set a clear direction for the project and established a foundation for effective collaboration.
+2️⃣ Second Meeting Minutes - Sept 28, 2023 4PM-5PM
+In the second partner meeting, we used the time to have our partner review our Figma prototypes and user stories/personas. Our team gained useful feedback from him regarding the designs and user stories which we used to make new changes before the Deliverable 1 submission. 
+
 #### Q9: How will you organize your team?
 
 List/describe the artifacts you will produce in order to organize your team.       
@@ -123,6 +161,23 @@ List/describe the artifacts you will produce in order to organize your team.
    * How do tasks get assigned to team members?
    * How do you determine the status of work from inception to completion?
 
+To organize our team effectively and ensure smooth project management, we will use a combination of tools and artifacts:
+
+Google Drive
+Artifact: Relevant documentation and project write-ups will be stored and organized here for easy access and reference. This includes deliverable written drafts, meeting minutes, project requirements, design documents, and other important project-related documents.
+Purpose: Google Drive will serve as our central repository for project documentation and drafts for deliverable submissions. This makes it accessible to all team members, the TA, and our project partner and ensures that everyone has access to essential project information. Additionally, this is where meeting minutes will be documented after every team and partner meeting. Meeting minutes provide a record of what was discussed and action items that arise; they help us track the status of work items and ensure that tasks are completed as planned. 
+GitHub Project Board
+Artifact: We will use the GitHub project board to organize and track project tasks and issues. Tasks will be represented as GitHub issues, which can be assigned to team members, labeled with priorities, and categorized into project milestones and sub-teams.
+Purpose: The project board will help us keep track of what needs to get done, prioritize tasks, and assign them to specific team members. It provides a visual representation of our project's progress and allows for easy status tracking from inception to completion. This will also prevent overlaps where multiple team members accidentally work on the same task. With the help of tags on each issue, we’ll be able to assign prioritized tasks to the right team members based on sub-teams and type of issue.
+Discord
+Artifact: Discord will be our primary platform for overall team communication and discussion. We will create dedicated channels for different topics, such as general discussion, technical questions, and meeting coordination.
+Purpose: Discord serves as our real-time communication hub, facilitating quick discussions, decision-making, and coordination. It allows us to promptly address any questions or issues that arise during development. We have several channels within Discord to keep track of meeting minute links (to Google Drive), important links from our partners, and other relevant files.
+Meeting Minutes (via Google Drive)
+Artifact: Meeting minutes will be recorded and documented after each team meeting and partner meeting.
+Purpose: Meeting minutes provide a record of what was discussed, decisions made, and action items assigned during meetings. They help us track the status of work items and ensure that tasks are completed as planned.
+Summary
+In summary, our team will primarily use Google Drive for documentation, GitHub Project Board for task organization, and Discord for communication. These artifacts collectively enable us to stay organized, prioritize tasks, and assign responsibilities. Access will be granted to our TA and project partner for transparency and collaboration.
+
 #### Q10: What are the rules regarding how your team works?
 
 **Communications:**
@@ -132,3 +187,42 @@ List/describe the artifacts you will produce in order to organize your team.
 **Collaboration: (Share your responses to Q8 & Q9 from A1)**
  * How are people held accountable for attending meetings, completing action items? Is there a moderator or process?
  * How will you address the issue if one person doesn't contribute or is not responsive? 
+
+
+🔊 Communications
+
+Frequency: We will have regular team meetings once a week (Mondays at 8:00 PM, and biweekly meetings with our project partner (Thursdays from 4:00 PM to 5:00 PM). Additionally, we will engage in frequent communication via Discord for day-to-day discussions and problem-solving.
+
+Methods/Channels: Our primary communication platform will be Discord, with dedicated channels for general discussions, technical queries, and meeting coordination. Google Drive will be used for document sharing, and GitHub Project Board will serve as our task management platform.
+
+Partner Communication: For communication with our project partner, we will adhere to the agreed-upon biweekly meeting schedule and use Whatsapp for additional correspondence.
+
+👥Collaboration
+
+Accountability: Each meeting, we will have a designated moderator to ensure that discussions stay on track, everyone has the opportunity to contribute, and notes are being taken. We expect everyone to attend the team meetings and that the team is notified in advance if someone is unable to attend. We will follow up on previous action items during our weekly team meetings to ensure they are being completed in a timely manner. Meeting minutes will be documented and shared, and tasks will be managed using the GitHub Project Board.
+
+Addressing Non-Contribution: In the event that a team member does not contribute or is unresponsive, we will initially reach out to them directly through Discord or email to understand any potential challenges or issues. If the issue persists, we will address it as a team during our regular meetings and collaboratively seek solutions. This may involve redistributing tasks or providing additional support to the team member to ensure their active participation.
+
+Scenario 1: Indecision
+If a situation arises where team members engage in a subjective argument or indecision regarding the best approach for a feature or task, the following resolution steps will be taken:
+
+Other team members will be asked to provide their perspectives on the matter.
+An attempt will be made to facilitate a compromise that aligns with the project's goals while respecting everyone's opinions.
+The aim is to promote constructive discussion and reach a consensus that benefits the project.
+
+Scenario 2: Non-responsiveness
+In the event that a team member is consistently absent from meetings and unresponsive to online communication, the following resolution steps will be implemented:
+
+Initial efforts will be made to contact the absent member in-person to understand the reason for their absence.
+If the absence was not communicated beforehand, the team will seek justification for the unresponsiveness.
+If the justification is deemed insufficient, a formal warning will be issued to the member regarding their non-responsiveness.
+If the issue persists after the warning and the member continues to be unresponsive, the matter will be escalated to the Teaching Assistant (TA) for further resolution.
+
+Scenario 3: Failure to Complete Features
+In cases where a team member consistently fails to complete assigned tasks  causing backlogs and hindering the progress of other team members, the following resolution steps will be initiated:
+
+Team members directly affected by the lack of feature completion will engage in an in-person discussion with the member to address the issue.
+The aim of this discussion is to understand the reasons behind the non-completion of tasks and to find a suitable resolution.
+If no satisfactory explanation is provided and the issue persists for a significant period beyond this discussion, the matter will be escalated to the TA for intervention.
+
+These conflict resolution procedures are designed to promote open communication, address issues promptly, and ensure that team dynamics remain constructive and collaborative throughout the project.

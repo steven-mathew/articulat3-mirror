@@ -138,18 +138,22 @@ Describe meetings (and other events) you are planning to have.
    * You must have a regular meeting schedule established for the rest of the term.  
 
 As a team, we have a well-structured plan for how we will work together throughout the term. Here are the details of our meetings and other collaborative events.
+
 Team Meeting (Recurring Weekly Check-In):
 ⏰ When: Every Monday at 8:00 PM (around Tutorial times)
 🏢 Where: Online (via Discord)
 ℹ️ Purpose: This recurring meeting serves as our weekly check-in to discuss project progress, address any challenges or roadblocks, and plan the upcoming week's tasks. It's an opportunity for team members to provide updates on their work, share insights, and coordinate efforts effectively. Meeting minutes will be recorded and stored in the "documents/minutes" folder in our repository.
+
 Partner Meeting with Project Partner (Recurring Biweekly):
 ⏰ When: Every other Thursday from 4:00 PM to 5:00 PM
 🏢 Where: In-Person at Myhal or via online Google Meets
 ℹ️ Purpose: These biweekly meetings with our project partner are essential for gathering feedback, clarifying requirements, and aligning our project goals with the partner's expectations. We will discuss project milestones, review progress, and ensure that our work is meeting the partner's needs. Meeting minutes for these sessions will also be documented and stored in the "documents/minutes" folder in our repository.
+
 Ad Hoc Meetings:
 ⏰ When: Ad hoc
 🏢 Where: Online (via Discord) and In-Person on campus
 ℹ️ Purpose: In addition to the two recurring meetings, we will have ad hoc coding sessions, code reviews, and quick weekly sync meetings online (and in-person) as needed. The purpose of these additional events is to collaborate on specific coding tasks, review and refine code, and maintain close communication within the team. While we have established a regular meeting schedule, we remain flexible and open to scheduling extra meetings when necessary to ensure project success and effective teamwork.
+
 Partner Meeting Summary
 1️⃣ First Meeting Minutes - Sept 22, 2023 4PM-5PM
 In the initial partner meeting, we engaged in a comprehensive discussion with our partner. They clarified project details, established a common understanding of the technology stack and MVP concept, and emphasized the desire for an interactive platform for model generation. Design considerations were also touched upon, with plans to draft designs on Figma that emphasize a simple and user-friendly interface. Technical ideas that were written up by our team, such as architecture, deployment preferences, and future cluster setups, were presented and evaluated. Additionally, the team sought background information about the partner's research and the broader goals of the lab, while addressing potential intellectual property considerations. Overall, the meeting set a clear direction for the project and established a foundation for effective collaboration.
@@ -172,15 +176,18 @@ To organize our team effectively and ensure smooth project management, we will u
 Google Drive
 Artifact: Relevant documentation and project write-ups will be stored and organized here for easy access and reference. This includes deliverable written drafts, meeting minutes, project requirements, design documents, and other important project-related documents.
 Purpose: Google Drive will serve as our central repository for project documentation and drafts for deliverable submissions. This makes it accessible to all team members, the TA, and our project partner and ensures that everyone has access to essential project information. Additionally, this is where meeting minutes will be documented after every team and partner meeting. Meeting minutes provide a record of what was discussed and action items that arise; they help us track the status of work items and ensure that tasks are completed as planned. 
+
 GitHub Project Board
 Artifact: We will use the GitHub project board to organize and track project tasks and issues. Tasks will be represented as GitHub issues, which can be assigned to team members, labeled with priorities, and categorized into project milestones and sub-teams.
 Purpose: The project board will help us keep track of what needs to get done, prioritize tasks, and assign them to specific team members. It provides a visual representation of our project's progress and allows for easy status tracking from inception to completion. This will also prevent overlaps where multiple team members accidentally work on the same task. With the help of tags on each issue, we’ll be able to assign prioritized tasks to the right team members based on sub-teams and type of issue.
+
 Discord
 Artifact: Discord will be our primary platform for overall team communication and discussion. We will create dedicated channels for different topics, such as general discussion, technical questions, and meeting coordination.
 Purpose: Discord serves as our real-time communication hub, facilitating quick discussions, decision-making, and coordination. It allows us to promptly address any questions or issues that arise during development. We have several channels within Discord to keep track of meeting minute links (to Google Drive), important links from our partners, and other relevant files.
 Meeting Minutes (via Google Drive)
 Artifact: Meeting minutes will be recorded and documented after each team meeting and partner meeting.
 Purpose: Meeting minutes provide a record of what was discussed, decisions made, and action items assigned during meetings. They help us track the status of work items and ensure that tasks are completed as planned.
+
 Summary
 In summary, our team will primarily use Google Drive for documentation, GitHub Project Board for task organization, and Discord for communication. These artifacts collectively enable us to stay organized, prioritize tasks, and assign responsibilities. Access will be granted to our TA and project partner for transparency and collaboration.
 

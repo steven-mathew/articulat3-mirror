@@ -33,28 +33,28 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 - A searchable gallery featuring previously generated objects
 - An interactable panel with the 3D object
 
-This section is in progress and will be completed once we start development.
+*This section is in progress and will be completed once we start development.*
 ​
 ## Instructions
- >* Clear instructions for how to use the application from the end-user's perspective
+<!-- >* Clear instructions for how to use the application from the end-user's perspective
  >* How do you access it? For example: Are accounts pre-created or does a user register? Where do you start? etc. 
  >* Provide clear steps for using each feature described in the previous section.
- >* This section is critical to testing your application and must be done carefully and thoughtfully.
+ >* This section is critical to testing your application and must be done carefully and thoughtfully. -->
 
-This section will be completed once we start development.
+*This section will be completed once we start development.*
  
 ## Development requirements
- >* What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
+<!-- >* What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
  >* Briefly describe instructions for setting up and running the application. You should address this part like how one would expect a README doc of real-world deployed application would be.
- >* You can see this [example](https://github.com/alichtman/shallow-backup#readme) to get started.
+ >* You can see this [example](https://github.com/alichtman/shallow-backup#readme) to get started. -->
 
-This section will be completed once we start development.
+*This section will be completed once we start development.*
  
 ## Deployment 
- >* Describe your overall deployment process from writing code to viewing a live application
- >* What deployment tool(s) are you using? And how?
+<!-- >* Describe your overall deployment process from writing code to viewing a live application
+ >* What deployment tool(s) are you using? And how? -->
 
-This section will be completed once we start development.
+*This section will be completed once we start development.*
 
  ## Github Workflow, Coding Standards, and Guidelines
 

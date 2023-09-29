@@ -1,4 +1,4 @@
-### Background
+### Description
 
 <!-- What was happening before this PR, and the problem(s) it solves -->
 
@@ -21,3 +21,4 @@
 ### Related PRs or Issues
 
 <!-- Dependent PRs, or any relevant linked issues -->
+

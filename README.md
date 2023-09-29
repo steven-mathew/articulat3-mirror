@@ -1,9 +1,11 @@
-# YOUR PRODUCT/TEAM NAME
+# articulat3 - Team Corndogs
 ​
 <p align="center">
 <!-- <a href="https://tisl.cs.toronto.edu/" target="_blank"> -->
 <!-- <picture> -->
-LOGO HERE
+<p align="center">
+  <img src="deliverables/D1/assets/articulat3-logo.png" width="50%" />
+</p>
 <!-- </picture>
 <!-- </a> -->
 </p>
@@ -61,7 +63,6 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 ​Please make sure to read the [Contributing Guide](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md) before making a pull request!
 
 ## Licenses 
-​
-Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT) because it is permissive and allows anyone to distribute and use the code for any purpose.
+​Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT) because it is permissive and allows anyone to distribute and use the code for any purpose.
 
 Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, shall be licensed as in the README, without any additional terms or conditions.

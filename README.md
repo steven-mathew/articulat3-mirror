@@ -59,7 +59,7 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 *This section will be completed once we start development.*
 
  ## Github Workflow, Coding Standards, and Guidelines
-
+We will track our progress on issues and feature stories through [Github Projects](https://github.com/orgs/csc301-2023-fall/projects/3).
 ​Please make sure to read the [Contributing Guide](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md) before making a pull request!
 
 ## Licenses 

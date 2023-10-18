@@ -34,8 +34,6 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 - A clear call-to-action to generate new 3D content and a input text box to enter the prompt
 - A searchable gallery featuring previously generated objects
 - An interactable panel with the 3D object and an option to export the image and mesh
-
-*This section is in progress and will be completed once we start development.*
 ​
 ## Instructions
 <!-- >* Clear instructions for how to use the application from the end-user's perspective
@@ -43,20 +41,20 @@ An easy-to-use web application for 3D content creation from a user-given text pr
  >* Provide clear steps for using each feature described in the previous section.
  >* This section is critical to testing your application and must be done carefully and thoughtfully. -->
 
-*This section will be completed once we start development.*
+*This section will be completed after we merge our sub-team repos into one application.*
  
 ## Development requirements
 <!-- >* What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
  >* Briefly describe instructions for setting up and running the application. You should address this part like how one would expect a README doc of real-world deployed application would be.
  >* You can see this [example](https://github.com/alichtman/shallow-backup#readme) to get started. -->
 
-*This section will be completed once we start development.*
+*This section will be completed after we merge our sub-team repos into one application.*
  
 ## Deployment 
 <!-- >* Describe your overall deployment process from writing code to viewing a live application
  >* What deployment tool(s) are you using? And how? -->
 
-*This section will be completed once we start development.*
+*This section will be completed after we merge our sub-team repos into one application.*
 
  ## Github Workflow, Coding Standards, and Guidelines
 We will track our progress on issues and feature stories through [Github Projects](https://github.com/orgs/csc301-2023-fall/projects/3). Please make sure to read the [Contributing Guide](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md) before making a pull request!

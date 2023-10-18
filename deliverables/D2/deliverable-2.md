@@ -37,7 +37,7 @@ We will be using the existing threestudio project, which is a unified framework 
 Our team divided the project into 2 sub-teams, defining a frontend team (sub-team 1) and a backend team (sub-team 2). We believed that our personal strengths and experiences resulted in a perfectly even split between frontend and backend teams. Having stronger frontend and backend focused teams allows us to deep-dive into specific user stories, create fully implemented user story features, and maintain strong communication between these main components. For example, we deemed it inefficient to have a third separate database team because the database and backend were tightly connected based on our API design; dividing these components further would create communication gaps and unnecessary overlaps. Additionally, having these 2 teams allow for unified and consistent coding guidelines for both frontend and backend components. We also consulted with our partner, who gave his support for our 2-team split^[3]. For D2, we were able to work together with fluid communication to complete our respective user stories. Looking ahead, we believe that splitting the project in this way will help us work efficiently within the same team divisions for future deliverables.
 
 <p align="center">
-  <img src="assets/subteam-approval.jpg" width="60%" />
+  <img src="assets/subteam-approval.jpg" width="50%" />
 </p>
 
 ### How

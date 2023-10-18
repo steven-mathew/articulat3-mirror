@@ -2,7 +2,7 @@
 
 >_**Note-taker:**_ Jasper, Sarah
 >
->_**Attendees:**_ Allen, Jasper, Max, Neeco, Sarah, Steven; Ashkan
+>_**Attendees:**_ Allen, Jasper, Max, Neeco, Sarah, Steven
 
 ## Meeting Agenda
 - Divide our project and create sub-teams. (Choose user story for each sub-team and discuss what feature we want to complete)

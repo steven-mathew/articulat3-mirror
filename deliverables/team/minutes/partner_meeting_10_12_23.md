@@ -1,8 +1,8 @@
-# Meeting Minutes | Oct 12 22, 2023
+# Meeting Minutes | Oct 12, 2023
 
 >_**Note-taker:**_ Neeco
 >
->_**Attendees:**_ Allen, Jasper, Max, Neeco, Sarah, Steven; Ashkan
+>_**Attendees:**_ Neeco, Sarah, Steven; Ashkan
 
 ## Meeting Agenda
 - Updates from Frontend team. 

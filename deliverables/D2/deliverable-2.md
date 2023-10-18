@@ -37,20 +37,20 @@ We will be using the existing threestudio project, which is a unified framework 
 Our team divided the project into 2 sub-teams, defining a frontend team (sub-team 1) and a backend team (sub-team 2). We believed that our personal strengths and experiences resulted in a perfectly even split between frontend and backend teams. Having stronger frontend and backend focused teams allows us to deep-dive into specific user stories, create fully implemented user story features, and maintain strong communication between these main components. For example, we deemed it inefficient to have a third separate database team because the database and backend were tightly connected based on our API design; dividing these components further would create communication gaps and unnecessary overlaps. Additionally, having these 2 teams allow for unified and consistent coding guidelines for both frontend and backend components. We also consulted with our partner, who gave his support for our 2-team split^[3]. For D2, we were able to work together with fluid communication to complete our respective user stories. Looking ahead, we believe that splitting the project in this way will help us work efficiently within the same team divisions for future deliverables.
 
 [^3]:<p align="center">
-  <img src="assets/subteam-approval.jpg" width="50%" />
+  <img src="assets/subteam-approval.jpg"/>
 </p>
 
 ### How
 
 #### Frontend
 <p align="center">
-  <img src="assets/frontend-architecture-diagram.jpg" width="50%" />
+  <img src="assets/frontend-architecture-diagram.png" width="50%" />
 </p>
 The frontend architecture diagram outlines the units required for the full project. In D2, the frontend team implemented aspects of the “Page 1: Create” section. The main components of this page are the user input component and interactive 3D object viewer component (which is shared with the Gallery page). The exact list of features and use cases are defined in sub-team 1’s report. The Create page will call several API endpoints, first to submit the user’s prompt for generation: “POST: prompt”. It will then call the “GET: prompt” endpoint until it receives confirmation that generation is complete. Then, it retrieves the 3D object and necessary metadata using “GET: 3D object”. These calls are sent to the backend server, which interacts with the database and the ML 3D generation deployment. Secondly, future deliverables will implement aspects of the “Page 2: Gallery” section which includes a gallery of existing objects thumbnails. This page interacts with the server by calling the “FETCH: n 3D objects” endpoint to retrieve images on demand, and sending user-provided search queries to filter the gallery by object prompts. In D2, the frontend team used React, TypeScript, Tailwind CSS, Vite, shadcn/ui, and CVA to develop the Create page with a mock backend.
 
 #### Backend
 <p align="center">
-  <img src="assets/backend-architecture-diagram.jpg" width="50%" />
+  <img src="assets/backend-architecture-diagram.png" width="50%" />
 </p>
 The backend architecture diagram outlines the units required for the full project. In D2, the backend team implemented the backend API to communicate with the Google Cloud Storage for blob store. The GET and POST API endpoints for both prompts and blobs were written. The API endpoints will receive information from the frontend for which 3D image to retrieve or store, and will utilize the written GCS interface to interact with the GCS store. Future deliverables will implement the prompt API endpoints to interface with the future Cloud SQL Postgre database, which will be notified by the frontend which prompts to retrieve and store. Additionally, the inference API and interface to call the threestudio ML deployment to generate 3D content will also be included. In D2, the backend team used Go and Chi to write a RESTful API with OpenAPI 3.0 specifications, to communicate with GCS with Terraform for infrastructure, Bazel + Nix to build the system, and Render.com to deploy the app.
 

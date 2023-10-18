@@ -17,15 +17,15 @@
 
 ## Partner Intro
 
-### Primary contact
+### Primary Contact
 
 > Ashkan Mirzaei (ashkan@cs.toronto.edu), PhD student
 
-### Parter organization
+### Parter Organization
 
 Toronto Intelligent Systems lab is a place for computer scientists and creative thinkers to come together and design the next generation of algorithms for robotic intelligence. The lab is located at the University of Toronto and led by Igor Gilitschenski. The lab works on broad applications related to intelligent systems, but for Ashkan specifically, he is interested in content creation with 3D objects and making 3D objects as accessible as possible.
 
-## Description about the project
+## Description About the Project
 
 An easy-to-use web application for 3D content creation from a user-given text prompt. It features a gallery of existing 3D creations and an option to generate new 3D content from text input.
 
@@ -43,7 +43,7 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 
 *This section will be completed after we merge our sub-team repos into one application.*
  
-## Development requirements
+## Development Requirements
 <!-- >* What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
  >* Briefly describe instructions for setting up and running the application. You should address this part like how one would expect a README doc of real-world deployed application would be.
  >* You can see this [example](https://github.com/alichtman/shallow-backup#readme) to get started. -->

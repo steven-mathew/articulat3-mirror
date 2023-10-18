@@ -1,4 +1,4 @@
-# Meeting Minutes | Sep 22, 2023
+# Meeting Minutes | Oct 09, 2023
 
 >_**Note-taker:**_ Jasper, Sarah
 >

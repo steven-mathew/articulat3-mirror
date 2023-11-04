@@ -1,0 +1,14 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+      - id: trailing-whitespace
+
+  - repo: local
+    hooks:
+      - id: format
+        name: Format
+        language: system
+        entry: cd client && pnpm run format
+        files: .*

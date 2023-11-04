@@ -1,0 +1,16 @@
+/bazel-*
+
+*.swp
+
+*.o
+*.a
+*.so
+
+.DS_Store
+
+node_modules
+# we are using pnpm
+package-lock.json
+.eslintcache
+
+/client/dist

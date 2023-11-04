@@ -1,0 +1,8 @@
+{
+    "extends": "@shopify/typescript-configs/node-library.json",
+    "include": ["vite.config.ts"],
+    "compilerOptions": {
+      "composite": true,
+      "types": ["node"]
+    }
+}

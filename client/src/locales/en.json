@@ -1,0 +1,23 @@
+{
+  "Create": {
+    "creationMessageLoading": "Generating image from prompt: \"{0}\"",
+    "inputPlaceholder": "Type something...",
+    "subtitle": "Express yourself",
+    "titleGradient": "Generate ",
+    "titleNonGradient": "your desired 3D objects"
+  },
+  "Gallery": {
+    "placeholder": "This page is under construction!"
+  },
+  "Global": {
+    "cancel": "Cancel",
+    "create": "Create",
+    "darkMode": "Dark Mode",
+    "gallery": "Gallery",
+    "lightMode": "Light Mode"
+  },
+  "NoMatch": {
+    "placeholder": "Nothing to see here!",
+    "callToAction": "Click here to go to the Create page"
+  }
+}

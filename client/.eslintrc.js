@@ -1,0 +1,72 @@
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'plugin:@shopify/typescript',
+    'plugin:@shopify/react',
+    'plugin:@shopify/prettier',
+  ],
+  parserOptions: {
+    ecmaVersion: 6,
+  },
+  rules: {
+    '@babel/no-unused-expressions': 'off',
+    '@shopify/images-no-direct-imports': 'off',
+    '@shopify/jest/no-snapshots': 'off',
+    '@shopify/jsx-no-hardcoded-content': 'off',
+    '@shopify/jest/no-vague-titles': 'off',
+    '@shopify/jsx-no-complex-expressions': 'off',
+    '@shopify/react-prefer-private-members': 'off',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
+    '@typescript-eslint/member-ordering': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    'consistent-return': 'off',
+    'eslint-comments/disable-enable-pair': 'off',
+    'func-style': 'off',
+    'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+    'import/no-cycle': 'off',
+    'jsx-use-translation-function': 'off',
+    'lines-around-comment': [
+      'error',
+      {
+        beforeBlockComment: false,
+        allowBlockStart: false,
+      },
+    ],
+    'match-default-export-name': 'off',
+    'max-params': 'off',
+    'max-len': [
+      'error',
+      {
+        code: 200,
+      },
+    ],
+    'jsx-a11y/no-autofocus': 'off',
+    'no-console': 'warn',
+    'no-extend-native': 'off',
+    'no-negated-condition': 'off',
+    'no-process-env': 'off',
+    'no-warning-comments': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react/button-has-type': 'off',
+    'react/jsx-no-bind': 'off',
+    'react/no-array-index-key': 'off',
+    'react/no-unsafe': ['error', { checkAliases: true }],
+    'require-atomic-updates': 'off',
+  },
+  overrides: [
+    {
+      files: ['*.test.ts', '*.test.tsx'],
+      rules: {
+        'dot-notation': 'off',
+      },
+    },
+  ],
+  ignorePatterns: ['node_modules', 'coverage', 'dist', 'build', 'lib'],
+  env: {
+    jest: true,
+    browser: true,
+    node: true,
+  },
+};

@@ -1,0 +1,17 @@
+{
+    "extends": "@shopify/typescript-configs/dom.json",
+    "include": ["env.d.ts", "src/**/*", "src/**/*.tsx", "vitest.setup.ts", "jest-dom.d.ts"],
+    "compilerOptions": {
+      "baseUrl": ".",
+      "esModuleInterop": true,
+      "paths": {
+        "@/*": ["./src/*"]
+      },
+        "types": ["node", "jest", "@testing-library/jest-dom"],
+    },
+    "references": [
+      {
+        "path": "./tsconfig.node.json"
+      }
+    ]
+}

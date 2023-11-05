@@ -20,7 +20,7 @@ export function ToggleTheme({ className, label, toggled, setToggled }: Props) {
   const [isLightIcon, setIcon] = useState(isLightMode);
 
   return (
-    <div data-testid="toggle-theme">
+    <div data-testid="toggle-theme" className={cn('', className)}>
       <img
         src={isLightIcon ? LightSVG : DarkSVG}
         alt="logo"
@@ -28,7 +28,6 @@ export function ToggleTheme({ className, label, toggled, setToggled }: Props) {
       />
       <Switch
         id="theme"
-        className={cn('', className)}
         checked={toggled}
         onCheckedChange={() => {
           setToggled(!toggled);

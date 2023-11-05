@@ -32,15 +32,14 @@ export function Header() {
             <Badge>{Strings.Global.create}</Badge>
           </Link>
         </div>
-        <div className="flex items-center w-32 justify-center space-x-2 md:space-x-4">
-          <ToggleTheme
-            toggled={isLightMode}
-            setToggled={setIsLightMode}
-            label={
-              isLightMode ? Strings.Global.lightMode : Strings.Global.darkMode
-            }
-          />
-        </div>
+        <ToggleTheme
+          toggled={isLightMode}
+          setToggled={setIsLightMode}
+          label={
+            isLightMode ? Strings.Global.lightMode : Strings.Global.darkMode
+          }
+          className="flex items-center w-32 justify-center space-x-2 md:space-x-4"
+        />
       </nav>
     </header>
   );

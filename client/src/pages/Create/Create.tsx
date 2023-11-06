@@ -8,6 +8,7 @@ import { InputBar } from '@/components/InputBar';
 import { PrimaryButton } from '@/components/PrimaryButton';
 import Strings from '@/locales/en.json';
 import { interpolate } from '@/lib/string-utils';
+import { IconButton, IconButtonType } from '@/components/IconButton';
 
 export function Create() {
   const [inputValue, setInputValue] = useState('');
@@ -75,6 +76,11 @@ export function Create() {
               buttonText={
                 isGenerating ? Strings.Global.cancel : Strings.Global.create
               }
+            />
+            <IconButton onClick={() => {}} buttonType={IconButtonType.Info} />
+            <IconButton
+              onClick={() => {}}
+              buttonType={IconButtonType.Download}
             />
           </div>
         </div>

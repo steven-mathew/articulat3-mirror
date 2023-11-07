@@ -1,4 +1,5 @@
-/bazel-*
+bin/
+.bin/
 
 *.swp
 

@@ -1,0 +1,64 @@
+version: 0
+nixpkgs: https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz
+build:
+  tidy:
+    input: "*"
+    cmd: go mod tidy
+  build:
+    deps: [build-art, build-art-web, test]
+  build-art:
+    input: |-
+      ./api
+      ./internal
+      ./cmd
+      ./dev
+      go.mod
+      go.sum
+    cmd: go build -v -trimpath -o ./.bin/articulate ./cmd
+    target: ./.bin/articulate
+  lint:
+    input: "*"
+    cmd: CGO_ENABLED=0 golangci-lint run --timeout=10m0s
+  build-art-web:
+    input: "client"
+    cmd: pnpm --dir client run build
+  build-art-release:
+    cmds:
+      - go build -v
+        -ldflags '
+        -X "main.version={{.BUILD_VERSION}}"
+        -X "main.commit={{.BUILD_COMMIT}}"
+        -X "main.date={{.BUILD_DATE}}"'
+        -trimpath
+        -o ./.bin/articulate
+        ./cmd
+
+  test:
+    internal:
+      input: ./internal/
+      cmd: go test -v ./internal/...
+
+
+run:
+  server:
+    type: binary
+    path: ./.bin/articulate
+    dependson:
+      - build-art
+
+
+dependencies:
+  - postgresql_13
+  - gcc
+  - protobuf
+  - go_1_21
+  - golangci-lint
+  - nodejs-18_x
+  - nodejs-18_x.pkgs.pnpm
+  - nodejs-18_x.pkgs.typescript
+  - cargo
+  - rustc
+  - rustfmt
+  - libiconv
+  - clippy
+  - pre-commit

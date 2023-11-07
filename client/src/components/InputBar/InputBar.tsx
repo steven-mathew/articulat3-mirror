@@ -27,7 +27,10 @@ export function InputBar({
       value={value}
       onChange={onChange}
       onKeyDown={(event) => {
-        if (event.key === 'Enter') enterOnChange();
+        if (event.key === 'Enter') {
+          event.preventDefault(); // stops event from being registered twice
+          enterOnChange();
+        }
       }}
       placeholder={placeholder}
       className={cn('', className)}

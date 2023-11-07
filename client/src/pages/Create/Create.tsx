@@ -7,16 +7,18 @@ import { Subtitle } from '@/components/Subtitle';
 import { InputBar } from '@/components/InputBar';
 import Strings from '@/locales/en.json';
 import { interpolate } from '@/lib/string-utils';
-import { IconButton, IconButtonType } from '@/components/IconButton';
 import { Button } from '@/components/ui/button';
 import { AlertDialog } from '@/components/AlertDialog/AlertDialog';
 
 export function Create() {
   const [inputValue, setInputValue] = useState('');
   const [submittedPrompt, setSubmittedPrompt] = useState('');
-  const [hasSubmittedPrompt, setHasSubmittedPrompt] = useState(false); // Create btn has been clicked before
-  const [isGenerating, setIsGenerating] = useState(false); // currently generating an object
-  const [hasGenerated, setHasGenerated] = useState(false); // object generation is complete
+  // Create btn has been clicked before
+  const [hasSubmittedPrompt, setHasSubmittedPrompt] = useState(false);
+  // currently generating an object
+  const [isGenerating, setIsGenerating] = useState(false);
+  // object generation is complete
+  const [hasGenerated, setHasGenerated] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -132,12 +134,6 @@ export function Create() {
               primaryButtonText={Strings.Global.continue}
               primaryAction={() => onSubmitPrompt(true)}
               secondaryButtonText={Strings.Global.goBack}
-            ></AlertDialog>
-
-            <IconButton onClick={() => {}} buttonType={IconButtonType.Info} />
-            <IconButton
-              onClick={() => {}}
-              buttonType={IconButtonType.Download}
             />
           </div>
         </div>

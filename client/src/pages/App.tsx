@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import ConstructionPNG from '@/assets/construction.png';
-import PlusCircleSVG from '@/assets/plus-circle.svg';
 import { Page } from '@/components/Page';
 import { CTAButton } from '@/components/CTAButton';
 import { SearchBar } from '@/components/SearchBar';
 import { Create } from '@/pages/Create';
 import Strings from '@/locales/en.json';
+import { ExportDropdownMenu } from '@/components/ExportDropdownMenu';
 
 export function App() {
   return (
@@ -35,9 +35,8 @@ function Gallery() {
       <img className="h-60 w-60" src={ConstructionPNG} alt="Sample GIF" />
       {Strings.Gallery.placeholder}
       <CTAButton
-        imgSrc={PlusCircleSVG}
         buttonText={Strings.Gallery.createYourOwn}
-        linkDestination={'/'}
+        linkDestination="/"
       />
       <SearchBar
         value={searchValue}
@@ -45,6 +44,7 @@ function Gallery() {
         enterOnChange={() => {}}
         placeholder={Strings.Gallery.search}
       />
+      <ExportDropdownMenu />
     </div>
   );
 }

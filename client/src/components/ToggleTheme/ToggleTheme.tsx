@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { Sun, Moon } from 'lucide-react';
 
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/cn';
-import LightSVG from '@/assets/light.svg';
-import DarkSVG from '@/assets/dark.svg';
 import { useTheme } from '@/components/ThemeProvider';
 import Strings from '@/locales/en.json';
 
@@ -21,11 +20,7 @@ export function ToggleTheme({ className, label, toggled, setToggled }: Props) {
 
   return (
     <div data-testid="toggle-theme" className={cn('', className)}>
-      <img
-        src={isLightIcon ? LightSVG : DarkSVG}
-        alt="logo"
-        className="h-5 w-5"
-      />
+      {isLightIcon ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
       <Switch
         id="theme"
         checked={toggled}

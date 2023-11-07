@@ -16,6 +16,15 @@
       "continueCreating": "Continue creating?"
     }
   },
+  "DropdownMenu": {
+    "Export": {
+      "exportAsImage": "Export as image",
+      "exportAsMesh": "Export as mesh",
+      "png": "PNG",
+      "jpg": "JPG",
+      "svg": "SVG"
+    }
+  },
   "Gallery": {
     "placeholder": "This page is under construction!",
     "createYourOwn": "Create Your Own",

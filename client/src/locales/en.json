@@ -17,7 +17,8 @@
     }
   },
   "Gallery": {
-    "placeholder": "This page is under construction!"
+    "placeholder": "This page is under construction!",
+    "search": "Search"
   },
   "Global": {
     "cancel": "Cancel",

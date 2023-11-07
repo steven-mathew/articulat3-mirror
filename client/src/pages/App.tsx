@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import ConstructionPNG from '@/assets/construction.png';
 import { Page } from '@/components/Page';
+import { SearchBar } from '@/components/SearchBar';
 import { Create } from '@/pages/Create';
 import Strings from '@/locales/en.json';
 
@@ -21,10 +22,22 @@ export function App() {
 }
 
 function Gallery() {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
   return (
     <div className="flex flex-col items-center gap-y-4">
       <img className="h-60 w-60" src={ConstructionPNG} alt="Sample GIF" />
       {Strings.Gallery.placeholder}
+      <SearchBar
+        value={searchValue}
+        onChange={handleSearchChange}
+        enterOnChange={() => {}}
+        placeholder={Strings.Gallery.search}
+      />
     </div>
   );
 }

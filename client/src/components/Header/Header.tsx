@@ -25,11 +25,11 @@ export function Header() {
           link="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m"
         />
         <div className="md:space-x-8 sm:space-x-2">
-          <Link data-testid="header-link-gallery" to="/gallery">
-            <Badge>{Strings.Global.gallery}</Badge>
-          </Link>
           <Link data-testid="header-link-create" to="/">
             <Badge>{Strings.Global.create}</Badge>
+          </Link>
+          <Link data-testid="header-link-gallery" to="/gallery">
+            <Badge>{Strings.Global.gallery}</Badge>
           </Link>
         </div>
         <ToggleTheme

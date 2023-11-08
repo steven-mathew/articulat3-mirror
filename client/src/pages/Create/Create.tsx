@@ -39,7 +39,7 @@ export function Create() {
         variant: 'default',
         // variant: 'destructive', // used for error messages
       });
-    }, 5000);
+    }, 3000);
   }, []);
 
   // User clicks Create or presses Enter to submit prompt
@@ -88,16 +88,15 @@ export function Create() {
         }
       >
         {!hasSubmittedPrompt && (
-          <div className="flex flex-col items-center justify-center gap-y-4">
+          <div className="mt-24 flex flex-col items-center justify-center gap-y-4">
             <div className="inline-flex items-center">
               <Title
                 className="text-center"
+                // prefix={Strings.Create.titlePrefix}
+                prefix={Strings.Create.titlePrefix}
                 gradientText={Strings.Create.titleGradient}
-                text={Strings.Create.titleNonGradient}
+                suffix={Strings.Create.titleSuffix}
               />
-            </div>
-            <div className="inline-flex items-center">
-              <Subtitle text={Strings.Create.subtitle} />
             </div>
           </div>
         )}

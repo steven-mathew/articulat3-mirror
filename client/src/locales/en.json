@@ -1,9 +1,10 @@
 {
   "Create": {
-    "inputPlaceholder": "Type something...",
+    "inputPlaceholder": "Articulate an object . . .",
     "subtitle": "Express yourself",
-    "titleGradient": "Generate ",
-    "titleNonGradient": "your desired 3D objects"
+    "titleGradient": " 3D ",
+    "titlePrefix": "Create",
+    "titleSuffix": "objects at your command"
   },
   "Dialog": {
     "Message": {

@@ -55,7 +55,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --shadow: 0 0% 0%;
+    --shadow: 0 100% 100% / 10%;
     /* --shadow: 195 95% 92% / 25%; */
   }
 }
@@ -83,6 +83,6 @@
     @apply bg-gradient-to-r from-secondary to-primary;
   }
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary;
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-secondary to-primary;
   }
 }

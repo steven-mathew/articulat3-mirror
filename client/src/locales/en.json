@@ -1,8 +1,6 @@
 {
   "Create": {
-    "creationMessageLoading": "Generating object from prompt: \"{0}\"",
     "inputPlaceholder": "Type something...",
-    "objectGeneratedMessage": "Object generated from prompt: \"{0}\"",
     "subtitle": "Express yourself",
     "titleGradient": "Generate ",
     "titleNonGradient": "your desired 3D objects"

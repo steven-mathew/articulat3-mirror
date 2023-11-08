@@ -11,7 +11,7 @@ export function Page() {
     <div className="h-screen flex flex-col items-center justify-center">
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Header />
-        <div className="h-full flex flex-col items-center justify-center px-4 lg:px-0">
+        <div className="container max-w-screen-xl flex-1 overflow-y-auto scrollbar-hide w-screen m-auto px-8 md:px-28">
           <Outlet /> {/* Renders child routes */}
         </div>
       </ThemeProvider>

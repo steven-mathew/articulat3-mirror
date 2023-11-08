@@ -14,7 +14,7 @@ export function Header() {
   const [isLightMode, setIsLightMode] = useState(theme === 'light');
 
   return (
-    <header className="container h-24 px-5 m-auto sm:px-6 md:px-20 max-w-screen-xl">
+    <header className="container h-20 px-5 m-auto sm:px-6 md:px-20 max-w-screen-xl">
       <nav
         className="flex justify-between items-center h-full mt-auto text-sm space-x-6 sm:space-x-0 md:justify-between"
         aria-label="Main Navigation"
@@ -38,7 +38,7 @@ export function Header() {
           label={
             isLightMode ? Strings.Global.lightMode : Strings.Global.darkMode
           }
-          className="flex items-center w-32 justify-center space-x-2 md:space-x-4"
+          className="flex items-center justify-end w-32 space-x-2 md:space-x-4"
         />
       </nav>
     </header>

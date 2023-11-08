@@ -42,8 +42,9 @@
     --secondary: 244 82% 28%;
     --secondary-foreground: 196 84% 58%;
 
-    --accent: 256 96% 52%;
-    --accent-foreground: 195 95% 92%;
+    /* --accent: 256 96% 52%; */
+    --accent: 196 90% 62%;
+    --accent-foreground: 196 100% 3%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
@@ -68,6 +69,9 @@
   }
   h3 {
     @apply text-xl font-mono text-primary;
+  }
+  h4 {
+    @apply text-lg font-sans font-medium;
   }
   .gradient-background {
     @apply bg-gradient-to-r from-secondary to-primary;

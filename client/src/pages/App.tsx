@@ -7,7 +7,6 @@ import { CTAButton } from '@/components/CTAButton';
 import { SearchBar } from '@/components/SearchBar';
 import { Create } from '@/pages/Create';
 import Strings from '@/locales/en.json';
-import { ExportDropdownMenu } from '@/components/ExportDropdownMenu';
 
 export function App() {
   return (
@@ -44,7 +43,6 @@ function Gallery() {
         enterOnChange={() => {}}
         placeholder={Strings.Gallery.search}
       />
-      <ExportDropdownMenu />
     </div>
   );
 }

@@ -40,5 +40,9 @@
   "NoMatch": {
     "placeholder": "Nothing to see here!",
     "callToAction": "Click here to go to the Create page"
+  },
+  "Toast": {
+    "objectGenerateFail": "Object failed to generate.",
+    "objectGenerateSuccess": "Object generated!"
   }
 }

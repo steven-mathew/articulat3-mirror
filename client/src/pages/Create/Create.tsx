@@ -7,6 +7,8 @@ import { InputBar } from '@/components/InputBar';
 import Strings from '@/locales/en.json';
 import { Button } from '@/components/ui/button';
 import { AlertDialog } from '@/components/AlertDialog/AlertDialog';
+import { useToast } from '@/components/ui/use-toast';
+import { Toaster } from '@/components/ui/toaster';
 import { ObjectCard } from '@/components/ObjectCard';
 import Dog from '@/assets/dog.png';
 
@@ -20,6 +22,7 @@ export function Create() {
   // object generation is complete
   const [hasGenerated, setHasGenerated] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const { toast } = useToast();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -31,6 +34,11 @@ export function Create() {
       // Once generation is done
       setIsGenerating(false);
       setHasGenerated(true);
+      toast({
+        title: Strings.Toast.objectGenerateSuccess,
+        variant: 'default',
+        // variant: 'destructive', // used for error messages
+      });
     }, 5000);
   }, []);
 
@@ -123,6 +131,7 @@ export function Create() {
           </div>
         )}
       </div>
+      <Toaster />
     </main>
   );
 }

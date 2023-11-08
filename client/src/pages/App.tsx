@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import { Page } from '@/components/Page';
-// import { CTAButton } from '@/components/CTAButton';
-import { SearchBar } from '@/components/SearchBar';
-import { GalleryWaterfall } from '@/components/GalleryWaterfall';
 import { Create } from '@/pages/Create';
+import { Gallery } from '@/pages/Gallery';
 import Strings from '@/locales/en.json';
-import DogPNG from '@/assets/dog.png';
-import BoyPNG from '@/assets/boy.png';
+import glassPNG from '@/assets/glass.png';
 
 export function App() {
   return (
@@ -24,48 +21,14 @@ export function App() {
   );
 }
 
-function Gallery() {
-  const [searchValue, setSearchValue] = useState('');
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-  };
-
-  // TODO: replace with json mock data file
-  const mockDogObject = { prompt: 'a dog', imgSRC: DogPNG };
-  const mockBoyObject = { prompt: 'a boy', imgSRC: BoyPNG };
-  const mockObjectList = [
-    mockDogObject,
-    mockBoyObject,
-    mockBoyObject,
-    mockDogObject,
-    mockBoyObject,
-    mockDogObject,
-  ];
-
-  return (
-    <div className="flex flex-col items-center gap-y-4">
-      {/* <CTAButton
-        buttonText={Strings.Gallery.createYourOwn}
-        linkDestination="/"
-      />*/}
-      <SearchBar
-        value={searchValue}
-        onChange={handleSearchChange}
-        enterOnChange={() => {}}
-        placeholder={Strings.Gallery.search}
-      />
-      <GalleryWaterfall object3DList={mockObjectList} />
-    </div>
-  );
-}
-
 function NoMatch() {
   return (
-    <div className="flex flex-col items-center gap-y-4">
+    <div className="mt-12 flex flex-col items-center justify-center gap-y-4">
+      <img src={glassPNG} alt="Magnifying glass PNG" className="h-40" />
       <h2>{Strings.NoMatch.placeholder}</h2>
       <p>
-        <Link to="/" className="hover:opacity-80">
+        {Strings.NoMatch.placeholderSubtitle}
+        <Link to="/" className="hover:opacity-50">
           {Strings.NoMatch.callToAction}
         </Link>
       </p>

@@ -26,7 +26,10 @@
   },
   "Gallery": {
     "createYourOwn": "Create Your Own",
-    "search": "Search"
+    "search": "Search",
+    "titleGradient": " inspired ",
+    "titlePrefix": "Get",
+    "titleSuffix": "by other 3D creations"
   },
   "Global": {
     "cancel": "Cancel",
@@ -39,6 +42,7 @@
   },
   "NoMatch": {
     "placeholder": "Nothing to see here!",
+    "placeholderSubtitle": "The page you are looking for might be removed or is temporarily unavailable. ",
     "callToAction": "Click here to go to the Create page"
   },
   "Toast": {

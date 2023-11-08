@@ -10,7 +10,7 @@ interface Props {
 
 export function GalleryWaterfall({ object3DList }: Props) {
   return (
-    <div className="my-4 grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 overflow-y-auto">
       {object3DList.map((object3D, i) => (
         <GalleryCard key={i} object3D={object3D} />
       ))}

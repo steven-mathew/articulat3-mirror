@@ -8,6 +8,7 @@ import { cn } from '@/lib/cn';
 
 interface Props {
   isGenerating: boolean;
+  // When integrating with backend, we should pass in an Object containing these parameters
   prompt: string;
   img: string;
   className?: string;

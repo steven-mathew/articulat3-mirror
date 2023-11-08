@@ -5,26 +5,24 @@ import { ExportDropdownMenu } from '../ExportDropdownMenu';
 
 import loadingGIF from '@/assets/loading.gif';
 import { cn } from '@/lib/cn';
+import { Object3D } from '@/types';
 
 interface Props {
   isGenerating: boolean;
-  // When integrating with backend, we should pass in an Object containing these parameters
-  prompt: string;
-  img: string;
+  object3D: Object3D;
   className?: string;
 }
 
 export function ObjectCard({
   isGenerating,
-  prompt,
-  img,
+  object3D,
   className,
   ...props
 }: Props) {
   return (
     <Card className={cn('md:w-[380px] w-[240px] ', className)} {...props}>
       <CardHeader>
-        <CardTitle>{prompt}</CardTitle>
+        <CardTitle>{object3D.prompt}</CardTitle>
         {!isGenerating && <ExportDropdownMenu />}
       </CardHeader>
       <CardContent>
@@ -34,7 +32,7 @@ export function ObjectCard({
               <img src={loadingGIF} className="h-12 w-12" alt="Loading" />
             </div>
           ) : (
-            <img src={img} alt="Sample dog PNG" />
+            <img src={object3D.imgSRC} alt={object3D.prompt} />
           )}
         </div>
       </CardContent>

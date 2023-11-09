@@ -31,6 +31,21 @@ export function Gallery() {
     mockDogObject,
     mockBoyObject,
     mockDogObject,
+    mockDogObject,
+    mockDogObject,
+    mockBoyObject,
+    mockBoyObject,
+    mockBoyObject,
+    mockBoyObject,
+    mockDogObject,
+    mockDogObject,
+    mockBoyObject,
+    mockDogObject,
+    mockDogObject,
+    mockBoyObject,
+    mockDogObject,
+    mockBoyObject,
+    mockBoyObject,
   ];
 
   return (

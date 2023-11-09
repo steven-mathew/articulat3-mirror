@@ -10,6 +10,7 @@ import { AlertDialog } from '@/components/AlertDialog/AlertDialog';
 import { useToast } from '@/components/ui/use-toast';
 import { Toaster } from '@/components/ui/toaster';
 import { ObjectCard } from '@/components/ObjectCard';
+import { Object3D } from '@/types';
 import Dog from '@/assets/dog.png';
 
 export function Create() {
@@ -124,8 +125,11 @@ export function Create() {
           <div className="inline-flex items-center gap-x-4 py-4">
             <ObjectCard
               isGenerating={isGenerating}
-              prompt={submittedPrompt}
-              img={Dog}
+              // TO-DO: replace with actual object3D from database
+              object3D={{
+                prompt: submittedPrompt,
+                imgSRC: Dog,
+              }}
             />
           </div>
         )}

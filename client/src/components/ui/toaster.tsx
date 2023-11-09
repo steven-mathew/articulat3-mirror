@@ -22,10 +22,10 @@ export function Toaster() {
           <Toast key={id} {...props} duration={TOAST_DURATION}>
             <div className="gap-2 flex items-center">
               {props.variant && props.variant == 'default' && (
-                <CheckCircle2 className="h-10 w-10" />
+                <CheckCircle2 className="h-7 w-7" />
               )}
               {props.variant && props.variant == 'destructive' && (
-                <AlertTriangle className="h-10 w-10" />
+                <AlertTriangle className="h-7 w-7" />
               )}
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (

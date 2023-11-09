@@ -2,7 +2,6 @@ import React, { useCallback, useMemo, useState } from 'react';
 
 // eslint-disable-next-line import/extensions
 import { Title } from '@/components/Title';
-import { Subtitle } from '@/components/Subtitle';
 import { InputBar } from '@/components/InputBar';
 import Strings from '@/locales/en.json';
 import { Button } from '@/components/ui/button';
@@ -126,10 +125,12 @@ export function Create() {
             <ObjectCard
               isGenerating={isGenerating}
               // TO-DO: replace with actual object3D from database
-              object3D={{
-                prompt: submittedPrompt,
-                imgSRC: Dog,
-              }}
+              object3D={
+                {
+                  prompt: submittedPrompt,
+                  imgSRC: Dog,
+                } as Object3D
+              }
             />
           </div>
         )}

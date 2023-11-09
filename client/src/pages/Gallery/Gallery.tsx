@@ -47,7 +47,10 @@ export function Gallery() {
         enterOnChange={() => {}}
         placeholder={Strings.Gallery.search}
       />
-      <GalleryWaterfall object3DList={mockObjectList} />
+      <GalleryWaterfall
+        object3DList={mockObjectList}
+        filterValue={searchValue}
+      />
       <CTAButton
         buttonText={Strings.Gallery.createYourOwn}
         linkDestination="/"

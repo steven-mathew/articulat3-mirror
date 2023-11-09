@@ -28,6 +28,10 @@ export function Create() {
     setInputValue(event.target.value);
   };
 
+  const isInputEmpty = useMemo(() => {
+    return inputValue.trim().length == 0;
+  }, [inputValue]);
+
   // Temp function to simulate generation
   const generate = useCallback(() => {
     setTimeout(() => {
@@ -104,12 +108,21 @@ export function Create() {
           <InputBar
             value={inputValue}
             onChange={handleInputChange}
-            enterOnChange={() => onSubmitPrompt(false)}
+            enterOnChange={() => {
+              isInputEmpty ? null : onSubmitPrompt(false);
+            }}
             placeholder={Strings.Create.inputPlaceholder}
           />
-          <Button onClick={() => onSubmitPrompt(false)}>
-            {Strings.Global.create}
-          </Button>
+
+          <div className={isInputEmpty ? 'cursor-not-allowed' : ''}>
+            {/* div is a workaround to allow cursor-not-allowed and pointer-no-events in button */}
+            <Button
+              onClick={() => onSubmitPrompt(false)}
+              disabled={isInputEmpty}
+            >
+              {Strings.Global.create}
+            </Button>
+          </div>
           <AlertDialog
             open={openDialog}
             onOpenChange={setOpenDialog}

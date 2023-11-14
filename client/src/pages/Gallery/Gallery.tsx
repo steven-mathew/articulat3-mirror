@@ -6,6 +6,8 @@ import { GalleryWaterfall } from '@/components/GalleryWaterfall';
 import { CTAButton } from '@/components/CTAButton';
 import DogPNG from '@/assets/dog.png';
 import BoyPNG from '@/assets/boy.png';
+import BurgerPNG from '@/assets/burger.png';
+import PancakePNG from '@/assets/pancake.png';
 import Strings from '@/locales/en.json';
 
 export function Gallery() {
@@ -16,36 +18,22 @@ export function Gallery() {
   };
 
   // TODO: replace with json mock data file
-  const mockDogObject = { prompt: 'a dog', imgSRC: DogPNG };
+  const mockDogObject = {
+    prompt:
+      'a dog who is being chased by an invisible creature on a sunny day in March',
+    imgSRC: DogPNG,
+  };
   const mockBoyObject = { prompt: 'a boy', imgSRC: BoyPNG };
+  const mockBurgerObject = { prompt: 'a burger', imgSRC: BurgerPNG };
+  const mockPancakeObject = {
+    prompt: 'a bunny on pancakes',
+    imgSRC: PancakePNG,
+  };
   const mockObjectList = [
     mockDogObject,
     mockBoyObject,
-    mockBoyObject,
-    mockDogObject,
-    mockBoyObject,
-    mockDogObject,
-    mockBoyObject,
-    mockDogObject,
-    mockBoyObject,
-    mockDogObject,
-    mockBoyObject,
-    mockDogObject,
-    mockDogObject,
-    mockDogObject,
-    mockBoyObject,
-    mockBoyObject,
-    mockBoyObject,
-    mockBoyObject,
-    mockDogObject,
-    mockDogObject,
-    mockBoyObject,
-    mockDogObject,
-    mockDogObject,
-    mockBoyObject,
-    mockDogObject,
-    mockBoyObject,
-    mockBoyObject,
+    mockBurgerObject,
+    mockPancakeObject,
   ];
 
   return (

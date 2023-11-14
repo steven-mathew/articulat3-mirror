@@ -17,7 +17,7 @@ export function GalleryWaterfall({ object3DList, filterValue }: Props) {
   }, [object3DList, filterValue]);
 
   return (
-    <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 overflow-y-auto">
+    <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 overflow-y-auto scrollbar-hide">
       {filteredObject3DList.map((object3D, i) => (
         <GalleryCard key={i} object3D={object3D} />
       ))}

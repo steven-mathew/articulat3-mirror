@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ThreeComponent } from '@/components/ThreeComponent';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { ExportDropdownMenu } from '../ExportDropdownMenu';
 
@@ -32,7 +33,13 @@ export function ObjectCard({
               <img src={loadingGIF} className="h-12 w-12" alt="Loading" />
             </div>
           ) : (
-            <img src={object3D.imgSRC} alt={object3D.prompt} />
+            object3D.objURL && (
+              <ThreeComponent
+                objURL={object3D.objURL}
+                mtlURL={object3D.mtlURL}
+                texURL={object3D.texURL}
+              />
+            )
           )}
         </div>
       </CardContent>

@@ -22,17 +22,35 @@ export function Gallery() {
     prompt:
       'a dog who is being chased by an invisible creature on a sunny day in March',
     imgSRC: DogPNG,
+    objURL: '',
+    mtlURL: '',
+    texURL: '',
   };
-  const mockBoyObject = { prompt: 'a boy', imgSRC: BoyPNG };
-  const mockBurgerObject = { prompt: 'a burger', imgSRC: BurgerPNG };
+  const mockBoyObject = {
+    prompt: 'a boy',
+    imgSRC: BoyPNG,
+    objURL: '',
+    mtlURL: '',
+    texURL: '',
+  };
+  const mockBurgerObject = {
+    prompt: 'a burger',
+    imgSRC: BurgerPNG,
+    objURL: '/sampleModel/ham_model.obj',
+    mtlURL: '/sampleModel/ham_model.mtl',
+    texURL: '/sampleModel/ham_model.jpg',
+  };
   const mockPancakeObject = {
     prompt: 'a bunny on pancakes',
     imgSRC: PancakePNG,
+    objURL: '',
+    mtlURL: '',
+    texURL: '',
   };
   const mockObjectList = [
+    mockBurgerObject,
     mockDogObject,
     mockBoyObject,
-    mockBurgerObject,
     mockPancakeObject,
   ];
 

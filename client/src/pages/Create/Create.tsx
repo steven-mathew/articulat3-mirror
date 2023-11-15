@@ -142,6 +142,9 @@ export function Create() {
                 {
                   prompt: submittedPrompt,
                   imgSRC: Dog,
+                  objURL: '/sampleModel/ham_model.obj',
+                  mtlURL: '/sampleModel/ham_model.mtl',
+                  texURL: '/sampleModel/ham_model.jpg',
                 } as Object3D
               }
             />

@@ -6,6 +6,7 @@ import { Create } from '@/pages/Create';
 import { Gallery } from '@/pages/Gallery';
 import Strings from '@/locales/en.json';
 import glassPNG from '@/assets/glass.png';
+import { Object3D } from '@/types';
 
 export function App() {
   return (
@@ -17,6 +18,8 @@ export function App() {
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
+      {/* TODO: move toaster to App level here */}
+      {/* <Toaster /> */}
     </BrowserRouter>
   );
 }
@@ -35,3 +38,11 @@ function NoMatch() {
     </div>
   );
 }
+
+window.addEventListener('beforeunload', (ev) => {
+  const object3DString = window.sessionStorage.getItem('object3D') ?? '';
+  if ((JSON.parse(object3DString) as Object3D).imgSRC) {
+    ev.preventDefault();
+  }
+  return (ev.returnValue = '.');
+});

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 // eslint-disable-next-line import/extensions
 import { Title } from '@/components/Title';
@@ -11,16 +11,24 @@ import { Toaster } from '@/components/ui/toaster';
 import { ObjectCard } from '@/components/ObjectCard';
 import { Object3D } from '@/types';
 import Dog from '@/assets/dog.png';
+import { useSessionStorage } from 'usehooks-ts';
 
 export function Create() {
-  const [inputValue, setInputValue] = useState('');
-  const [submittedPrompt, setSubmittedPrompt] = useState('');
-  // Create btn has been clicked before
-  const [hasSubmittedPrompt, setHasSubmittedPrompt] = useState(false);
-  // currently generating an object
+  // Store objects in session storage
+  const [inputValue, setInputValue] = useSessionStorage('inputValue', '');
+  const [object3DString, setObject3DString] = useSessionStorage(
+    'object3D',
+    JSON.stringify({
+      prompt: '',
+      imgSRC: '',
+      objURL: '',
+      mtlURL: '',
+      texURL: '',
+    } as Object3D),
+  );
+
+  // Currently generating an object
   const [isGenerating, setIsGenerating] = useState(false);
-  // object generation is complete
-  const [hasGenerated, setHasGenerated] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const { toast } = useToast();
 
@@ -28,35 +36,56 @@ export function Create() {
     setInputValue(event.target.value);
   };
 
+  const object3D = useMemo(() => {
+    return JSON.parse(object3DString) as Object3D;
+  }, [object3DString]);
+
   const isInputEmpty = useMemo(() => {
     return inputValue.trim().length == 0;
   }, [inputValue]);
 
-  // Temp function to simulate generation
-  const generate = useCallback(() => {
-    setTimeout(() => {
-      // Once generation is done
-      setIsGenerating(false);
-      setHasGenerated(true);
-      toast({
-        title: Strings.Toast.objectGenerateSuccess,
-        variant: 'default',
-        // variant: 'destructive', // used for error messages
-      });
-    }, 3000);
-  }, []);
+  useEffect(() => {
+    // TODO: replace with db fetch
+    if (object3D.prompt) {
+      setTimeout(() => {
+        // Once generation is done
+        setIsGenerating(false);
+        // Mimick fetch response
+        setObject3DString(
+          JSON.stringify({
+            prompt: object3D.prompt,
+            imgSRC: Dog,
+            objURL: '/sampleModel/ham_model.obj',
+            mtlURL: '/sampleModel/ham_model.mtl',
+            texURL: '/sampleModel/ham_model.jpg',
+          } as Object3D),
+        );
+        toast({
+          title: Strings.Toast.objectGenerateSuccess,
+          variant: 'default',
+          // variant: 'destructive', // used for error messages
+        });
+      }, 3000);
+    }
+  }, [object3D.prompt]);
 
   // User clicks Create or presses Enter to submit prompt
   const onSubmitPrompt = useCallback(
     (confirmed: boolean = false) => {
-      if (!hasSubmittedPrompt) {
+      if (!object3D.prompt) {
         // First time user clicks Create
-        setHasSubmittedPrompt(true);
-        setSubmittedPrompt(inputValue);
+        // Update session storage with prompt, mimick query call
+        setObject3DString(
+          JSON.stringify({
+            prompt: inputValue,
+            imgSRC: '',
+            objURL: '',
+            mtlURL: '',
+            texURL: '',
+          } as Object3D),
+        );
         setInputValue('');
         setIsGenerating(true);
-        setHasGenerated(false);
-        generate();
         return;
       }
 
@@ -67,36 +96,42 @@ export function Create() {
       }
 
       // User confirmed they want to create again
-      setSubmittedPrompt(inputValue);
+      // Update session storage with prompt, mimick query call
+      setObject3DString(
+        JSON.stringify({
+          prompt: inputValue,
+          imgSRC: '',
+          objURL: '',
+          mtlURL: '',
+          texURL: '',
+        } as Object3D),
+      );
       setInputValue('');
       setIsGenerating(true);
-      setHasGenerated(false);
-      generate();
     },
-    [hasSubmittedPrompt, inputValue, generate],
+    [inputValue],
   );
 
   const alertDialogDescription = useMemo(() => {
     if (isGenerating) return Strings.Dialog.Message.discardProgress;
-    if (hasGenerated) return Strings.Dialog.Message.discardCurrentObject;
+    if (object3D.imgSRC) return Strings.Dialog.Message.discardCurrentObject;
     return '';
-  }, [isGenerating, hasGenerated]);
+  }, [isGenerating, object3D]);
 
   return (
     <main className="h-full flex flex-col">
       <div
         className={
-          hasSubmittedPrompt
+          object3D.prompt
             ? 'mt-4 flex flex-col items-center justify-center gap-y-8'
             : 'mt-20 flex flex-col items-center justify-center gap-y-8'
         }
       >
-        {!hasSubmittedPrompt && (
+        {!object3D.prompt && (
           <div className="mt-24 flex flex-col items-center justify-center gap-y-4">
             <div className="inline-flex items-center">
               <Title
                 className="text-center"
-                // prefix={Strings.Create.titlePrefix}
                 prefix={Strings.Create.titlePrefix}
                 gradientText={Strings.Create.titleGradient}
                 suffix={Strings.Create.titleSuffix}
@@ -133,21 +168,9 @@ export function Create() {
             secondaryButtonText={Strings.Global.goBack}
           />
         </div>
-        {hasSubmittedPrompt && (
+        {object3D.prompt && (
           <div className="inline-flex items-center gap-x-4 py-4">
-            <ObjectCard
-              isGenerating={isGenerating}
-              // TO-DO: replace with actual object3D from database
-              object3D={
-                {
-                  prompt: submittedPrompt,
-                  imgSRC: Dog,
-                  objURL: '/sampleModel/ham_model.obj',
-                  mtlURL: '/sampleModel/ham_model.mtl',
-                  texURL: '/sampleModel/ham_model.jpg',
-                } as Object3D
-              }
-            />
+            <ObjectCard isGenerating={isGenerating} object3D={object3D} />
           </div>
         )}
       </div>

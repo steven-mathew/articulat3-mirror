@@ -19,7 +19,7 @@ func newPromptHandler(ctrl Server) *promptHandler {
 
 func (h *promptHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	logger := log.Ctx(r.Context())
-	logger.Trace().Msgf("requesting prompts", r.URL.Path)
+	logger.Trace().Msgf("requesting prompts %s", r.URL.Path)
 }
 
 type PromptHandler struct {

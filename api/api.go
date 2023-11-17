@@ -95,6 +95,8 @@ func NewAPI(ctx context.Context, conf Config) (*API, error) {
 
 	api.server = &http.Server{
 		Addr:    fmt.Sprintf(":%d", api.port),
+		ReadTimeout: time.Second * 15,
+		IdleTimeout: time.Second * 60,
 		Handler: r,
 	}
 

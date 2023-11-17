@@ -30,6 +30,7 @@ func NewAPI(ctx context.Context, conf Config) (*API, error) {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
+	r.Use(withCORS)
 	r.Use(withRequestID)
 
 	api := &API{

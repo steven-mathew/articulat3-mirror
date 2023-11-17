@@ -14,7 +14,7 @@ interface Props {
 export function CTAButton({ className, buttonText, linkDestination }: Props) {
   return (
     <Link to={linkDestination}>
-      <Button size="cta" className={cn('', className)}>
+      <Button data-testid="cta-button" size="cta" className={cn('', className)}>
         <PlusCircle className="h-5 w-5 mr-2" />
         {buttonText}
       </Button>

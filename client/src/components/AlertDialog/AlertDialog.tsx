@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,6 +9,8 @@ import {
   DialogFooter,
   DialogClose,
 } from '../ui/dialog';
+
+import { Button } from '@/components/ui/button';
 
 interface Props {
   open: boolean;
@@ -32,7 +33,7 @@ export function AlertDialog({
 }: Props) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent data-testid="alert-dialog" className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>

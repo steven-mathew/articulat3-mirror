@@ -6,7 +6,7 @@ import { Title } from '../Title';
 describe('Title', () => {
   test('title is displayed', () => {
     const mockText = 'mock text';
-    const title = <Title gradientText="" text={mockText} />;
+    const title = <Title prefix="" gradientText="" suffix={mockText} />;
     render(title);
     const titleText = screen.queryByTestId('title');
     expect(titleText).toBeDefined();

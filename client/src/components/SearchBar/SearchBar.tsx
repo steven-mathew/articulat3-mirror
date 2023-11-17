@@ -22,7 +22,7 @@ export function SearchBar({
 }: Props) {
   return (
     <Search
-      data-testid="searchbar"
+      data-testid="search-bar"
       type="text"
       value={value}
       onChange={onChange}

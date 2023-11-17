@@ -22,7 +22,7 @@ export function ExportDropdownMenu() {
           <Download className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-48">
+      <DropdownMenuContent data-testid="dropdown-menu" className="w-48">
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
             <FileImage className="mr-2 h-4 w-4" />

@@ -3,6 +3,7 @@ package api
 import (
 	"articulate/api/oapigen"
 	"context"
+	"embed"
 	"fmt"
 	"net/http"
 	"sync"
@@ -11,6 +12,9 @@ import (
 	chi "github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/rs/zerolog/log"
+	"go.temporal.io/sdk/client"
+
+	"github.com/gorilla/websocket"
 )
 
 const apiVersion = "v1"
@@ -19,11 +23,37 @@ type API struct {
 	ctrl   Server
 	port   int
 	server *http.Server
+
+	temporal client.Client
 }
 
 type Config struct {
 	Port       int
 	Controller Server
+}
+
+var (
+	wsUpgrader = websocket.Upgrader{
+		ReadBufferSize:  2048,
+		WriteBufferSize: 2048,
+		CheckOrigin:     func(*http.Request) bool { return true },
+	}
+
+	connections = make(map[string]*websocket.Conn)
+)
+
+//go:embed openapi.json
+var openapiSpec []byte
+
+var _ = embed.FS{}
+
+// Spec servers the swagger.json embedded file
+func Spec() http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write(openapiSpec)
+	})
 }
 
 func NewAPI(ctx context.Context, conf Config) (*API, error) {
@@ -57,6 +87,8 @@ func NewAPI(ctx context.Context, conf Config) (*API, error) {
 		}
 
 		oapigen.HandlerFromMux(server, r)
+
+        r.Get("/api-json", Spec())
 	})
 
 	http.ListenAndServe(fmt.Sprintf(":%d", api.port), r)

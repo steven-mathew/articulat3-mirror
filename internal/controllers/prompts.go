@@ -2,12 +2,10 @@ package controllers
 
 import (
 	"articulate/internal/database"
-	// "articulate/internal/objectid"
 	"articulate/internal/types"
 	"articulate/temporal"
 	"context"
 	"fmt"
-
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"go.temporal.io/sdk/client"
@@ -32,12 +30,12 @@ func (pm *PromptsManager) PromptIntent(ctx context.Context, promptId string) (ty
 		return types.PromptIntent{}, fmt.Errorf("prompt id %s does not exist", promptId)
 	}
 
-    status, err := pm.promptWorkflowStatus(ctx, promptId)
-    if err != nil {
-        return types.PromptIntent{}, fmt.Errorf("could not get status for prompt: %s", promptId)
-    }
+	status, err := pm.promptWorkflowStatus(ctx, promptId)
+	if err != nil {
+		return types.PromptIntent{}, fmt.Errorf("could not get status for prompt: %s", promptId)
+	}
 
-    prompt.Status = &status
+	prompt.Status = &status
 
 	return prompt, nil
 }
@@ -55,7 +53,16 @@ func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.P
 		TaskQueue: "prompt-generation",
 	}
 
-	we, err := pm.temporalClient.ExecuteWorkflow(context.Background(), workflowOptions, temporal.SessionFailureRecoveryWorkflow)
+	we, err := pm.temporalClient.ExecuteWorkflow(
+		context.Background(),
+		workflowOptions,
+		temporal.SessionFailureRecoveryWorkflow,
+		temporal.WorkflowInput{
+			Prompt:         *prompt.Prompt,
+			Model:          *prompt.Model,
+			PromptIntentId: *prompt.Id,
+		},
+	)
 
 	if err != nil {
 		log.Err(err).Msg("Unable to execute workflow")

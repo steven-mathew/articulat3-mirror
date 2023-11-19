@@ -26,7 +26,6 @@ func (s *UnitTestSuite) Test_SampleFileProcessingWorkflow() {
 	})
 	var a *Activities
 
-	env.OnActivity(a.PrepareWorkerActivity, mock.Anything).Return(nil)
 	env.OnActivity(a.TrainPrompt, mock.Anything).Return(nil)
 
 	env.RegisterActivity(a)

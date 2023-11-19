@@ -2,8 +2,6 @@ module articulate
 
 go 1.21
 
-toolchain go1.21.3
-
 require (
 	cloud.google.com/go/storage v1.33.0
 	github.com/fsnotify/fsnotify v1.6.0

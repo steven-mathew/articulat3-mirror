@@ -40,7 +40,8 @@ func (c *gcsStore) Upload(ctx context.Context, file io.Reader, filePath string) 
 func (c *gcsStore) GetSignedURL(ctx context.Context, filePath string) (string, error) {
 	signedURL, err := c.client.Bucket(c.bucket).SignedURL(filePath, &storage.SignedURLOptions{
 		Method:  http.MethodGet,
-		Expires: time.Now().Add(2 * time.Minute),
+        // expire after two years, this could be lowered
+		Expires: time.Now().Add(2 * 8760 * time.Hour),
 	})
 	if err != nil {
 		return "", fmt.Errorf("failed to create signed URL for file: %s %w", filePath, err)

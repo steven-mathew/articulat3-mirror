@@ -12,9 +12,9 @@ var (
 	ErrSessionHostDown = errors.New("session host down")
 )
 
-func SessionFailureRecoveryWorkflow(ctx workflow.Context) (err error) {
+func SessionFailureRecoveryWorkflow(ctx workflow.Context, input WorkflowInput) (err error) {
 	for retryNum := 0; retryNum < 3; retryNum++ {
-		if err = runSession(ctx); errors.Is(err, ErrSessionHostDown) {
+		if err = runSession(ctx, input); errors.Is(err, ErrSessionHostDown) {
 			if sleepErr := workflow.Sleep(ctx, 5*time.Minute); sleepErr != nil {
 				return sleepErr
 			}
@@ -31,7 +31,7 @@ func SessionFailureRecoveryWorkflow(ctx workflow.Context) (err error) {
 	return
 }
 
-func runSession(ctx workflow.Context) (err error) {
+func runSession(ctx workflow.Context, input WorkflowInput) (err error) {
 	so := &workflow.SessionOptions{
 		CreationTimeout:  1 * time.Hour,
 		ExecutionTimeout: 20 * time.Minute,
@@ -71,35 +71,27 @@ func runSession(ctx workflow.Context) (err error) {
 	sessionCtx = workflow.WithActivityOptions(sessionCtx, ao)
 
 	var a *Activities
-	defer func() {
-		if !errors.Is(ctx.Err(), workflow.ErrCanceled) {
-			return
-		}
 
-		newCtx, _ := workflow.NewDisconnectedContext(ctx)
-		err := workflow.ExecuteActivity(newCtx, a.CleanupActivity).Get(ctx, nil)
-		if err != nil {
-			workflow.GetLogger(ctx).Error("CleanupActivity failed", "Error", err)
-		}
-	}()
-
-	// err = workflow.ExecuteActivity(sessionCtx, a.PrepareWorkerActivity).Get(sessionCtx, nil)
-	// if err != nil {
-	// 	workflow.GetLogger(ctx).Error("Prepare failed", "Error", err)
-	// 	return err
-	// }
-
-	err = workflow.ExecuteActivity(sessionCtx, a.TrainPrompt).Get(sessionCtx, nil)
+    // Since there is one session worker per workflow, there will be no race condition where child
+    // workflows take on the activities of other workflows leading to unexpected behaviour of
+    // mismatched ids
+	err = workflow.ExecuteActivity(sessionCtx, a.TrainPrompt, input).Get(sessionCtx, nil)
 	if err != nil {
 		workflow.GetLogger(ctx).Error("TrainPrompt failed", "Error", err)
 		return err
 	}
 
-	// err = workflow.ExecuteActivity(sessionCtx, a.CleanupActivity).Get(sessionCtx, nil)
-	// if err != nil {
-	// 	workflow.GetLogger(ctx).Error("CleanupActivity failed", "Error", err)
-	// 	return err
-	// }
+	err = workflow.ExecuteActivity(sessionCtx, a.ExportModel, input).Get(sessionCtx, nil)
+	if err != nil {
+		workflow.GetLogger(ctx).Error("ExportModel failed", "Error", err)
+		return err
+	}
+
+	err = workflow.ExecuteActivity(sessionCtx, a.SaveObject, input).Get(sessionCtx, nil)
+	if err != nil {
+		workflow.GetLogger(ctx).Error("SaveObject failed", "Error", err)
+		return err
+	}
 
 	return err
 }

@@ -21,7 +21,7 @@ build:
     cmd: CGO_ENABLED=0 golangci-lint run --timeout=10m0s
   build-art-web:
     input: "client"
-    cmd: pnpm --dir client run build
+    cmd: pnpm install && pnpm --dir client run build
   build-art-release:
     cmds:
       - go build -v
@@ -45,7 +45,6 @@ run:
     path: ./.bin/articulate
     dependson:
       - build-art
-
 
 dependencies:
   - postgresql_13

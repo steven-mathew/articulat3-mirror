@@ -20,8 +20,12 @@ type API struct {
 }
 
 func newAPI(ctx context.Context) (*api.API, error) {
+	 hostPort := os.Getenv("TEMPORAL_SERVER_HOST_PORT")
+     bucketName := os.Getenv("GCS_BUCKET_NAME")
+     credentialsFilePath := os.Getenv("secrets/credentials.txt")
+
      c, err := client.Dial(client.Options{
-        HostPort: "4.tcp.ngrok.io:12540",
+        HostPort: hostPort,
      })
 
 	 if err != nil {
@@ -29,14 +33,11 @@ func newAPI(ctx context.Context) (*api.API, error) {
 	 }
 
 	pm, _ := controllers.NewPromptsManager(database.NewPromptStore(), c)
-
-	// TODO: store these secrets in Google Secret Manager or a Hashicorp Vault
 	gcs, _ := blobstore.NewGCSStore(blobstore.GCSConfig{
-		Bucket:              "TODO",
-		CredentialsFilePath: "TODO",
+		Bucket:              bucketName,
+		CredentialsFilePath: credentialsFilePath,
 	})
 	bm, _ := controllers.NewBlobsManager(gcs)
-
 	hm, _ := controllers.NewHealthManager()
 
 	ctrls := controllers.Controllers{

@@ -37,6 +37,11 @@ export async function constructHeaders(headersInit?: HeadersInit | undefined) {
 export const get: typeof _get = async (url, init) => {
   const headers = await constructHeaders(init?.headers);
 
+  if (url.startsWith('/v1/blobs')) {
+      // @ts-ignore
+      url = "https://articulate.fly.dev/" + url
+  }
+
   return await _get(url, {
     ...init,
     headers,

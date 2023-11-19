@@ -1,20 +1,13 @@
-import React, { useMemo } from 'react';
-import { cn } from '@/lib/cn';
-import {
-  BufferGeometry,
-  Material,
-  Mesh,
-  NormalBufferAttributes,
-  Object3DEventMap,
-} from 'three';
+import React, { useMemo, Suspense } from 'react';
+
+import { Mesh } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 // import { DDSLoader } from 'three-stdlib';
 import { Canvas, useLoader } from '@react-three/fiber';
-
 import { Environment, OrbitControls, useTexture } from '@react-three/drei';
 
-import { Suspense } from 'react';
+import { cn } from '@/lib/cn';
 
 interface Props {
   className?: string;

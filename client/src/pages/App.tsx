@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
 
 import { Page } from '@/components/Page';
 import { Create } from '@/pages/Create';
@@ -8,19 +9,23 @@ import Strings from '@/locales/en.json';
 import glassPNG from '@/assets/glass.png';
 import { Object3D } from '@/types';
 import { Toaster } from '@/components/ui/toaster';
+import { useRootQueryClient } from '@/data/query-client';
 
 export function App() {
+  const queryClient = useRootQueryClient();
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Page />}>
-          <Route index element={<Create />} />
-          <Route path="gallery" element={<Gallery />} />
-          <Route path="*" element={<NoMatch />} />
-        </Route>
-      </Routes>
-      <Toaster />
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Page />}>
+            <Route index element={<Create />} />
+            <Route path="gallery" element={<Gallery />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

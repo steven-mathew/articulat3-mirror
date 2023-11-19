@@ -1,9 +1,10 @@
 // Derived from https://github.com/supabase/supabase/blob/master/apps/studio/data/fetchers.ts
+import createClient from 'openapi-fetch';
+
+import { paths } from './api'; // generated from openapi-typescript
 
 import { API_URL } from '@/lib/constants';
 import { uuidv4 } from '@/lib/utilities/uuidv4';
-import createClient from 'openapi-fetch';
-import { paths } from './api'; // generated from openapi-typescript
 
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
@@ -20,7 +21,7 @@ const {
   trace: _trace,
   options: _options,
 } = createClient<paths>({
-  baseUrl: API_URL,
+  // baseUrl: API_URL,
   referrerPolicy: 'no-referrer-when-downgrade',
   headers: DEFAULT_HEADERS,
 });
@@ -38,8 +39,11 @@ export const get: typeof _get = async (url, init) => {
   const headers = await constructHeaders(init?.headers);
 
   if (url.startsWith('/v1/blobs')) {
-      // @ts-ignore
-      url = "https://articulate.fly.dev/" + url
+    // @ts-ignore
+    url = 'https://articulate.fly.dev' + url;
+  } else {
+    // @ts-ignore
+    url = API_URL + url;
   }
 
   return await _get(url, {
@@ -50,6 +54,14 @@ export const get: typeof _get = async (url, init) => {
 
 export const post: typeof _post = async (url, init) => {
   const headers = await constructHeaders(init?.headers);
+
+  if (url.startsWith('/v1/blobs')) {
+    // @ts-ignore
+    url = 'https://articulate.fly.dev' + url;
+  } else {
+    // @ts-ignore
+    url = API_URL + url;
+  }
 
   return await _post(url, {
     ...init,

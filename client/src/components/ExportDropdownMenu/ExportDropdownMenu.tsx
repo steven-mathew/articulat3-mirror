@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileImage, FileBox, Download } from 'lucide-react';
+import { FileImage, FileBox, Download, Files } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -44,45 +44,76 @@ export function ExportDropdownMenu({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent data-testid="dropdown-menu" className="w-48">
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>
-            <FileImage className="mr-2 h-4 w-4" />
-            <span>{Strings.DropdownMenu.Export.exportAsImage}</span>
-          </DropdownMenuSubTrigger>
-          <DropdownMenuPortal>
-            <DropdownMenuSubContent>
-              <DropdownMenuItem
-                onClick={() =>
-                  handleLocalDownload(
-                    pngURL,
-                    Strings.DropdownMenu.Export.fileName,
-                  )
-                }
-              >
-                <span>{Strings.DropdownMenu.Export.png}</span>
-              </DropdownMenuItem>
-            </DropdownMenuSubContent>
-          </DropdownMenuPortal>
-        </DropdownMenuSub>
+        <DropdownMenuItem
+          onClick={() =>
+            handleLocalDownload(pngURL, Strings.DropdownMenu.Export.pngFileName)
+          }
+        >
+          <FileImage className="mr-2 h-4 w-4" />
+          <span>{Strings.DropdownMenu.Export.exportThumbnail}</span>
+        </DropdownMenuItem>
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
             <FileBox className="mr-2 h-4 w-4" />
-            <span>{Strings.DropdownMenu.Export.exportAsMesh}</span>
+            <span>{Strings.DropdownMenu.Export.exportObject}</span>
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
               <DropdownMenuItem
                 onClick={() =>
                   handleLocalDownload(
-                    zipURL,
-                    Strings.DropdownMenu.Export.fileName,
+                    objURL,
+                    Strings.DropdownMenu.Export.objFileName,
                   )
                 }
               >
-                <span>{Strings.DropdownMenu.Export.meshFiles}</span>
+                <span>{Strings.DropdownMenu.Export.exportModel}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() =>
+                  handleLocalDownload(
+                    mtlURL,
+                    Strings.DropdownMenu.Export.mtlFileName,
+                  )
+                }
+              >
+                <span>{Strings.DropdownMenu.Export.exportMaterial}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() =>
+                  handleLocalDownload(
+                    texURL,
+                    Strings.DropdownMenu.Export.texFileName,
+                  )
+                }
+              >
+                <span>{Strings.DropdownMenu.Export.exportTexture}</span>
               </DropdownMenuItem>
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
+          <DropdownMenuItem
+            onClick={() => {
+              handleLocalDownload(
+                pngURL,
+                Strings.DropdownMenu.Export.pngFileName,
+              );
+              handleLocalDownload(
+                objURL,
+                Strings.DropdownMenu.Export.objFileName,
+              );
+              handleLocalDownload(
+                mtlURL,
+                Strings.DropdownMenu.Export.mtlFileName,
+              );
+              handleLocalDownload(
+                texURL,
+                Strings.DropdownMenu.Export.texFileName,
+              );
+            }}
+          >
+            <Files className="mr-2 h-4 w-4" />
+            <span>{Strings.DropdownMenu.Export.exportAll}</span>
+          </DropdownMenuItem>
         </DropdownMenuSub>
       </DropdownMenuContent>
     </DropdownMenu>

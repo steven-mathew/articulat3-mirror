@@ -17,13 +17,17 @@
   },
   "DropdownMenu": {
     "Export": {
-      "exportAsImage": "Export as image",
-      "exportAsMesh": "Export as mesh",
-      "png": "PNG",
-      "jpg": "JPG",
-      "svg": "SVG",
-      "meshFiles": "ZIP (obj, mtl, tex)",
-      "fileName": "Hamburger_articulate3D"
+      "exportThumbnail": "Export thumbnail",
+      "exportObject": "Export object files",
+      "exportModel": "Model (.obj)",
+      "exportMaterial": "Material (.mtl)",
+      "exportTexture": "Texture (.jpeg)",
+      "exportAll": "Export all files",
+      "exportImage": "Image (.png)",
+      "pngFileName": "thumbnail_articulate3D",
+      "objFileName": "model_articulate3D",
+      "mtlFileName": "material_articulate3D",
+      "texFileName": "texture_articulate3D"
     }
   },
   "Gallery": {

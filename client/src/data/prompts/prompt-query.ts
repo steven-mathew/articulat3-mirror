@@ -18,6 +18,7 @@ export type PromptResponse = {
     object_model_blob_id?: string;
     object_thumbnail_blob_id?: string;
   };
+  status?: string;
 };
 
 export async function getPrompt({ id }: PromptVariables, signal?: AbortSignal) {
@@ -40,7 +41,7 @@ export async function getPrompt({ id }: PromptVariables, signal?: AbortSignal) {
 export type PromptData = Awaited<ReturnType<typeof getPrompt>>;
 export type PromptError = ResponseError;
 
-export const usePromptDetailQuery = <TData = PromptData>(
+export const usePromptQuery = <TData = PromptData>(
   { id }: PromptVariables,
   {
     enabled = true,

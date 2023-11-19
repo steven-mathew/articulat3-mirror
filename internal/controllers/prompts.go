@@ -53,27 +53,33 @@ func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.P
 		TaskQueue: "prompt-generation",
 	}
 
-	we, err := pm.temporalClient.ExecuteWorkflow(
-		context.Background(),
-		workflowOptions,
-		temporal.SessionFailureRecoveryWorkflow,
-		temporal.WorkflowInput{
-			Prompt:         *prompt.Prompt,
-			Model:          *prompt.Model,
-			PromptIntentId: *prompt.Id,
-		},
-	)
-
-	if err != nil {
-		log.Err(err).Msg("Unable to execute workflow")
+	if pm.temporalClient != nil {
+		we, err := pm.temporalClient.ExecuteWorkflow(
+			context.Background(),
+			workflowOptions,
+			temporal.SessionFailureRecoveryWorkflow,
+			temporal.WorkflowInput{
+				Prompt:         *prompt.Prompt,
+				Model:          *prompt.Model,
+				PromptIntentId: *prompt.Id,
+			},
+		)
+		if err != nil {
+			log.Err(err).Msg("Unable to execute workflow")
+		}
+		log.Info().Msgf("Started workflow WorkflowID: %s RunID: %s", we.GetID(), we.GetRunID())
 	}
-	log.Info().Msgf("Started workflow WorkflowID: %s RunID: %s", we.GetID(), we.GetRunID())
 
 	return prompt, nil
 }
 
 func (pm *PromptsManager) promptWorkflowStatus(ctx context.Context, promptId string) (string, error) {
 	wid := "prompt-generation_" + promptId
+
+	if pm.temporalClient == nil {
+        return "", nil
+    }
+
 	desc, err := pm.temporalClient.DescribeWorkflowExecution(context.Background(), wid, "")
 	if err != nil {
 		log.Err(err).Msg("Unable to get workflow execution")

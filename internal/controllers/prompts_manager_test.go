@@ -25,6 +25,7 @@ func TestPromptCreate_PromptReturned(t *testing.T) {
 	t.Parallel()
 
 	db := database.NewPromptStore()
+
 	pm, err := NewPromptsManager(db, nil)
 
 	expected := createPrompt()

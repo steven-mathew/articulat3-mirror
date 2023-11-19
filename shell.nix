@@ -4,6 +4,7 @@ pkgs.mkShellNoCC {
      alejandra
      bob
      nil
+     go_1_21
      gopls
      gofumpt
      golangci-lint

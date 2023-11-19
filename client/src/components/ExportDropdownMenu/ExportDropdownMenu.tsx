@@ -14,7 +14,28 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Strings from '@/locales/en.json';
 
-export function ExportDropdownMenu() {
+interface Props {
+  pngURL: string;
+  objURL: string;
+  mtlURL: string;
+  texURL: string;
+  zipURL: string;
+}
+
+const handleLocalDownload = (url: string, name: string) => {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = name;
+  link.click();
+};
+
+export function ExportDropdownMenu({
+  pngURL,
+  objURL,
+  mtlURL,
+  texURL,
+  zipURL,
+}: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,22 +51,39 @@ export function ExportDropdownMenu() {
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() =>
+                  handleLocalDownload(
+                    pngURL,
+                    Strings.DropdownMenu.Export.fileName,
+                  )
+                }
+              >
                 <span>{Strings.DropdownMenu.Export.png}</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>{Strings.DropdownMenu.Export.jpg}</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>{Strings.DropdownMenu.Export.svg}</span>
               </DropdownMenuItem>
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>
-        <DropdownMenuItem>
-          <FileBox className="mr-2 h-4 w-4" />
-          <span>{Strings.DropdownMenu.Export.exportAsMesh}</span>
-        </DropdownMenuItem>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <FileBox className="mr-2 h-4 w-4" />
+            <span>{Strings.DropdownMenu.Export.exportAsMesh}</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem
+                onClick={() =>
+                  handleLocalDownload(
+                    zipURL,
+                    Strings.DropdownMenu.Export.fileName,
+                  )
+                }
+              >
+                <span>{Strings.DropdownMenu.Export.meshFiles}</span>
+              </DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
       </DropdownMenuContent>
     </DropdownMenu>
   );

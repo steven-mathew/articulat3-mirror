@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { ExportDropdownMenu } from '../ExportDropdownMenu';
 
 import loadingGIF from '@/assets/loading.gif';
+import BurgerPNG from '@/assets/burger.png';
 import { cn } from '@/lib/cn';
 import { Object3D } from '@/types';
 
@@ -28,7 +29,16 @@ export function ObjectCard({
     >
       <CardHeader>
         <CardTitle>{object3D.prompt}</CardTitle>
-        {!isGenerating && <ExportDropdownMenu />}
+        {!isGenerating && (
+          <ExportDropdownMenu
+            // TODO: replace with db fetch
+            pngURL={BurgerPNG}
+            objURL="/sampleModel/ham_model.obj"
+            mtlURL="/sampleModel/ham_model.mtl"
+            texURL="/sampleModel/ham_model.jpg"
+            zipURL="/sampleModel/ham_model.zip"
+          />
+        )}
       </CardHeader>
       <CardContent>
         <div className="rounded-md border">

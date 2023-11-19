@@ -21,7 +21,9 @@
       "exportAsMesh": "Export as mesh",
       "png": "PNG",
       "jpg": "JPG",
-      "svg": "SVG"
+      "svg": "SVG",
+      "meshFiles": "ZIP (obj, mtl, tex)",
+      "fileName": "Hamburger_articulate3D"
     }
   },
   "Gallery": {

@@ -7,6 +7,7 @@ import { Gallery } from '@/pages/Gallery';
 import Strings from '@/locales/en.json';
 import glassPNG from '@/assets/glass.png';
 import { Object3D } from '@/types';
+import { Toaster } from '@/components/ui/toaster';
 
 export function App() {
   return (
@@ -18,8 +19,7 @@ export function App() {
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
-      {/* TODO: move toaster to App level here */}
-      {/* <Toaster /> */}
+      <Toaster />
     </BrowserRouter>
   );
 }

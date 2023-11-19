@@ -7,7 +7,6 @@ import Strings from '@/locales/en.json';
 import { Button } from '@/components/ui/button';
 import { AlertDialog } from '@/components/AlertDialog/AlertDialog';
 import { useToast } from '@/components/ui/use-toast';
-import { Toaster } from '@/components/ui/toaster';
 import { ObjectCard } from '@/components/ObjectCard';
 import { Object3D } from '@/types';
 import Dog from '@/assets/dog.png';
@@ -174,7 +173,6 @@ export function Create() {
           </div>
         )}
       </div>
-      <Toaster />
     </main>
   );
 }

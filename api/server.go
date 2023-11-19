@@ -8,9 +8,10 @@ import (
 
 // Server contains the Controller methods
 type Server interface {
-	Prompt(ctx context.Context, promptId string) (types.Prompt, error)
-	PromptCreate(context.Context, types.Prompt) (types.Prompt, error)
+	PromptIntent(context.Context, string) (types.PromptIntent, error)
+	// PromptIntents(context.Context, string) ([]*types.PromptIntent, error)
+	PromptIntentCreate(context.Context, types.PromptIntent) (types.PromptIntent, error)
 
-	Blob(ctx context.Context, blobId string) (string, error)
-	BlobCreate(ctx context.Context, file io.Reader, filePath string) error
+	Blob(context.Context, string) (string, error)
+	BlobCreate(context.Context, io.Reader, string) error
 }

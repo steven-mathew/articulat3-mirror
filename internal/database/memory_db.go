@@ -11,13 +11,13 @@ type MemoryDB struct {
 
 type promptStore struct {
 	mu      sync.RWMutex
-	Prompts *types.Prompts `mapstructure:"prompts"`
+	Prompts *types.PromptIntents `mapstructure:"prompts"`
 }
 
 func newPromptStore() *promptStore {
 	return &promptStore{
 		mu:      sync.RWMutex{},
-		Prompts: &types.Prompts{},
+		Prompts: &types.PromptIntents{},
 	}
 }
 
@@ -27,7 +27,7 @@ func NewPromptStore() *MemoryDB {
 	}
 }
 
-func (db *MemoryDB) GetPrompt(promptId string) (types.Prompt, bool) {
+func (db *MemoryDB) GetPromptIntent(promptId string) (types.PromptIntent, bool) {
 	db.store.mu.RLock()
 	defer db.store.mu.RUnlock()
 
@@ -40,11 +40,11 @@ func (db *MemoryDB) GetPrompt(promptId string) (types.Prompt, bool) {
 		}
 	}
 
-	return types.Prompt{}, false
+	return types.PromptIntent{}, false
 
 }
 
-func (db *MemoryDB) SetPrompt(prompt types.Prompt) error {
+func (db *MemoryDB) SetPromptIntent(prompt types.PromptIntent) error {
 	db.store.mu.Lock()
 	defer db.store.mu.Unlock()
 

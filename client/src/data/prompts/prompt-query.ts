@@ -1,5 +1,5 @@
 import { ResponseError } from '@/types/api';
-import { promptKeys } from './keys';
+import { promptIntentKeys } from './keys';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { get } from '../fetchers';
@@ -25,7 +25,7 @@ export async function getPrompt({ id }: PromptVariables, signal?: AbortSignal) {
     throw new Error('id is required');
   }
 
-  const { data, error } = await get(`/v1/prompts/{id}`, {
+  const { data, error } = await get(`/v1/prompt_intents/{id}`, {
     params: { path: { id: id } },
     signal,
   });
@@ -34,7 +34,7 @@ export async function getPrompt({ id }: PromptVariables, signal?: AbortSignal) {
     throw error;
   }
 
-  return data.prompt as PromptResponse;
+  return data.prompt_intent as PromptResponse;
 }
 
 export type PromptData = Awaited<ReturnType<typeof getPrompt>>;
@@ -48,7 +48,7 @@ export const usePromptDetailQuery = <TData = PromptData>(
   }: UseQueryOptions<PromptData, PromptError, TData> = {},
 ) =>
   useQuery<PromptData, PromptError, TData>(
-    promptKeys.detail(id),
+    promptIntentKeys.detail(id),
     ({ signal }) => getPrompt({ id }, signal),
     {
       enabled: enabled && typeof id !== 'undefined',

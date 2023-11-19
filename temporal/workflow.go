@@ -33,7 +33,7 @@ func SessionFailureRecoveryWorkflow(ctx workflow.Context) (err error) {
 
 func runSession(ctx workflow.Context) (err error) {
 	so := &workflow.SessionOptions{
-		CreationTimeout:  time.Minute,
+		CreationTimeout:  1 * time.Hour,
 		ExecutionTimeout: 20 * time.Minute,
 	}
 
@@ -56,7 +56,7 @@ func runSession(ctx workflow.Context) (err error) {
 	}()
 
 	ao := workflow.ActivityOptions{
-		StartToCloseTimeout: 10 * time.Minute,
+		StartToCloseTimeout: 15 * time.Minute,
 		// When running an activity in a session you don't need to specify a heartbeat timeout to
 		// detect the host going down, the session heartbeat timeout will handle that for you.
 		// You may still want to specify a heartbeat timeout if the activity can get stuck or
@@ -83,11 +83,11 @@ func runSession(ctx workflow.Context) (err error) {
 		}
 	}()
 
-	err = workflow.ExecuteActivity(sessionCtx, a.PrepareWorkerActivity).Get(sessionCtx, nil)
-	if err != nil {
-		workflow.GetLogger(ctx).Error("Prepare failed", "Error", err)
-		return err
-	}
+	// err = workflow.ExecuteActivity(sessionCtx, a.PrepareWorkerActivity).Get(sessionCtx, nil)
+	// if err != nil {
+	// 	workflow.GetLogger(ctx).Error("Prepare failed", "Error", err)
+	// 	return err
+	// }
 
 	err = workflow.ExecuteActivity(sessionCtx, a.TrainPrompt).Get(sessionCtx, nil)
 	if err != nil {
@@ -95,11 +95,11 @@ func runSession(ctx workflow.Context) (err error) {
 		return err
 	}
 
-	err = workflow.ExecuteActivity(sessionCtx, a.CleanupActivity).Get(sessionCtx, nil)
-	if err != nil {
-		workflow.GetLogger(ctx).Error("CleanupActivity failed", "Error", err)
-		return err
-	}
+	// err = workflow.ExecuteActivity(sessionCtx, a.CleanupActivity).Get(sessionCtx, nil)
+	// if err != nil {
+	// 	workflow.GetLogger(ctx).Error("CleanupActivity failed", "Error", err)
+	// 	return err
+	// }
 
 	return err
 }

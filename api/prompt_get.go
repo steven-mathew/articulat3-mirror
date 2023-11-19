@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (h *PromptHandler) GetPromptByID(w http.ResponseWriter, r *http.Request, id string) {
+func (h *PromptHandler) GetPromptIntent(w http.ResponseWriter, r *http.Request, id string) {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 
@@ -17,12 +17,13 @@ func (h *PromptHandler) GetPromptByID(w http.ResponseWriter, r *http.Request, id
 	logger.Trace().Msg("get prompt request received")
 	reqId := requestIdFromContext(ctx)
 
-	prompt, _ := h.ctrl.Prompt(ctx, id)
+	prompt, _ := h.ctrl.PromptIntent(ctx, id)
 	res := promptResponseFromPrompt(prompt, reqId)
+
 	writeResponse(w, r, http.StatusOK, res)
 }
 
-func (h *PromptHandler) GetPrompts(w http.ResponseWriter, r *http.Request, params oapigen.GetPromptsParams) {
+func (h *PromptHandler) GetPromptIntents(w http.ResponseWriter, r *http.Request, params oapigen.GetPromptIntentsParams) {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 

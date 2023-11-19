@@ -24,7 +24,7 @@ func withRequestID(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         reqId := r.Header.Get("X-Request-Id")
 
-        if r.Header.Get("X-Request-Id") != "" {
+        if r.Header.Get("X-Request-Id") == "" {
             reqId = uuid.NewString()
         }
 

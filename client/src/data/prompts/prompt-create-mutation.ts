@@ -6,22 +6,18 @@ import {
 } from '@tanstack/react-query';
 
 import { ResponseError } from '@/types/api';
-import { promptKeys } from './keys';
+import { promptIntentKeys } from './keys';
 import { post } from '../fetchers';
 
 export type PromptCreateVariables = {
   prompt: string;
-  // TODO: change this to the actual models we'll be using
-  model: 'dreamfusion_stable-diffusion' | 'dreamfusion_deepfloyd-if';
+  model: 'mvdream-sd21';
 };
 
-export async function createPrompt({ prompt, model }: PromptCreateVariables) {
-  const { data, error } = await post(`/v1/prompts`, {
+export async function createPromptIntent({ prompt, model }: PromptCreateVariables) {
+  const { data, error } = await post(`/v1/prompt_intents`, {
     body: {
-      prompt: {
-        // TODO(sm): this is required field in the request, but it shouldn't be
-        // remove from openapi spec
-        id: 'TODO',
+      prompt_intent: {
         prompt,
         model,
       },
@@ -35,9 +31,9 @@ export async function createPrompt({ prompt, model }: PromptCreateVariables) {
   return data;
 }
 
-type PromptCreateData = Awaited<ReturnType<typeof createPrompt>>;
+type PromptCreateData = Awaited<ReturnType<typeof createPromptIntent>>;
 
-export const usePromptCreateMutation = ({
+export const usePromptIntentCreateMutation = ({
   onSuccess,
   onError,
   ...options
@@ -48,11 +44,11 @@ export const usePromptCreateMutation = ({
   const queryClient = useQueryClient();
 
   return useMutation<PromptCreateData, ResponseError, PromptCreateVariables>(
-    (vars: any) => createPrompt(vars),
+    (vars: any) => createPromptIntent(vars),
     {
       async onSuccess(data: any, variables: any, context: any) {
         await queryClient.invalidateQueries(
-          promptKeys.list() as InvalidateQueryFilters,
+          promptIntentKeys.list() as InvalidateQueryFilters,
         ),
           await onSuccess?.(data, variables, context);
       },

@@ -4,9 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"sync"
-
-	//"log"
 	"os"
 	"os/exec"
 	"time"
@@ -29,7 +26,19 @@ func (a *Activities) TrainPrompt(ctx context.Context) error {
 	logger.Info("Started prompt training.")
 
 	// TODO(sm): can continue from a heartbeat by tracking ckpt we are on then continue from ckpt using threestudio
-	cmd := exec.Command("python3", "launch.py", "--config", "configs/mvdream-sd21.yaml", "--train", "--gpu", "0", "tag='abcd'", "use_timestamp=false", "trainer.max_steps=500", "system.prompt_processor.prompt='an astronaut'")
+	cmd := exec.Command(
+		"python3",
+		"launch.py",
+		"--config",
+		"configs/mvdream-sd21.yaml",
+		"--train",
+		"--gpu",
+		"0",
+		"tag='abcd'",
+		"use_timestamp=false",
+		"trainer.max_steps=200",
+		"system.prompt_processor.prompt='an astronaut'",
+	)
 	cmd.Dir = "../../MVDream-threestudio"
 
 	var buf bytes.Buffer
@@ -63,55 +72,102 @@ func (a *Activities) TrainPrompt(ctx context.Context) error {
 	ticker := time.NewTicker(10 * time.Second)
 	defer ticker.Stop()
 
-	eventsWG := sync.WaitGroup{}
-	eventsWG.Add(1)
-	go func() {
-		for {
-			select {
-			case <-ctx.Done():
-				if err := cmd.Process.Kill(); err != nil {
-					logger.Error("err", err)
-					eventsWG.Done()
-					return
-				}
-			case err := <-doneChan:
-				logger.Info(string(buf.Bytes()))
+	watcher.Add("../../MVDream-threestudio/outputs/mvdream-sd21-rescale0.5/abcd/save/")
+
+	for {
+		select {
+		case <-ctx.Done():
+			if err := cmd.Process.Kill(); err != nil {
 				logger.Error("err", err)
-				eventsWG.Done()
-				return
-
-			case event := <-watcher.Events:
-				logger.Info(event.Name)
-
-				if event.Has(fsnotify.Create) {
-					logger.Info("created", event.Name)
-
-					bytes, err := os.ReadFile(event.Name)
-					if err != nil {
-						eventsWG.Done()
-						return
-					}
-
-					activity.RecordHeartbeat(ctx, bytes)
-				}
-			case watchErr, ok := <-watcher.Errors:
-				if !ok {
-					watcher.Close()
-                    eventsWG.Done()
-                    return
-				}
-
-				logger.Error(fmt.Sprintf("failed to watch file: %s", watchErr.Error()))
-			case <-ticker.C:
-				activity.RecordHeartbeat(ctx, nil)
 			}
+		case err := <-doneChan:
+			logger.Info(string(buf.Bytes()))
+			logger.Error("err", err)
+
+		case event := <-watcher.Events:
+			logger.Info(event.Name)
+
+			if event.Has(fsnotify.Create) {
+				logger.Info("created", event.Name)
+
+				bytes, err := os.ReadFile(event.Name)
+				if err != nil {
+					continue
+				}
+
+				activity.RecordHeartbeat(ctx, bytes)
+			}
+		case watchErr, ok := <-watcher.Errors:
+			if !ok {
+				continue
+			}
+
+			logger.Error(fmt.Sprintf("failed to watch file: %s", watchErr.Error()))
+		case <-ticker.C:
+			activity.RecordHeartbeat(ctx, nil)
 		}
+	}
+}
+
+func (a *Activities) ExportModel(ctx context.Context) error {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Started prompt training.")
+
+	cmd := exec.Command(
+		"python3",
+		"launch.py",
+		"--config",
+		"outputs/mvdream-sd21-rescale0.5/abcd/configs/parsed.yaml",
+		"--export",
+		"--gpu",
+		"0",
+		"resume=outputs/mvdream-sd21-rescale0.5/abcd/ckpts/last.ckpt",
+		"system.exporter_type=mesh-exporter",
+	)
+	cmd.Dir = "../../MVDream-threestudio"
+
+	var buf bytes.Buffer
+	cmd.Stdout = &buf
+	cmd.Stderr = os.Stderr
+
+	_ = cmd.Start()
+
+	doneChan := make(chan error)
+	go func() {
+		err := cmd.Wait()
+		if err != nil {
+			doneChan <- err
+			return
+		}
+
+		// look into dataConverter temporalio example so that the client can
+		// receive the images
+
+		// err = protojson.Unmarshal(buf.Bytes(), &result)
+		doneChan <- err
+		close(doneChan)
 	}()
 
-	watcher.Add("../../MVDream-threestudio/outputs/mvdream-sd21-rescale0.5/abcd/save/")
-    eventsWG.Wait()
+	ticker := time.NewTicker(10 * time.Second)
+	defer ticker.Stop()
 
-    return nil
+	for {
+		select {
+		case <-ctx.Done():
+			if err := cmd.Process.Kill(); err != nil {
+				return err
+			}
+		case err := <-doneChan:
+			logger.Info(string(buf.Bytes()))
+			logger.Error("err", err)
+			continue
+
+		case <-ticker.C:
+			activity.RecordHeartbeat(ctx, nil)
+		}
+	}
+
+	return nil
 }
 
 func (a *Activities) CleanupActivity(ctx context.Context) error {

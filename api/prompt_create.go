@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (h *PromptHandler) CreatePrompt(w http.ResponseWriter, r *http.Request) {
+func (h *PromptHandler) CreatePromptIntent(w http.ResponseWriter, r *http.Request) {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 
@@ -26,7 +26,7 @@ func (h *PromptHandler) CreatePrompt(w http.ResponseWriter, r *http.Request) {
 	}
 
 	prompt, _ := req.ToPrompt()
-	newPrompt, _ := h.ctrl.PromptCreate(ctx, prompt)
+	newPrompt, _ := h.ctrl.PromptIntentCreate(ctx, prompt)
 	res := promptResponseFromPrompt(newPrompt, reqId)
 	writeResponse(w, r, http.StatusCreated, res)
 }

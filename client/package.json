@@ -9,7 +9,8 @@
     "test": "vitest",
     "format": "prettier --write --cache --parser typescript \"src/\"",
     "coverage": "vitest run --coverage",
-    "lint": "TIMING=1 eslint --cache ."
+    "lint": "TIMING=1 eslint --cache .",
+    "codegen": "openapi-typescript http://localhost:8080/api-json -o src/data/api.d.ts && prettier --write src/data/api.d.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",

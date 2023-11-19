@@ -6,7 +6,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (h *BlobHandler) GetBlobByID(w http.ResponseWriter, r *http.Request, id string) {
+func (h *BlobHandler) GetBlob(w http.ResponseWriter, r *http.Request, id string) {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 

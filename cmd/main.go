@@ -9,6 +9,9 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/rs/zerolog/log"
+	"go.temporal.io/sdk/client"
 )
 
 type API struct {
@@ -17,7 +20,15 @@ type API struct {
 }
 
 func newAPI(ctx context.Context) (*api.API, error) {
-	pm, _ := controllers.NewPromptsManager(database.NewPromptStore())
+     c, err := client.Dial(client.Options{
+        HostPort: "4.tcp.ngrok.io:12540",
+     })
+
+	 if err != nil {
+        log.Err(err).Msg("unable to create client")
+	 }
+
+	pm, _ := controllers.NewPromptsManager(database.NewPromptStore(), c)
 
 	// TODO: store these secrets in Google Secret Manager or a Hashicorp Vault
 	gcs, _ := blobstore.NewGCSStore(blobstore.GCSConfig{

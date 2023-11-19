@@ -31,53 +31,21 @@
     }
   ],
   "paths": {
-    "/v1/health": {
-      "get": {
-        "summary": "Retrieve health status",
-        "operationId": "getHealth",
-        "tags": [
-          "health"
-        ],
-        "description": "Checks the health of articulate",
-        "responses": {
-          "200": {
-            "description": "Healthy",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HealthCheckResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Unhealthy",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HealthCheckResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/prompts": {
+    "/v1/prompt_intents": {
       "post": {
-        "summary": "Create a prompt",
-        "operationId": "createPrompt",
+        "summary": "Create a PromptIntent object.",
+        "operationId": "createPromptIntent",
         "tags": [
-          "prompts"
+          "prompt_intents"
         ],
-        "description": "Creates a new prompt\n",
+        "description": "Creates a new PromptIntent.\n",
         "requestBody": {
-          "description": "Prompt to create",
+          "description": "PromptIntent to create",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PromptRequest"
+                "$ref": "#/components/schemas/PromptIntentRequest"
               }
             }
           }
@@ -88,7 +56,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PromptResponse"
+                  "$ref": "#/components/schemas/PromptIntentResponse"
                 }
               }
             }
@@ -106,11 +74,11 @@
         }
       },
       "get": {
-        "summary": "Retrieve all prompts",
-        "operationId": "getPrompts",
-        "description": "Retrieves metadata for all prompts",
+        "summary": "Retrieve all PromptIntents",
+        "operationId": "getPromptIntents",
+        "description": "Returns a list of PromptIntents.",
         "tags": [
-          "prompts"
+          "prompt_intents"
         ],
         "parameters": [
           {
@@ -138,7 +106,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PromptsResponse"
+                  "$ref": "#/components/schemas/PromptIntentsResponse"
                 }
               }
             }
@@ -156,23 +124,23 @@
         }
       }
     },
-    "/v1/prompts/{id}": {
+    "/v1/prompt_intents/{id}": {
       "get": {
-        "summary": "Retrieve a prompt",
-        "operationId": "getPromptByID",
-        "description": "Retrieves the details of an existing prompt. After supplying the unique prompt ID, the prompt is returned.\n",
+        "summary": "Retrieve a PromptIntent",
+        "operationId": "getPromptIntent",
+        "description": "Retrieves the details of a PromptIntent that has been previously created.",
         "tags": [
-          "prompts"
+          "prompt_intents"
         ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Unique identifier for the prompt.",
+            "description": "Unique identifier for the PromptIntent.",
             "required": true,
             "schema": {
               "type": "string",
-              "example": "prompt_3a84a3a23423489adfaa74aA"
+              "example": "12710c42-9024-48d2-a942-880202cf6b37"
             }
           }
         ],
@@ -182,7 +150,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PromptResponse"
+                  "$ref": "#/components/schemas/PromptIntentResponse"
                 }
               }
             }
@@ -246,7 +214,7 @@
     "/v1/blobs/{id}": {
       "get": {
         "summary": "Retrieve a blob",
-        "operationId": "getBlobByID",
+        "operationId": "getBlob",
         "description": "Retrieves the details of an existing blob along with a presigned URL to download the blob. After supplying the unique blob ID, the blob is returned.\n",
         "tags": [
           "blobs"
@@ -259,7 +227,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "blob_3a84a3a23423489adfaa74aA"
+              "example": "12710c42-9024-48d2-a942-880202cf6b37"
             }
           }
         ],
@@ -290,26 +258,26 @@
   },
   "components": {
     "schemas": {
-      "PromptRequest": {
+      "PromptIntentRequest": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "prompt": {
-            "$ref": "#/components/schemas/Prompt"
+          "prompt_intent": {
+            "$ref": "#/components/schemas/PromptIntent"
           }
         },
         "required": [
-          "prompt"
+          "prompt_intent"
         ]
       },
-      "PromptsResponse": {
+      "PromptIntentsResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "prompts": {
+          "prompt_intents": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Prompt"
+              "$ref": "#/components/schemas/PromptIntent"
             }
           },
           "request_id": {
@@ -320,12 +288,12 @@
           "request_id"
         ]
       },
-      "PromptResponse": {
+      "PromptIntentResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "prompt": {
-            "$ref": "#/components/schemas/Prompt"
+          "prompt_intent": {
+            "$ref": "#/components/schemas/PromptIntent"
           },
           "request_id": {
             "$ref": "#/components/schemas/RequestID"
@@ -342,26 +310,22 @@
           "texture_blob_id": {
             "description": "Unique identifier for the texture blob.",
             "type": "string",
-            "pattern": "/blob_[0-9a-fA-F]+/'",
-            "example": "blob_3a84a3a23423489adfaa74aA"
+            "example": "12710c42-9024-48d2-a942-880202cf6b37"
           },
           "material_definition_blob_id": {
             "description": "Unique identifier for the material definition blob.",
             "type": "string",
-            "pattern": "/blob_[0-9a-fA-F]+/'",
-            "example": "blob_3a84a3a23423489adfaa74aA"
+            "example": "12710c42-9024-48d2-a942-880202cf6b37"
           },
           "object_model_blob_id": {
             "description": "Unique identifier for the object model blob.",
             "type": "string",
-            "pattern": "/blob_[0-9a-fA-F]+/'",
-            "example": "blob_3a84a3a23423489adfaa74aA"
+            "example": "12710c42-9024-48d2-a942-880202cf6b37"
           },
           "object_thumbnail_blob_id": {
             "description": "Unique identifier for the object thumbnail blob.",
             "type": "string",
-            "pattern": "/blob_[0-9a-fA-F]+/'",
-            "example": "blob_3a84a3a23423489adfaa74aA"
+            "example": "12710c42-9024-48d2-a942-880202cf6b37"
           }
         }
       },
@@ -417,15 +381,14 @@
           "request_id"
         ]
       },
-      "Prompt": {
+      "PromptIntent": {
         "type": "object",
         "additionalProperties": true,
         "properties": {
           "id": {
-            "description": "Unique identifier for the prompt.",
+            "description": "Unique identifier for the PromptIntent.",
             "type": "string",
-            "pattern": "/prompt_[0-9a-fA-F]+/'",
-            "example": "prompt_3a84a3a23423489adfaa74aA"
+            "example": "12710c42-9024-48d2-a942-880202cf6b37"
           },
           "prompt": {
             "description": "The human readable text of this prompt.",
@@ -436,24 +399,31 @@
             "description": "The model used to generate the content.",
             "type": "string",
             "enum": [
-              "dreamfusion_stable-diffusion",
-              "dreamfusion_deepfloyd-if"
+              "mvdream-sd21"
             ],
-            "example": "dreamfusion_stable-diffusion"
+            "example": "mvdream-sd21"
           },
-          "obj": {
+          "status": {
+            "description": "The status of this PromptIntent.",
+            "type": "string"
+          },
+          "blob_ids": {
             "$ref": "#/components/schemas/ObjectFiles"
           }
         },
         "required": [
-          "id",
           "prompt",
           "model"
         ],
+        "explode": true,
         "example": {
-          "id": "prompt_3a84a3a23423489adfaa74aA",
+          "id": "12710c42-9024-48d2-a942-880202cf6b37",
           "prompt": "a zoomed out DSLR photo of a baby bunny sitting on top of a stack of pancakes",
-          "model": "dreamfusion_stable-diffusion"
+          "model": "mvdream-sd21",
+          "status": "Completed",
+          "blob_ids": [
+            "..."
+          ]
         }
       },
       "Blob": {
@@ -463,7 +433,7 @@
           "id": {
             "description": "Unique identifier for the blob.",
             "type": "string",
-            "example": "blob_3a84a3a23423489adfaa74aA"
+            "example": "12710c42-9024-48d2-a942-880202cf6b37"
           },
           "created": {
             "description": "Time at which the blob was created. Measured in seconds since the Unix epoch.",
@@ -485,22 +455,21 @@
             "enum": [
               "material_definition",
               "object_model",
-              "texture",
+              "object_texture",
               "object_thumbnail"
             ],
-            "description": "The purpose of the uploaded blob:\n * `material_definition` - A material definition that is to apply material to an object file.\n * `object_model` - An object file (usually `.stl` or `.obj`)\n * `texture` - A texture image that can be applied to an object model.\n * `object_thumbnail` - A thumbnail for an object file.\n",
+            "description": "The purpose of the uploaded blob:\n * `material_definition` - A material definition that is to apply material to an object file.\n * `object_model` - An object file (usually `.stl` or `.obj`)\n * `object_texture` - A texture image that can be applied to an object model.\n * `object_thumbnail` - A thumbnail for an object file.\n",
             "example": "object_model"
           }
         },
         "required": [
-          "id",
           "created",
           "filename",
           "type",
           "purpose"
         ],
         "example": {
-          "id": "blob_3a84a3a23423489adfaa74aA",
+          "id": "12710c42-9024-48d2-a942-880202cf6b37",
           "created": 1697134565,
           "filename": "model.obj",
           "type": "obj",
@@ -524,19 +493,13 @@
         "required": [
           "message"
         ]
-      },
-      "HealthCheckResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/Error"
-          }
-        },
-        "required": [
-          "request_id"
-        ]
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "prompt_intents",
+      "description": "Use the Prompt Intents API to start a workflow with a status that changes over its lifecycle. It begins with creation, to processing, to completion."
+    }
+  ]
 }

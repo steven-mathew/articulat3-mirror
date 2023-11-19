@@ -9,10 +9,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func createPrompt() types.Prompt {
+func createPrompt() types.PromptIntent {
 	p := "A dog and a cat"
 	m := "dreamfusion_stable-diffusion"
-	pr := types.Prompt{
+	pr := types.PromptIntent{
 		Prompt: &p,
 		Model:  &m,
 	}
@@ -25,10 +25,10 @@ func TestPromptCreate_PromptReturned(t *testing.T) {
 	t.Parallel()
 
 	db := database.NewPromptStore()
-	pm, err := NewPromptsManager(db)
+	pm, err := NewPromptsManager(db, nil)
 
 	expected := createPrompt()
-	actual, err := pm.PromptCreate(ctx, expected)
+	actual, err := pm.PromptIntentCreate(ctx, expected)
 
 	require.NoError(t, err)
 	require.Equal(t, expected.Model, actual.Model)
@@ -40,10 +40,10 @@ func TestPromptGet_PromptReturnedWhenPromptPresent(t *testing.T) {
 	t.Parallel()
 
 	db := database.NewPromptStore()
-	pm, err := NewPromptsManager(db)
+	pm, err := NewPromptsManager(db, nil)
 
-	createdPrompt, err := pm.PromptCreate(ctx, createPrompt())
-	actual, err := pm.Prompt(ctx, *createdPrompt.Id)
+	createdPrompt, err := pm.PromptIntentCreate(ctx, createPrompt())
+	actual, err := pm.PromptIntent(ctx, *createdPrompt.Id)
 
 	require.NoError(t, err)
 	require.Equal(t, createdPrompt.Model, actual.Model)

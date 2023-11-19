@@ -5,8 +5,8 @@ import (
 	"articulate/internal/types"
 )
 
-type PromptRequest oapigen.PromptRequest
-type PromptResponse oapigen.PromptResponse
+type PromptRequest oapigen.PromptIntentRequest
+type PromptResponse oapigen.PromptIntentResponse
 type ErrorResponse oapigen.ErrorResponse
 
 func errorResponseFromError(err error, requestID oapigen.RequestID) ErrorResponse {
@@ -19,32 +19,38 @@ func errorResponseFromError(err error, requestID oapigen.RequestID) ErrorRespons
 	return er
 }
 
-func promptResponseFromPrompt(prompt types.Prompt, requestID oapigen.RequestID) PromptResponse {
+func promptResponseFromPrompt(prompt types.PromptIntent, requestID oapigen.RequestID) PromptResponse {
 	p := oapigenPromptFromPrompt(prompt)
 
 	pr := PromptResponse{
-		RequestId: requestID,
-		Prompt:    &p,
+		RequestId:    requestID,
+		PromptIntent: &p,
 	}
 	return pr
 }
 
-func (pr PromptRequest) ToPrompt() (types.Prompt, error) {
-	// TODO: handle malformed requests
-	prompt := types.Prompt{
-		Id:     &pr.Prompt.Id,
-		Model:  (*string)(&pr.Prompt.Model),
-		Prompt: &pr.Prompt.Prompt,
+func (pr PromptRequest) ToPrompt() (types.PromptIntent, error) {
+	prompt := types.PromptIntent{
+		Id:     pr.PromptIntent.Id,
+		Model:  (*string)(&pr.PromptIntent.Model),
+		Prompt: &pr.PromptIntent.Prompt,
+		Status: pr.PromptIntent.Status,
+		// BlobIds: pr.PromptIntent.BlobIds {
+		//
+		// },
 	}
 
 	return prompt, nil
 }
 
-func oapigenPromptFromPrompt(prompt types.Prompt) oapigen.Prompt {
-	p := oapigen.Prompt{
-		Id:     *prompt.Id,
+func oapigenPromptFromPrompt(prompt types.PromptIntent) oapigen.PromptIntent {
+	p := oapigen.PromptIntent{
+		Id:     prompt.Id,
 		Prompt: *prompt.Prompt,
-		Model:  oapigen.PromptModel(*prompt.Model),
+		Model:  oapigen.PromptIntentModel(*prompt.Model),
+		Status: prompt.Status,
+		// BlobIds: &oapigen.ObjectFiles{
+		// },
 	}
 
 	return p

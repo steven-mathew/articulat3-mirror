@@ -4,31 +4,24 @@
  */
 
 export interface paths {
-  '/v1/health': {
+  '/v1/prompt_intents': {
     /**
-     * Retrieve health status
-     * @description Checks the health of articulate
+     * Retrieve all PromptIntents
+     * @description Returns a list of PromptIntents.
      */
-    get: operations['getHealth'];
+    get: operations['getPromptIntents'];
+    /**
+     * Create a PromptIntent object.
+     * @description Creates a new PromptIntent.
+     */
+    post: operations['createPromptIntent'];
   };
-  '/v1/prompts': {
+  '/v1/prompt_intents/{id}': {
     /**
-     * Retrieve all prompts
-     * @description Retrieves metadata for all prompts
+     * Retrieve a PromptIntent
+     * @description Retrieves the details of a PromptIntent that has been previously created.
      */
-    get: operations['getPrompts'];
-    /**
-     * Create a prompt
-     * @description Creates a new prompt
-     */
-    post: operations['createPrompt'];
-  };
-  '/v1/prompts/{id}': {
-    /**
-     * Retrieve a prompt
-     * @description Retrieves the details of an existing prompt. After supplying the unique prompt ID, the prompt is returned.
-     */
-    get: operations['getPromptByID'];
+    get: operations['getPromptIntent'];
   };
   '/v1/blobs': {
     /**
@@ -42,7 +35,7 @@ export interface paths {
      * Retrieve a blob
      * @description Retrieves the details of an existing blob along with a presigned URL to download the blob. After supplying the unique blob ID, the blob is returned.
      */
-    get: operations['getBlobByID'];
+    get: operations['getBlob'];
   };
 }
 
@@ -50,36 +43,36 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    PromptRequest: {
-      prompt: components['schemas']['Prompt'];
+    PromptIntentRequest: {
+      prompt_intent: components['schemas']['PromptIntent'];
     };
-    PromptsResponse: {
-      prompts?: components['schemas']['Prompt'][];
+    PromptIntentsResponse: {
+      prompt_intents?: components['schemas']['PromptIntent'][];
       request_id: components['schemas']['RequestID'];
     };
-    PromptResponse: {
-      prompt?: components['schemas']['Prompt'];
+    PromptIntentResponse: {
+      prompt_intent?: components['schemas']['PromptIntent'];
       request_id: components['schemas']['RequestID'];
     };
     ObjectFiles: {
       /**
        * @description Unique identifier for the texture blob.
-       * @example blob_3a84a3a23423489adfaa74aA
+       * @example 12710c42-9024-48d2-a942-880202cf6b37
        */
       texture_blob_id?: string;
       /**
        * @description Unique identifier for the material definition blob.
-       * @example blob_3a84a3a23423489adfaa74aA
+       * @example 12710c42-9024-48d2-a942-880202cf6b37
        */
       material_definition_blob_id?: string;
       /**
        * @description Unique identifier for the object model blob.
-       * @example blob_3a84a3a23423489adfaa74aA
+       * @example 12710c42-9024-48d2-a942-880202cf6b37
        */
       object_model_blob_id?: string;
       /**
        * @description Unique identifier for the object thumbnail blob.
-       * @example blob_3a84a3a23423489adfaa74aA
+       * @example 12710c42-9024-48d2-a942-880202cf6b37
        */
       object_thumbnail_blob_id?: string;
     };
@@ -106,17 +99,21 @@ export interface components {
     };
     /**
      * @example {
-     *   "id": "prompt_3a84a3a23423489adfaa74aA",
+     *   "id": "12710c42-9024-48d2-a942-880202cf6b37",
      *   "prompt": "a zoomed out DSLR photo of a baby bunny sitting on top of a stack of pancakes",
-     *   "model": "dreamfusion_stable-diffusion"
+     *   "model": "mvdream-sd21",
+     *   "status": "Completed",
+     *   "blob_ids": [
+     *     "..."
+     *   ]
      * }
      */
-    Prompt: {
+    PromptIntent: {
       /**
-       * @description Unique identifier for the prompt.
-       * @example prompt_3a84a3a23423489adfaa74aA
+       * @description Unique identifier for the PromptIntent.
+       * @example 12710c42-9024-48d2-a942-880202cf6b37
        */
-      id: string;
+      id?: string;
       /**
        * @description The human readable text of this prompt.
        * @example a zoomed out DSLR photo of a baby bunny sitting on top of a stack of pancakes
@@ -124,16 +121,18 @@ export interface components {
       prompt: string;
       /**
        * @description The model used to generate the content.
-       * @example dreamfusion_stable-diffusion
+       * @example mvdream-sd21
        * @enum {string}
        */
-      model: 'dreamfusion_stable-diffusion' | 'dreamfusion_deepfloyd-if';
-      obj?: components['schemas']['ObjectFiles'];
+      model: 'mvdream-sd21';
+      /** @description The status of this PromptIntent. */
+      status?: string;
+      blob_ids?: components['schemas']['ObjectFiles'];
       [key: string]: unknown;
     };
     /**
      * @example {
-     *   "id": "blob_3a84a3a23423489adfaa74aA",
+     *   "id": "12710c42-9024-48d2-a942-880202cf6b37",
      *   "created": 1697134565,
      *   "filename": "model.obj",
      *   "type": "obj",
@@ -143,23 +142,29 @@ export interface components {
     Blob: {
       /**
        * @description Unique identifier for the blob.
-       * @example blob_3a84a3a23423489adfaa74aA
+       * @example 12710c42-9024-48d2-a942-880202cf6b37
        */
-      id: string;
+      id?: string;
       /**
        * @description Time at which the blob was created. Measured in seconds since the Unix epoch.
        * @example 1697134565
        */
       created: number;
-      /** @example model.obj */
+      /**
+       * @description The name for saving the blob to a filesystem.
+       * @example model.obj
+       */
       filename: string;
-      /** @example obj */
+      /**
+       * @description The extension of the blob (for example, obj, jpgg, mtl)
+       * @example obj
+       */
       type: string;
       /**
        * @description The purpose of the uploaded blob:
        *  * `material_definition` - A material definition that is to apply material to an object file.
        *  * `object_model` - An object file (usually `.stl` or `.obj`)
-       *  * `texture` - A texture image that can be applied to an object model.
+       *  * `object_texture` - A texture image that can be applied to an object model.
        *  * `object_thumbnail` - A thumbnail for an object file.
        *
        * @example object_model
@@ -168,7 +173,7 @@ export interface components {
       purpose:
         | 'material_definition'
         | 'object_model'
-        | 'texture'
+        | 'object_texture'
         | 'object_thumbnail';
     };
     /**
@@ -180,9 +185,6 @@ export interface components {
       /** @example this is an error message */
       message: string;
     };
-    HealthCheckResponse: {
-      error?: components['schemas']['Error'];
-    };
   };
   responses: never;
   parameters: never;
@@ -191,36 +193,14 @@ export interface components {
   pathItems: never;
 }
 
-export type $defs = Record<string, never>;
-
 export type external = Record<string, never>;
 
 export interface operations {
   /**
-   * Retrieve health status
-   * @description Checks the health of articulate
+   * Retrieve all PromptIntents
+   * @description Returns a list of PromptIntents.
    */
-  getHealth: {
-    responses: {
-      /** @description Healthy */
-      200: {
-        content: {
-          'application/json': components['schemas']['HealthCheckResponse'];
-        };
-      };
-      /** @description Unhealthy */
-      default: {
-        content: {
-          'application/json': components['schemas']['HealthCheckResponse'];
-        };
-      };
-    };
-  };
-  /**
-   * Retrieve all prompts
-   * @description Retrieves metadata for all prompts
-   */
-  getPrompts: {
+  getPromptIntents: {
     parameters: {
       query?: {
         /** @description A cursor for pagination across multiple pages. */
@@ -233,7 +213,7 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          'application/json': components['schemas']['PromptsResponse'];
+          'application/json': components['schemas']['PromptIntentsResponse'];
         };
       };
       /** @description Unexpected error */
@@ -245,21 +225,21 @@ export interface operations {
     };
   };
   /**
-   * Create a prompt
-   * @description Creates a new prompt
+   * Create a PromptIntent object.
+   * @description Creates a new PromptIntent.
    */
-  createPrompt: {
-    /** @description Prompt to create */
+  createPromptIntent: {
+    /** @description PromptIntent to create */
     requestBody: {
       content: {
-        'application/json': components['schemas']['PromptRequest'];
+        'application/json': components['schemas']['PromptIntentRequest'];
       };
     };
     responses: {
       /** @description OK */
       200: {
         content: {
-          'application/json': components['schemas']['PromptResponse'];
+          'application/json': components['schemas']['PromptIntentResponse'];
         };
       };
       /** @description Unexpected error */
@@ -271,13 +251,13 @@ export interface operations {
     };
   };
   /**
-   * Retrieve a prompt
-   * @description Retrieves the details of an existing prompt. After supplying the unique prompt ID, the prompt is returned.
+   * Retrieve a PromptIntent
+   * @description Retrieves the details of a PromptIntent that has been previously created.
    */
-  getPromptByID: {
+  getPromptIntent: {
     parameters: {
       path: {
-        /** @description Unique identifier for the prompt. */
+        /** @description Unique identifier for the PromptIntent. */
         id: string;
       };
     };
@@ -285,7 +265,7 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          'application/json': components['schemas']['PromptResponse'];
+          'application/json': components['schemas']['PromptIntentResponse'];
         };
       };
       /** @description Unexpected error */
@@ -326,7 +306,7 @@ export interface operations {
    * Retrieve a blob
    * @description Retrieves the details of an existing blob along with a presigned URL to download the blob. After supplying the unique blob ID, the blob is returned.
    */
-  getBlobByID: {
+  getBlob: {
     parameters: {
       path: {
         /** @description Unique identifier for the blob. */

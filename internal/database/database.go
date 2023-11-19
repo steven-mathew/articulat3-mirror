@@ -3,6 +3,7 @@ package database
 import "articulate/internal/types"
 
 type Database interface {
-	GetPrompt(promptId string) (types.Prompt, bool)
-	SetPrompt(prompt types.Prompt) error
+	GetPromptIntent(promptId string) (types.PromptIntent, bool)
+	// GetPromptIntents() ([]*types.PromptIntent, bool)
+	SetPromptIntent(prompt types.PromptIntent) error
 }

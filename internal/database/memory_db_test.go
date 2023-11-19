@@ -7,11 +7,11 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func createPrompt() types.Prompt {
+func createPrompt() types.PromptIntent {
 	p := "A dog and a cat"
-	m := "dreamfusion_stable-diffusion"
+	m := "mvdream-sd21"
 	id := "test-id"
-	pr := types.Prompt{
+	pr := types.PromptIntent{
 		Prompt: &p,
 		Model:  &m,
 		Id:     &id,
@@ -24,7 +24,7 @@ func TestPromptCreate_NoErrorWhenPromptCreated(t *testing.T) {
 	t.Parallel()
 
 	db := NewPromptStore()
-	err := db.SetPrompt(createPrompt())
+	err := db.SetPromptIntent(createPrompt())
 
 	require.NoError(t, err)
 }
@@ -35,10 +35,10 @@ func TestPromptGet_PromptReturnedWhenPromptPresent(t *testing.T) {
 	db := NewPromptStore()
 	expected := createPrompt()
 
-	err := db.SetPrompt(expected)
+	err := db.SetPromptIntent(expected)
 	require.NoError(t, err)
 
-	actual, ok := db.GetPrompt(*expected.Id)
+	actual, ok := db.GetPromptIntent(*expected.Id)
 	require.True(t, ok)
 	require.EqualValues(t, expected, actual)
 }

@@ -11,6 +11,6 @@ func NewHealthManager() (*HealthManager, error) {
 	return &HealthManager{}, nil
 }
 
-func (hm *HealthManager) GetHealth(_ context.Context) (types.Prompt, error) {
-	return types.Prompt{}, nil
+func (hm *HealthManager) GetHealth(_ context.Context) (types.PromptIntent, error) {
+	return types.PromptIntent{}, nil
 }

@@ -21,7 +21,11 @@ export function ObjectCard({
   ...props
 }: Props) {
   return (
-    <Card className={cn('md:w-[380px] w-[240px] ', className)} {...props}>
+    <Card
+      data-testid="object-card"
+      className={cn('md:w-[380px] w-[240px] ', className)}
+      {...props}
+    >
       <CardHeader>
         <CardTitle>{object3D.prompt}</CardTitle>
         {!isGenerating && <ExportDropdownMenu />}

@@ -11,7 +11,7 @@ interface Props {
 
 export function GalleryCard({ object3D }: Props) {
   return (
-    <Dialog>
+    <Dialog data-testid="gallery-card">
       <DialogTrigger asChild>
         <div className="relative md:w-48 w-36 m-1 rounded-sm cursor-pointer border">
           <div className="md:w-48 w-36 absolute inset-0 flex items-center justify-center text-center z-10 hover:bg-card text-card-foreground opacity-0 hover:opacity-70">

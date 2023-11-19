@@ -11,3 +11,4 @@ declare module "vitest" {
 }
 
 expect.extend(matchers);
+global.ResizeObserver = require('resize-observer-polyfill')

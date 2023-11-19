@@ -48,18 +48,22 @@ export function ThreeComponent({ className, objURL, mtlURL, texURL }: Props) {
 
     return (
       <mesh geometry={geometry} scale={1}>
+        <ambientLight intensity={0.9} />
+        <directionalLight intensity={0.75} />
         <meshStandardMaterial map={texture} />
       </mesh>
     );
   };
 
   return (
-    <div className={cn('cursor-grab aspect-square', className)}>
-      <Canvas>
+    <div
+      data-testid="three-component"
+      className={cn('cursor-grab aspect-square', className)}
+    >
+      <Canvas camera={{ fov: 35, zoom: 1.3, near: 1, far: 1000 }}>
         <Suspense fallback={null}>
           <Scene />
           <OrbitControls />
-          <Environment preset="sunset" background blur={0.09} />
         </Suspense>
       </Canvas>
     </div>

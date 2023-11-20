@@ -115,7 +115,7 @@ In order to set up your local environment, follow these steps:
 git clone git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git
 ```
 
-2. Install Nix
+2. Install [Nix](https://nixos.org/download)
 
 ```bash
 sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -130,7 +130,7 @@ nix develop
 
 ### Usage
 
-For the following commands, make sure that you are running nix (as shown [above](#installation)). Also, make sure that the following commands are running in separate terminals.
+For the following commands, make sure that you are running Nix (as shown [above](#installation)). Also, make sure that the following commands are running in separate terminals.
 
 Starting the client:
 ```bash
@@ -145,7 +145,7 @@ TEMPORAL_SERVER_HOST_PORT=4.tcp.ngrok.io:12540 go run cmd/main.go
 
 ### Testing
 
-When running tests, make sure that you are running nix (as shown [above](#installation)). 
+When running tests, make sure that you are running Nix (as shown [above](#installation)). 
 
 Frontend testing:
 ```bash

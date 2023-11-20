@@ -32,8 +32,3 @@ git push origin branch
 Note that you can use multiple commits as you work on your PR as GitHub can squash them before merging.
 - Commit messages must follow the [commit message convention](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/commit-convention.md) so that commit messages can be understood at a glance
 - If you messed up, look into [dangitgit](https://dangitgit.com/en).
-
-
-## Coding Standards and Guidelines
-
-For our Typescript code, we will be using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) rules similar to those of [Shopify](https://github.com/Shopify/web-configs/tree/main)’s. For our Go code, we will be following the standards from [Mattermost](https://developers.mattermost.com/contribute/more-info/server/style-guide/). The rust code will be checked by [Clippy](https://github.com/rust-lang/rust-clippy). A pre-commit hook will lint and eslinttest all parts of the project.

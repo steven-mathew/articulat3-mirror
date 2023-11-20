@@ -131,8 +131,8 @@ For the following commands, make sure that you are running Nix (as shown [above]
 
 Starting the client:
 ```bash
-pnpm install
 cd client
+pnpm install
 pnpm run dev
 ```
 

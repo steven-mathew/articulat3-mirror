@@ -11,7 +11,8 @@
 </p>
 <p align="center">
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/deliverables/D1/planning.md">Planning</a> •
-    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md">Contributing</a>
+    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md">Contributing</a> •
+    <a href="https://articulat3.fly.dev">Deployment</a>
 </p>
 <br />
 
@@ -170,15 +171,59 @@ We will track our progress on issues and feature stories through [Github Project
 
 #### Deployment Tools
 
+This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on fly.io while the task cluster is hosted on a UofT GPU node. 
+
+We are using terraform to provision our resources. 
+
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+```
+
+You will be requested to input some credentials. The frontend and backend are hosted on fly.io which can be deployed with flyctl directly. 
+
+> [!NOTE]  
+> To proceed with the following steps, you will need a server with access to an NVIDIA GPU. Please install the necessary NVIDIA and CUDA drivers required by [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio).
+
+Now, `ssh` into the GPU server and clone both this repo and [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio):
+
+```bash
+git clone git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git
+git clone git@github.com:bytedance/MVDream-threestudio.git
+```
+
+We are using [Singularity](https://docs.sylabs.io/) to install all the necessary dependencies on your machine. [Singularity](https://docs.sylabs.io/) is an alternative to docker that is rootless and usually installed on HPC clusters. 
+
+```bash
+cd project-44-toronto-intelligence-m/temporal
+singularity shell --writable --nv out
+singularity shell --fakeroot --writable --nv --network "host" out
+```
+
+At this point, you can run the temporal server and the workers. Using tmux or whatever you like, you can start the following two processes.
+
+```bash
+~/.temporalio/bin/temporal server start-dev
+~/.temporalio/bin/temporal
+```
+
+and
+
+```bash
+~/.local/go/bin/go run project-44-toronto-intelligence-m/temporal/worker/main.go
+```
+
 #### Our Github Workflow
 
- ## Coding Standards and Guidelines
+## Coding Standards and Guidelines
 
 For our Typescript code, we will be using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) rules similar to those of [Shopify](https://github.com/Shopify/web-configs/tree/main)’s. 
 
 For our Go code, we will be following the standards from [Mattermost](https://developers.mattermost.com/contribute/more-info/server/style-guide/). The rust code will be checked by [Clippy](https://github.com/rust-lang/rust-clippy). 
 
-A pre-commit hook will lint and eslinttest all parts of the project.
+A pre-commit hook will lint and eslinttest all parts of the project. We are also using CI to build and test.
 
 ## Licenses 
 ​Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT) because it is permissive and allows anyone to distribute and use the code for any purpose. The TISL partner’s future plans for this product is currently up in the air, making the MIT license the most suitable license to use as of now.

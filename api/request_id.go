@@ -8,6 +8,8 @@ import (
 	"articulate/api/oapigen"
 
 	"github.com/google/uuid"
+
+	"github.com/rs/zerolog/log"
 )
 
 type contextReqKeyType struct{}
@@ -28,7 +30,9 @@ func requestIdWithContext(ctx context.Context, requestId string) context.Context
 // requestIdFromContext retrieves a requestId from the context if one exists, and returns
 // and empty string otherwise.
 func requestIdFromContext(ctx context.Context) oapigen.RequestID {
-	id, _ := ctx.Value(reqContextKey).(oapigen.RequestID)
-
+	id, err := ctx.Value(reqContextKey).(oapigen.RequestID)
+	if err != nil {
+        log.Err(err).Msg("unable to get requestId")
+	 }
 	return id
 }

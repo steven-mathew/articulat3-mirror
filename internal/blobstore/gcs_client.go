@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/rs/zerolog/log"
 	"cloud.google.com/go/storage"
 	"google.golang.org/api/option"
 )
@@ -19,8 +20,10 @@ type gcsStore struct {
 var _ Store = &gcsStore{}
 
 func NewGCSStore(cfg GCSConfig) (Store, error) {
-	client, _ := storage.NewClient(context.Background(), option.WithCredentialsFile(cfg.CredentialsFilePath))
-
+	client, err := storage.NewClient(context.Background(), option.WithCredentialsFile(cfg.CredentialsFilePath))
+	if err != nil {
+        log.Err(err).Msg("unable to create Client")
+	 }
 	return &gcsStore{
 		bucket: cfg.Bucket,
 		client: client,

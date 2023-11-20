@@ -32,13 +32,25 @@ func newAPI(ctx context.Context) (*api.API, error) {
         log.Err(err).Msg("unable to create client")
 	 }
 
-	pm, _ := controllers.NewPromptsManager(database.NewPromptStore(), c)
-	gcs, _ := blobstore.NewGCSStore(blobstore.GCSConfig{
+	pm, err := controllers.NewPromptsManager(database.NewPromptStore(), c)
+	if err != nil {
+        log.Err(err).Msg("unable to create OromptManager")
+	 }
+	gcs, err := blobstore.NewGCSStore(blobstore.GCSConfig{
 		Bucket:              bucketName,
 		CredentialsFilePath: credentialsFilePath,
 	})
-	bm, _ := controllers.NewBlobsManager(gcs)
-	hm, _ := controllers.NewHealthManager()
+	if err != nil {
+        log.Err(err).Msg("unable to create GCSStore")
+	 }
+	bm, err := controllers.NewBlobsManager(gcs)
+	if err != nil {
+        log.Err(err).Msg("unable to create BlobsManager")
+	 }
+	hm, err := controllers.NewHealthManager()
+	if err != nil {
+        log.Err(err).Msg("unable to create HealthManager")
+	 }
 
 	ctrls := controllers.Controllers{
 		PromptsManager: pm,
@@ -50,12 +62,15 @@ func newAPI(ctx context.Context) (*api.API, error) {
 		Controller: ctrls,
 		Port:       8080,
 	})
+	if err != nil {
+        log.Err(err).Msg("unable to create API")
+	 }
 
 	return api, err
 }
 
 func run(ctx context.Context) error {
-	api, _ := newAPI(ctx)
+	api, err := newAPI(ctx)
 
 	exitCh := make(chan error, 1)
 	go func() {

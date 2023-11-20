@@ -14,6 +14,9 @@ func (h *BlobHandler) GetBlob(w http.ResponseWriter, r *http.Request, id string)
 	logger := log.Ctx(ctx)
 	logger.Trace().Msg("create prompt request received")
 
-	url, _ := h.ctrl.Blob(ctx, id)
+	url, err := h.ctrl.Blob(ctx, id)
+	if err != nil {
+        log.Err(err).Msg("unable to get blob")
+	 }
 	writeResponse(w, r, http.StatusCreated, url)
 }

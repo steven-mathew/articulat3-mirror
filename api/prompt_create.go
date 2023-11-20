@@ -25,8 +25,11 @@ func (h *PromptHandler) CreatePromptIntent(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	prompt, _ := req.ToPrompt()
-	newPrompt, _ := h.ctrl.PromptIntentCreate(ctx, prompt)
+	prompt, err := req.ToPrompt()
+	newPrompt, err := h.ctrl.PromptIntentCreate(ctx, prompt)
+	if err != nil {
+        log.Err(err).Msg("unable to create prompt")
+	 }
 	res := promptResponseFromPrompt(newPrompt, reqId)
 	writeResponse(w, r, http.StatusCreated, res)
 }

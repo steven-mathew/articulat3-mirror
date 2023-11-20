@@ -14,7 +14,7 @@ func (h *BlobHandler) CreateBlob(w http.ResponseWriter, r *http.Request) {
 	logger := log.Ctx(ctx)
 	logger.Trace().Msg("create prompt request received")
 
-	file, header, _ := r.FormFile("upload")
+	file, header, err := r.FormFile("upload")
 	defer file.Close()
 
 	name := r.FormValue("name")
@@ -23,6 +23,9 @@ func (h *BlobHandler) CreateBlob(w http.ResponseWriter, r *http.Request) {
 	}
 
 	h.ctrl.BlobCreate(ctx, file, name)
-	url, _ := h.ctrl.Blob(ctx, name)
+	url, err := h.ctrl.Blob(ctx, name)
+	if err != nil {
+        log.Err(err).Msg("unable to create blob")
+	 }
 	writeResponse(w, r, http.StatusCreated, url)
 }

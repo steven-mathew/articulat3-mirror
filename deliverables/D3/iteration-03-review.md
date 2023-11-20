@@ -62,6 +62,8 @@ Briefly explain how you integrated the previously developed individuals componen
 
  * Keep this very short (1-3 lines).
 
+  In D2, we completely separated frontend/backend folders and agreed to accept the backend version (more dependencies) in case of merge conflicts. In D3, both sub-teams simply reviewed the other’s integration PRs with no conflicts. Therefore, D2 was helpful in planning our architecture early and working in our long-term sub-teams.
+
 
 ## Product - Review
 

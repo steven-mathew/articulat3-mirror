@@ -23,7 +23,7 @@ type API struct {
 func newAPI(ctx context.Context) (*api.API, error) {
      hostPort := os.Getenv("TEMPORAL_SERVER_HOST_PORT")
      bucketName := os.Getenv("GCS_BUCKET_NAME")
-     credentialsFilePath := os.Getenv("secrets/credentials.txt")
+     credentialsFilePath := "secrets/credentials.txt"
      port, err := strconv.Atoi(os.Getenv("PORT"))
      if err != nil {
          port = 5000

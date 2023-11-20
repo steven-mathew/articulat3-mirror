@@ -21,7 +21,7 @@ const {
   trace: _trace,
   options: _options,
 } = createClient<paths>({
-  // baseUrl: API_URL,
+  baseUrl: API_URL,
   referrerPolicy: 'no-referrer-when-downgrade',
   headers: DEFAULT_HEADERS,
 });
@@ -38,14 +38,6 @@ export async function constructHeaders(headersInit?: HeadersInit | undefined) {
 export const get: typeof _get = async (url, init) => {
   const headers = await constructHeaders(init?.headers);
 
-  if (url.startsWith('/v1/blobs')) {
-    // @ts-ignore
-    url = 'https://articulate.fly.dev' + url;
-  } else {
-    // @ts-ignore
-    url = API_URL + url;
-  }
-
   return await _get(url, {
     ...init,
     headers,
@@ -54,14 +46,6 @@ export const get: typeof _get = async (url, init) => {
 
 export const post: typeof _post = async (url, init) => {
   const headers = await constructHeaders(init?.headers);
-
-  if (url.startsWith('/v1/blobs')) {
-    // @ts-ignore
-    url = 'https://articulate.fly.dev' + url;
-  } else {
-    // @ts-ignore
-    url = API_URL + url;
-  }
 
   return await _post(url, {
     ...init,

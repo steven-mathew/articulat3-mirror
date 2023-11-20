@@ -108,10 +108,55 @@ After generating a 3D object, if you are looking to interact with the object or 
 
 ### Installation
 
+In order to set up your local environment, follow these steps:
+1. Clone the repo
+
+```bash
+git clone git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git
+```
+
+2. Install Nix
+
+```bash
+sh <(curl -L https://nixos.org/nix/install) --daemon
+mkdir -p ~/.config/nix && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+```
+
+3. Run Nix
+
+```bash
+nix develop
+```
+
 ### Usage
+
+For the following commands, make sure that you are running nix (as shown [above](#installation)). Also, make sure that the following commands are running in separate terminals.
+
+Starting the client:
+```bash
+cd client
+pnpm run dev
+```
+
+Starting the server:
+```bash
+TEMPORAL_SERVER_HOST_PORT=4.tcp.ngrok.io:12540 go run cmd/main.go
+```
 
 ### Testing
 
+When running tests, make sure that you are running nix (as shown [above](#installation)). 
+
+Frontend testing:
+```bash
+# pnpm run test will ask you to install jsdom. Install and re-run the tests
+pnpm run test
+```
+
+Backend testing:
+```bash
+go test ./...
+```
  
 ## Deployment and Github Workflow
 <!-- >* Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.​

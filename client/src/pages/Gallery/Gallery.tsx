@@ -19,19 +19,18 @@ export function Gallery() {
 
   // TODO: replace with json mock data file
   const mockDogObject = {
-    prompt:
-      'a dog who is being chased by an invisible creature on a sunny day in March',
+    prompt: 'a white dog with a blue collar',
     imgSRC: DogPNG,
-    objURL: '',
-    mtlURL: '',
-    texURL: '',
+    objURL: '/sampleModel/ham_model.obj',
+    mtlURL: '/sampleModel/ham_model.mtl',
+    texURL: '/sampleModel/ham_model.jpg',
   };
   const mockBoyObject = {
     prompt: 'a boy',
     imgSRC: BoyPNG,
-    objURL: '',
-    mtlURL: '',
-    texURL: '',
+    objURL: '/sampleModel/ham_model.obj',
+    mtlURL: '/sampleModel/ham_model.mtl',
+    texURL: '/sampleModel/ham_model.jpg',
   };
   const mockBurgerObject = {
     prompt: 'a burger',
@@ -43,9 +42,9 @@ export function Gallery() {
   const mockPancakeObject = {
     prompt: 'a bunny on pancakes',
     imgSRC: PancakePNG,
-    objURL: '',
-    mtlURL: '',
-    texURL: '',
+    objURL: '/sampleModel/ham_model.obj',
+    mtlURL: '/sampleModel/ham_model.mtl',
+    texURL: '/sampleModel/ham_model.jpg',
   };
   const mockObjectList = [
     mockBurgerObject,

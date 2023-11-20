@@ -81,14 +81,12 @@ export function Create() {
   const { mutate: createPromptIntent } = usePromptIntentCreateMutation({
     onSuccess: (res) => {
       // TODO
-      console.log(res);
       setPromptId(res.prompt_intent?.id);
     },
   });
 
   // Hook for getting the prompt ID
   const { data } = usePromptQuery({ id: promptId }, { refetchInterval: 5000 });
-  console.log(data?.status);
 
   // Hook to get thumbnail
   const { data: blobThumbnailURL } = useBlobQuery({ id: blobThumbnailId });
@@ -146,7 +144,7 @@ export function Create() {
     //     }, 3000);
     //   }
     // }, [object3D.prompt]);
-  }, [data?.status]);
+  }, [data?.status, blobObjectURL, blobMaterialURL, blobThumbnailURL, blobTextureURL]);
 
   // User clicks Create or presses Enter to submit prompt
   const onSubmitPrompt = useCallback(

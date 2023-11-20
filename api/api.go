@@ -4,8 +4,11 @@ import (
 	"articulate/api/oapigen"
 	"context"
 	"embed"
+	"errors"
 	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
 	"sync"
 	"time"
 
@@ -56,6 +59,17 @@ func Spec() http.HandlerFunc {
 	})
 }
 
+func makeDistHandler() func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		workDir, _ := os.Getwd()
+		filesDir := filepath.Join(workDir, "client/dist")
+		if _, err := os.Stat(filesDir + r.URL.Path); errors.Is(err, os.ErrNotExist) {
+			http.ServeFile(w, r, filepath.Join(filesDir, "index.html"))
+		}
+		http.ServeFile(w, r, filesDir+r.URL.Path)
+	}
+}
+
 func NewAPI(ctx context.Context, conf Config) (*API, error) {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
@@ -89,6 +103,7 @@ func NewAPI(ctx context.Context, conf Config) (*API, error) {
 		oapigen.HandlerFromMux(server, r)
 
 		r.Get("/api-json", Spec())
+		r.Get("/*", makeDistHandler())
 	})
 
 	http.ListenAndServe(fmt.Sprintf(":%d", api.port), r)

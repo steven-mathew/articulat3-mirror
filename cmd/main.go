@@ -21,13 +21,13 @@ type API struct {
 }
 
 func newAPI(ctx context.Context) (*api.API, error) {
-     hostPort := os.Getenv("TEMPORAL_SERVER_HOST_PORT")
-     bucketName := os.Getenv("GCS_BUCKET_NAME")
-     credentialsFilePath := "secrets/credentials.txt"
-     port, err := strconv.Atoi(os.Getenv("PORT"))
-     if err != nil {
-         port = 5000
-     }
+	hostPort := os.Getenv("TEMPORAL_SERVER_HOST_PORT")
+	bucketName := os.Getenv("GCS_BUCKET_NAME")
+	credentialsFilePath := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS")
+	port, err := strconv.Atoi(os.Getenv("PORT"))
+	if err != nil {
+		port = 8080
+	}
 
 	c, err := client.Dial(client.Options{
 		HostPort: hostPort,
@@ -35,13 +35,13 @@ func newAPI(ctx context.Context) (*api.API, error) {
 
 	if err != nil {
 		log.Err(err).Msg("unable to create client")
-        return nil, err
+		return nil, err
 	}
 
 	pm, err := controllers.NewPromptsManager(database.NewPromptStore(), c)
 	if err != nil {
 		log.Err(err).Msg("unable to create OromptManager")
-        return nil, err
+		return nil, err
 	}
 	gcs, err := blobstore.NewGCSStore(blobstore.GCSConfig{
 		Bucket:              bucketName,
@@ -49,17 +49,17 @@ func newAPI(ctx context.Context) (*api.API, error) {
 	})
 	if err != nil {
 		log.Err(err).Msg("unable to create GCSStore")
-        return nil, err
+		return nil, err
 	}
 	bm, err := controllers.NewBlobsManager(gcs)
 	if err != nil {
 		log.Err(err).Msg("unable to create BlobsManager")
-        return nil, err
+		return nil, err
 	}
 	hm, err := controllers.NewHealthManager()
 	if err != nil {
 		log.Err(err).Msg("unable to create HealthManager")
-        return nil, err
+		return nil, err
 	}
 
 	ctrls := controllers.Controllers{
@@ -74,7 +74,7 @@ func newAPI(ctx context.Context) (*api.API, error) {
 	})
 	if err != nil {
 		log.Err(err).Msg("unable to create API")
-        return nil, err
+		return nil, err
 	}
 
 	return api, err
@@ -84,7 +84,7 @@ func run(ctx context.Context) error {
 	api, err := newAPI(ctx)
 	if err != nil {
 		log.Err(err).Msg("unable to create API")
-        return err
+		return err
 	}
 
 	exitCh := make(chan error, 1)

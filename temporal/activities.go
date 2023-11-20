@@ -29,7 +29,7 @@ type (
 )
 
 var (
-	defaultMaxSteps = 200
+	defaultMaxSteps = 1500
 	defaultModel    = "mvdream-sd21"
 )
 
@@ -138,7 +138,7 @@ func (a *Activities) ExportModel(ctx context.Context, input WorkflowInput) error
 		fmt.Sprintf("resume=outputs/%s-rescale0.5/%s/ckpts/last.ckpt", defaultModel, input.PromptIntentId),
 		"system.exporter_type=mesh-exporter",
 		"system.exporter.context_type=cuda",
-		"system.geometry.isosurface_threshold=5.",
+		// "system.geometry.isosurface_threshold=5.",
 	)
 	cmd.Dir = "../../MVDream-threestudio"
 

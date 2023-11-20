@@ -35,18 +35,21 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 📢 _A clear call-to-action to create new 3D content using an input text box to enter the prompt_
 
   With this feature, users will be able to type in a prompt that describes the kind of 3D graphic they desire. Entering that prompt will immediately start the generation process and present to the user the finalized 3D graphic once the process completes.
-  
+
 🖼️ _A searchable gallery featuring previously generated objects_
 
-  With this feature, users will be able to browse through all previously generated 3D objects by any previous user on the web application. This gallery is also searchable, allowing users to narrow down their search to be more personalized to their needs and only view items that are similar to their search input. 
+  With this feature, users will be able to browse through all previously generated 3D objects by any previous user on the web application. This gallery is also searchable, allowing users to narrow down their search to be more personalized to their needs and only view items that are similar to their search input.
+
+> [!NOTE]
+> For now, the gallery only features mock objects. By D4/5, it will feature newly generated objects.
 
 📁 _An interactable panel of 3D objects and an option to export the image and object​ files_
 
-  With this feature, users will be able to click on any 3D object (either generated from Key Feature 1 or a previously generated object from Key Feature 2) and play around with an interactable panel of the specific object. They will also be able to export the clicked object's thumbnail image (.png), model file (.obj), material file (.mtl), or texture file (.jpeg) depending on their needs. 
+  With this feature, users will be able to click on any 3D object (either generated from Key Feature 1 or a previously generated object from Key Feature 2) and play around with an interactable panel of the specific object. They will also be able to export the clicked object's thumbnail image (.png), model file (.obj), material file (.mtl), or texture file (.jpeg) depending on their needs.
 
 ## Instructions
 <!-- >* Clear instructions for how to use the application from the end-user's perspective
- >* How do you access it? For example: Are accounts pre-created or does a user register? Where do you start? etc. 
+ >* How do you access it? For example: Are accounts pre-created or does a user register? Where do you start? etc.
  >* Provide clear steps for using each feature described in the previous section.
  >* This section is critical to testing your application and must be done carefully and thoughtfully. -->
 
@@ -63,7 +66,7 @@ If you are looking to create a new 3D object to use in your product, follow thes
 <img width="1436" alt="Screenshot 2023-11-19 at 5 41 59 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/1380daf4-c15a-440c-89f9-85b8bd157c71">
 
 5. You’ll need to wait a couple of minutes for our model to completely generate your 3D graphic. During the process of the 3D generation, you’ll only be able to see a loading symbol.
-	
+
 <img width="1436" alt="Screenshot 2023-11-19 at 5 44 02 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/e4065782-e928-4bcf-8629-e003ed13d633">
 
 6. Once the object is finished generating, your customized 3D object will appear instead of the loading symbol. Now you have your 3D object!
@@ -73,7 +76,10 @@ If you are looking to create a new 3D object to use in your product, follow thes
 
 ### Searching for 3D Inspiration
 
-If you are looking to gather inspiration or search for existing 3D graphics, follow these steps: 
+> [!NOTE]
+> For now, the gallery only features mock objects. By D4/5, it will feature newly generated objects.
+
+If you are looking to gather inspiration or search for existing 3D graphics, follow these steps:
 1. Go to our web application using this [link](https://articulat3.fly.dev) if you haven’t already.
 2. Click on the Gallery tab in our navigation bar. This will take you to our Gallery page.
 
@@ -87,7 +93,7 @@ If you are looking to gather inspiration or search for existing 3D graphics, fol
 ### Interacting With and Exporting your 3D Object
 
 After generating a 3D object, if you are looking to interact with the object or export the object files, follow these steps:
-1. (Following from step 4 in [Creating a New 3D Graphic](#creating-a-new-3d-graphic)) click the download button on the top right of the object card. 
+1. (Following from step 4 in [Creating a New 3D Graphic](#creating-a-new-3d-graphic)) click the download button on the top right of the object card.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 46 51 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/a4601759-267d-48e9-b6fe-480c8bf73d06">
 
@@ -139,12 +145,12 @@ pnpm run dev
 
 Starting the server:
 ```bash
-TEMPORAL_SERVER_HOST_PORT=2.tcp.ngrok.io:17162 go run cmd/main.go
+TEMPORAL_SERVER_HOST_PORT=0.tcp.ngrok.io:12269 GOOGLE_APPLICATION_CREDENTIALS=secrets/credentials.json PORT=8080 GCS_BUCKET_NAME=articulate-store-tflto go run cmd/main.go
 ```
 
 ### Testing
 
-When running tests, make sure that you are running Nix (as shown [above](#installation)). 
+When running tests, make sure that you are running Nix (as shown [above](#installation)).
 
 Frontend testing:
 ```bash
@@ -156,7 +162,7 @@ Backend testing:
 ```bash
 go test ./...
 ```
- 
+
 ## Deployment and Github Workflow
 <!-- >* Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.​
 >* Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
@@ -184,9 +190,13 @@ terraform plan
 terraform apply
 ```
 
-You will be requested to input some credentials. The frontend and backend are hosted on fly.io which can be deployed with flyctl directly. 
+You will be requested to input some credentials. The frontend and backend are hosted on fly.io which can be deployed with:
 
-> [!NOTE]  
+```bash
+flyctl launch
+```
+
+> [!NOTE]
 > To proceed with the following steps, you will need a server with access to an NVIDIA GPU. Please install the necessary NVIDIA and CUDA drivers required by [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio).
 
 Now, `ssh` into the GPU server and clone both this repo and [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio):
@@ -196,7 +206,7 @@ git clone git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git
 git clone git@github.com:bytedance/MVDream-threestudio.git
 ```
 
-We are using [Singularity](https://docs.sylabs.io/) to install all the necessary dependencies on your machine. [Singularity](https://docs.sylabs.io/) is an alternative to docker that is rootless and usually installed on HPC clusters. 
+We are using [Singularity](https://docs.sylabs.io/) to install all the necessary dependencies on your machine. [Singularity](https://docs.sylabs.io/) is an alternative to docker that is rootless and usually installed on HPC clusters.
 
 ```bash
 cd project-44-toronto-intelligence-m/temporal
@@ -208,26 +218,26 @@ At this point, you can run the temporal server and the workers. Using tmux or wh
 
 ```bash
 ~/.temporalio/bin/temporal server start-dev
-~/.temporalio/bin/temporal
 ```
 
 and
 
 ```bash
-~/.local/go/bin/go run project-44-toronto-intelligence-m/temporal/worker/main.go
+cd project-44-toronto-intelligence-m
+~/.local/go/bin/go run temporal/worker/main.go
 ```
 
 #### Our Github Workflow
 
 ## Coding Standards and Guidelines
 
-For our Typescript code, we will be using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) rules similar to those of [Shopify](https://github.com/Shopify/web-configs/tree/main)’s. 
+For our Typescript code, we will be using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) rules similar to those of [Shopify](https://github.com/Shopify/web-configs/tree/main)’s.
 
-For our Go code, we will be following the standards from [Mattermost](https://developers.mattermost.com/contribute/more-info/server/style-guide/). The rust code will be checked by [Clippy](https://github.com/rust-lang/rust-clippy). 
+For our Go code, we will be following the standards from [Mattermost](https://developers.mattermost.com/contribute/more-info/server/style-guide/). The rust code will be checked by [Clippy](https://github.com/rust-lang/rust-clippy).
 
 A pre-commit hook will lint and eslinttest all parts of the project. We are also using CI to build and test.
 
-## Licenses 
+## Licenses
 ​Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT) because it is permissive and allows anyone to distribute and use the code for any purpose. The TISL partner’s future plans for this product is currently up in the air, making the MIT license the most suitable license to use as of now.
 
 <!-- Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, shall be licensed as in the README, without any additional terms or conditions. -->

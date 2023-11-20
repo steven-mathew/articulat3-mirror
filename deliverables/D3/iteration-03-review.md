@@ -19,13 +19,13 @@
 
 1. The Kanban Framework
 
-   **Supporting Argument**: Choosing to work with Kanban as opposed to Agile or Scrum was fitting for our team for several reasons. Kanban made it easy to know what everyone was working on at any time, clear what had highest priority to be picked up next, and less restricting (due to the lack of 2-week sprints) for our differing schedules.
+   **Supporting Argument**: Choosing to work with the Kanban Framework (sub-branch of Agile) as opposed to Scrum was fitting for our team for several reasons. Kanban made it easy to know what everyone was working on at any time, clear what had the highest priority to be picked up next, and less restricting (due to the lack of 2-week sprints) for our differing schedules.
 
-   **Process Artifact**: [This board](https://github.com/orgs/csc301-2023-fall/projects/3/views/1) shows how our tickets were organized in Kanban style. We had a “Todo” column that contained a bank of tickets in order from highest to lowest priority. We would also assign the top few tickets to specific people. Otherwise, anyone who finished their current ticket knew to pick up the next assignee-free ticket in that column.
+   **Process Artifact**: [This board](https://github.com/orgs/csc301-2023-fall/projects/3/views/1) shows how our tickets were organized in Kanban style. We had a “Todo” column containing a bank of tickets from highest to lowest priority. We would also assign the top few tickets to specific people. Otherwise, anyone who finished their current ticket knew to pick up the next assignee-free ticket in that column.
 
 1. Having at least 1 approval for every PR
 
-   **Supporting Argument**: We required that we would always have at least 1 approval from someone else on the team for every PR. This was a very helpful process we followed because people could gain insight on most of the work being pushed and ensure that we were always pushing high-quality code. Additionally, everyone gained experience with reviewing code and learning good coding practices from each other.
+   **Supporting Argument**: We required that we would need at least 1 approval from someone else on the team for every PR. This was a beneficial process that we followed because people could gain insight from reading others' work and ensure that we were always pushing high-quality code. Additionally, everyone gained valuable industry-experience by reviewing code and learning good coding practices from each other.
 
    **Process Artifact**: For example, [this PR](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/pull/35) shows how having at least one reviewer allowed us to catch mistakes and make sure the UI was high-quality. 
 
@@ -38,7 +38,7 @@
 
 1. Github Board 
 
-   **Supporting Argument**: The Github Board was surprisingly more restricting or convoluted in its usage. For example, we could assign only one person per ticket given our Github permissions and we had to add a new column and name it “Epics” ourselves to group issues into epics.
+   **Supporting Argument**: The Github Board was unfortunately more restrictive and convoluted than we expected. Notably, we were only able to assign one person per ticket given our Github permissions and we had to manually add a new column titled “Epics” to replicate an Epic group of issues.
 
    **Process Artifact**: Because we were already heavily using Github for our project, we set up [our board](https://github.com/orgs/csc301-2023-fall/projects/3/views/1) to use to the best of our abilities. 
 

@@ -72,9 +72,9 @@ func runSession(ctx workflow.Context, input WorkflowInput) (err error) {
 
 	var a *Activities
 
-    // Since there is one session worker per workflow, there will be no race condition where child
-    // workflows take on the activities of other workflows leading to unexpected behaviour of
-    // mismatched ids
+	// Since there is one session worker per workflow, there will be no race condition where child
+	// workflows take on the activities of other workflows leading to unexpected behaviour of
+	// mismatched ids
 	err = workflow.ExecuteActivity(sessionCtx, a.TrainPrompt, input).Get(sessionCtx, nil)
 	if err != nil {
 		workflow.GetLogger(ctx).Error("TrainPrompt failed", "Error", err)

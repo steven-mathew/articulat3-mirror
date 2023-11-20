@@ -20,37 +20,42 @@ type API struct {
 }
 
 func newAPI(ctx context.Context) (*api.API, error) {
-	 hostPort := os.Getenv("TEMPORAL_SERVER_HOST_PORT")
-     bucketName := os.Getenv("GCS_BUCKET_NAME")
-     credentialsFilePath := os.Getenv("secrets/credentials.txt")
+	hostPort := os.Getenv("TEMPORAL_SERVER_HOST_PORT")
+	bucketName := os.Getenv("GCS_BUCKET_NAME")
+	credentialsFilePath := os.Getenv("secrets/credentials.txt")
 
-     c, err := client.Dial(client.Options{
-        HostPort: hostPort,
-     })
+	c, err := client.Dial(client.Options{
+		HostPort: hostPort,
+	})
 
-	 if err != nil {
-        log.Err(err).Msg("unable to create client")
-	 }
+	if err != nil {
+		log.Err(err).Msg("unable to create client")
+        return nil, err
+	}
 
 	pm, err := controllers.NewPromptsManager(database.NewPromptStore(), c)
 	if err != nil {
-        log.Err(err).Msg("unable to create OromptManager")
-	 }
+		log.Err(err).Msg("unable to create OromptManager")
+        return nil, err
+	}
 	gcs, err := blobstore.NewGCSStore(blobstore.GCSConfig{
 		Bucket:              bucketName,
 		CredentialsFilePath: credentialsFilePath,
 	})
 	if err != nil {
-        log.Err(err).Msg("unable to create GCSStore")
-	 }
+		log.Err(err).Msg("unable to create GCSStore")
+        return nil, err
+	}
 	bm, err := controllers.NewBlobsManager(gcs)
 	if err != nil {
-        log.Err(err).Msg("unable to create BlobsManager")
-	 }
+		log.Err(err).Msg("unable to create BlobsManager")
+        return nil, err
+	}
 	hm, err := controllers.NewHealthManager()
 	if err != nil {
-        log.Err(err).Msg("unable to create HealthManager")
-	 }
+		log.Err(err).Msg("unable to create HealthManager")
+        return nil, err
+	}
 
 	ctrls := controllers.Controllers{
 		PromptsManager: pm,
@@ -63,14 +68,19 @@ func newAPI(ctx context.Context) (*api.API, error) {
 		Port:       8080,
 	})
 	if err != nil {
-        log.Err(err).Msg("unable to create API")
-	 }
+		log.Err(err).Msg("unable to create API")
+        return nil, err
+	}
 
 	return api, err
 }
 
 func run(ctx context.Context) error {
 	api, err := newAPI(ctx)
+	if err != nil {
+		log.Err(err).Msg("unable to create API")
+        return err
+	}
 
 	exitCh := make(chan error, 1)
 	go func() {

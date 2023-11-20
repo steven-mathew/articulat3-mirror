@@ -25,7 +25,7 @@ func (h *BlobHandler) CreateBlob(w http.ResponseWriter, r *http.Request) {
 	h.ctrl.BlobCreate(ctx, file, name)
 	url, err := h.ctrl.Blob(ctx, name)
 	if err != nil {
-        log.Err(err).Msg("unable to create blob")
-	 }
+		log.Err(err).Msg("unable to create blob")
+	}
 	writeResponse(w, r, http.StatusCreated, url)
 }

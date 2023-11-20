@@ -66,6 +66,7 @@ func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.P
 		)
 		if err != nil {
 			log.Err(err).Msg("Unable to execute workflow")
+            return types.PromptIntent{}, err
 		}
 		log.Info().Msgf("Started workflow WorkflowID: %s RunID: %s", we.GetID(), we.GetRunID())
 	}
@@ -77,8 +78,8 @@ func (pm *PromptsManager) promptWorkflowStatus(ctx context.Context, promptId str
 	wid := "prompt-generation_" + promptId
 
 	if pm.temporalClient == nil {
-        return "", nil
-    }
+		return "", nil
+	}
 
 	desc, err := pm.temporalClient.DescribeWorkflowExecution(context.Background(), wid, "")
 	if err != nil {

@@ -88,16 +88,16 @@ func NewAPI(ctx context.Context, conf Config) (*API, error) {
 
 		oapigen.HandlerFromMux(server, r)
 
-        r.Get("/api-json", Spec())
+		r.Get("/api-json", Spec())
 	})
 
 	http.ListenAndServe(fmt.Sprintf(":%d", api.port), r)
 
 	api.server = &http.Server{
-		Addr:    fmt.Sprintf(":%d", api.port),
+		Addr:        fmt.Sprintf(":%d", api.port),
 		ReadTimeout: time.Second * 15,
 		IdleTimeout: time.Second * 60,
-		Handler: r,
+		Handler:     r,
 	}
 
 	return api, nil

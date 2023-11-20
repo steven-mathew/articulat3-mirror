@@ -183,20 +183,20 @@ func (a *Activities) SaveObject(ctx context.Context, input WorkflowInput) error 
 	logger := activity.GetLogger(ctx)
 	logger.Info("SaveObject started")
 
-    // threestudio saves (as a png) the rendered model with the negative space
-    // side-by-side so we need to split the image in half and save the left half
-    // as the thumbnail
+	// threestudio saves (as a png) the rendered model with the negative space
+	// side-by-side so we need to split the image in half and save the left half
+	// as the thumbnail
 
 	baseDir := fmt.Sprintf("../../MVDream-threestudio/outputs/%s-rescale0.5/", defaultModel)
 	fpath := "%s/save/it%d-test/119.png"
 	readPath := baseDir + fmt.Sprintf(fpath, input.PromptIntentId, defaultMaxSteps)
 
 	fpath = "%s/save/it%d-test/thumbnail.png"
-    savePath := baseDir + fmt.Sprintf(fpath, input.PromptIntentId, defaultMaxSteps)
+	savePath := baseDir + fmt.Sprintf(fpath, input.PromptIntentId, defaultMaxSteps)
 
-    if err := saveThumbnail(ctx, readPath, savePath); err != nil {
-        return err
-    }
+	if err := saveThumbnail(ctx, readPath, savePath); err != nil {
+		return err
+	}
 
 	fpaths := [4]string{
 		"%s/save/it%d-export/model.mtl",
@@ -238,7 +238,7 @@ func saveThumbnail(ctx context.Context, readPath, savePath string) error {
 		}
 	}
 
-    return saveImage(savePath, thumbnailLeft)
+	return saveImage(savePath, thumbnailLeft)
 }
 
 func sendBlobRequest(ctx context.Context, path string, name string) error {
@@ -294,5 +294,5 @@ func saveImage(filename string, img image.Image) error {
 	defer file.Close()
 
 	png.Encode(file, img)
-    return nil
+	return nil
 }

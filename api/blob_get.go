@@ -16,7 +16,7 @@ func (h *BlobHandler) GetBlob(w http.ResponseWriter, r *http.Request, id string)
 
 	url, err := h.ctrl.Blob(ctx, id)
 	if err != nil {
-        log.Err(err).Msg("unable to get blob")
-	 }
+		log.Err(err).Msg("unable to get blob")
+	}
 	writeResponse(w, r, http.StatusCreated, url)
 }

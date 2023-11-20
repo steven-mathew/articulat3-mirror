@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/rs/zerolog/log"
 	"cloud.google.com/go/storage"
+	"github.com/rs/zerolog/log"
 	"google.golang.org/api/option"
 )
 
@@ -22,8 +22,9 @@ var _ Store = &gcsStore{}
 func NewGCSStore(cfg GCSConfig) (Store, error) {
 	client, err := storage.NewClient(context.Background(), option.WithCredentialsFile(cfg.CredentialsFilePath))
 	if err != nil {
-        log.Err(err).Msg("unable to create Client")
-	 }
+		log.Err(err).Msg("unable to create Client")
+        return nil, err
+	}
 	return &gcsStore{
 		bucket: cfg.Bucket,
 		client: client,
@@ -42,8 +43,8 @@ func (c *gcsStore) Upload(ctx context.Context, file io.Reader, filePath string) 
 
 func (c *gcsStore) GetSignedURL(ctx context.Context, filePath string) (string, error) {
 	signedURL, err := c.client.Bucket(c.bucket).SignedURL(filePath, &storage.SignedURLOptions{
-		Method:  http.MethodGet,
-        // expire after two years, this could be lowered
+		Method: http.MethodGet,
+		// expire after two years, this could be lowered
 		Expires: time.Now().Add(2 * 8760 * time.Hour),
 	})
 	if err != nil {

@@ -23,9 +23,9 @@ func main() {
 	defer c.Close()
 
 	workerOptions := worker.Options{
-		EnableSessionWorker: true, // Important for a worker to participate in the session
-        MaxConcurrentSessionExecutionSize: 1,
-        MaxConcurrentActivityExecutionSize: 1,
+		EnableSessionWorker:                true, // Important for a worker to participate in the session
+		MaxConcurrentSessionExecutionSize:  1,
+		MaxConcurrentActivityExecutionSize: 1,
 	}
 	w := worker.New(c, "prompt-generation", workerOptions)
 

@@ -22,11 +22,11 @@ func withCORS(next http.Handler) http.Handler {
 
 func withRequestID(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        reqId := r.Header.Get("X-Request-Id")
+		reqId := r.Header.Get("X-Request-Id")
 
-        if r.Header.Get("X-Request-Id") == "" {
-            reqId = uuid.NewString()
-        }
+		if r.Header.Get("X-Request-Id") == "" {
+			reqId = uuid.NewString()
+		}
 
 		r = r.WithContext(requestIdWithContext(r.Context(), reqId))
 		next.ServeHTTP(w, r)

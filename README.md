@@ -89,7 +89,7 @@ If you are looking to gather inspiration or search for existing 3D graphics, fol
 ### Interacting With and Exporting your 3D Object
 
 After generating a 3D object, if you are looking to interact with the object or export the object files, follow these steps:
-1. (Following from step 4 in Creating a New 3D Graphic) click the download button on the top right of the object card. 
+1. (Following from step 4 in [Creating a New 3D Graphic](#creating-a-new-3d-graphic) click the download button on the top right of the object card. 
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 46 51 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/a4601759-267d-48e9-b6fe-480c8bf73d06">
 

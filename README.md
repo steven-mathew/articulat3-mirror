@@ -106,7 +106,12 @@ After generating a 3D object, if you are looking to interact with the object or 
  >* Briefly describe instructions for setting up and running the application. You should address this part like how one would expect a README doc of real-world deployed application would be.
  >* You can see this [example](https://github.com/alichtman/shallow-backup#readme) to get started. -->
 
-*This section will be completed after we merge our sub-team repos into one application.*
+### Installation
+
+### Usage
+
+### Testing
+
  
 ## Deployment and Github Workflow
 <!-- >* Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.​
@@ -117,12 +122,22 @@ After generating a 3D object, if you are looking to interact with the object or 
 >* Don't forget to briefly justify why you chose this workflow or particular aspects of it!
 -->
 
-*This section will be completed after we merge our sub-team repos into one application.*
-
- ## Coding Standards and Guidelines
+#### Pull Requests
 We will track our progress on issues and feature stories through [Github Projects](https://github.com/orgs/csc301-2023-fall/projects/3). Please make sure to read the [Contributing Guide](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md) before making a pull request!
 
-## Licenses 
-​Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT) because it is permissive and allows anyone to distribute and use the code for any purpose.
+#### Deployment Tools
 
-Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, shall be licensed as in the README, without any additional terms or conditions.
+#### Our Github Workflow
+
+ ## Coding Standards and Guidelines
+
+For our Typescript code, we will be using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) rules similar to those of [Shopify](https://github.com/Shopify/web-configs/tree/main)’s. 
+
+For our Go code, we will be following the standards from [Mattermost](https://developers.mattermost.com/contribute/more-info/server/style-guide/). The rust code will be checked by [Clippy](https://github.com/rust-lang/rust-clippy). 
+
+A pre-commit hook will lint and eslinttest all parts of the project.
+
+## Licenses 
+​Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT) because it is permissive and allows anyone to distribute and use the code for any purpose. The TISL partner’s future plans for this product is currently up in the air, making the MIT license the most suitable license to use as of now.
+
+<!-- Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, shall be licensed as in the README, without any additional terms or conditions. -->

@@ -138,7 +138,7 @@ pnpm run dev
 
 Starting the server:
 ```bash
-TEMPORAL_SERVER_HOST_PORT=4.tcp.ngrok.io:12540 go run cmd/main.go
+TEMPORAL_SERVER_HOST_PORT=2.tcp.ngrok.io:17162 go run cmd/main.go
 ```
 
 ### Testing

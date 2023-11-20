@@ -27,7 +27,7 @@ Toronto Intelligent Systems lab is a place for computer scientists and creative 
 
 ## Description About the Project
 
-An easy-to-use web application for 3D content creation from a user-given text prompt. It features a gallery of existing 3D creations that can be browsed for inspiration and a create page to easily generate any desired 3D graphic from text input: a great, open-sourced solution for content creators, video game developers, and designers to quickly grab customized 3D graphics for their products! 
+An easy-to-use web application for 3D content creation from a user-given text prompt. It features a gallery of existing 3D creations that can be browsed for inspiration and a create page to easily generate any desired 3D graphic from text input. The product is a great, open-sourced solution for content creators, video game developers, and designers to quickly grab customized 3D graphics for their products.
 
 ## Key Features
 

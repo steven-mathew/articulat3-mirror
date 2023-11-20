@@ -171,9 +171,9 @@ We will track our progress on issues and feature stories through [Github Project
 
 #### Deployment Tools
 
-This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on fly.io while the task cluster is hosted on a UofT GPU node. 
+This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on fly.io while the task cluster is hosted on a UofT GPU node.
 
-We are using terraform to provision our resources. 
+We are using terraform to provision the resources we need on Google Cloud. For extension in D4/5, we plan on provisioning *deployment* of the frontend and backend through terraform as well (not just the Google Cloud managed services), using fly.io as a plugin provider.
 
 ```bash
 cd terraform

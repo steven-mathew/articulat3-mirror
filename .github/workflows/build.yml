@@ -1,0 +1,28 @@
+name: Build
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v22
+
+      - name: Install dependencies
+        run: nix-develop -c pnpm install --dir client
+
+      - name: Build
+        run: nix-develop -c bob build
+
+      - name: Test server and temporal
+        run: nix-develop -c go test ./...
+
+      - name: Test frontend
+        run: cd client && nix-develop -c pnpm run test

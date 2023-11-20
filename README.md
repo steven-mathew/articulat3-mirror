@@ -53,22 +53,19 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 
 If you are looking to create a new 3D object to use in your product, follow these steps:
 1. Go to our web application using this [link](url).
-2. You’ll be welcomed to our Create page. Here, you may enter a description of the 3D graphic you desire in the input bar. 
+2. You’ll be welcomed to our Create page. Here, you may enter a description of the 3D graphic you desire in the input bar. For example, if you need a 3D graphic of a hamburger, you may type in “A juicy hamburger” in the input bar.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 41 34 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/033841a5-1385-4fff-a65d-cde683a0c8bd">
-
-
-3. For example, if you need a 3D graphic of a hamburger, you may type in “A juicy hamburger” in the input bar. 
 
 4. Once you’re done, press enter or click the Create button.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 41 59 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/1380daf4-c15a-440c-89f9-85b8bd157c71">
 
-6. You’ll need to wait a couple of minutes for our model to completely generate your 3D graphic. During the process of the 3D generation, you’ll only be able to see a loading symbol.
+5. You’ll need to wait a couple of minutes for our model to completely generate your 3D graphic. During the process of the 3D generation, you’ll only be able to see a loading symbol.
 	
 <img width="1436" alt="Screenshot 2023-11-19 at 5 44 02 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/e4065782-e928-4bcf-8629-e003ed13d633">
 
-7. Once the object is finished generating, your customized 3D object will appear instead of the loading symbol. Now you have your 3D object!
+6. Once the object is finished generating, your customized 3D object will appear instead of the loading symbol. Now you have your 3D object!
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 46 16 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/a2dde9f0-b01a-491e-a237-3301c71f3991">
 

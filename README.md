@@ -52,7 +52,7 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 ### Creating a New 3D Graphic
 
 If you are looking to create a new 3D object to use in your product, follow these steps:
-1. Go to our web application using this [link](url).
+1. Go to our web application using this [link](https://articulat3.fly.dev).
 2. You’ll be welcomed to our Create page. Here, you may enter a description of the 3D graphic you desire in the input bar. For example, if you need a 3D graphic of a hamburger, you may type in “A juicy hamburger” in the input bar.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 41 34 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/033841a5-1385-4fff-a65d-cde683a0c8bd">
@@ -73,7 +73,7 @@ If you are looking to create a new 3D object to use in your product, follow thes
 ### Searching for 3D Inspiration
 
 If you are looking to gather inspiration or search for existing 3D graphics, follow these steps: 
-1. Go to our web application using this [link](url) if you haven’t already.
+1. Go to our web application using this [link](https://articulat3.fly.dev) if you haven’t already.
 2. Click on the Gallery tab in our navigation bar. This will take you to our Gallery page.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 41 34 PM copy" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/d1cd655e-1004-4ba7-a4f7-25331abe49ad">

@@ -19,7 +19,6 @@ interface Props {
   objURL: string;
   mtlURL: string;
   texURL: string;
-  zipURL: string;
 }
 
 const handleLocalDownload = (url: string, name: string) => {
@@ -29,13 +28,7 @@ const handleLocalDownload = (url: string, name: string) => {
   link.click();
 };
 
-export function ExportDropdownMenu({
-  pngURL,
-  objURL,
-  mtlURL,
-  texURL,
-  zipURL,
-}: Props) {
+export function ExportDropdownMenu({ pngURL, objURL, mtlURL, texURL }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

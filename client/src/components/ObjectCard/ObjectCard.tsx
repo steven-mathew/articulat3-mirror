@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { ThreeComponent } from '@/components/ThreeComponent';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { ExportDropdownMenu } from '../ExportDropdownMenu';
 
+import { ThreeComponent } from '@/components/ThreeComponent';
 import loadingGIF from '@/assets/loading.gif';
-import BurgerPNG from '@/assets/burger.png';
 import { cn } from '@/lib/cn';
 import { Object3D } from '@/types';
 
@@ -32,11 +31,10 @@ export function ObjectCard({
         {!isGenerating && (
           <ExportDropdownMenu
             // TODO: replace with db fetch
-            pngURL={BurgerPNG}
-            objURL="/sampleModel/ham_model.obj"
-            mtlURL="/sampleModel/ham_model.mtl"
-            texURL="/sampleModel/ham_model.jpg"
-            zipURL="/sampleModel/ham_model.zip"
+            pngURL={object3D.imgSRC}
+            objURL={object3D.objURL}
+            mtlURL={object3D.mtlURL}
+            texURL={object3D.texURL}
           />
         )}
       </CardHeader>

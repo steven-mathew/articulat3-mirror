@@ -4,10 +4,6 @@ import { Title } from '@/components/Title';
 import { SearchBar } from '@/components/SearchBar';
 import { GalleryWaterfall } from '@/components/GalleryWaterfall';
 import { CTAButton } from '@/components/CTAButton';
-import DogPNG from '@/assets/dog.png';
-import BoyPNG from '@/assets/boy.png';
-import BurgerPNG from '@/assets/burger.png';
-import PancakePNG from '@/assets/pancake.png';
 import Strings from '@/locales/en.json';
 
 export function Gallery() {
@@ -18,39 +14,47 @@ export function Gallery() {
   };
 
   // TODO: replace with json mock data file
-  const mockDogObject = {
-    prompt: 'a white dog with a blue collar',
-    imgSRC: DogPNG,
+  const mockBurgerObject = {
+    prompt: 'a juicy burger',
+    imgSRC: '/sampleModel/ham_model.png',
     objURL: '/sampleModel/ham_model.obj',
     mtlURL: '/sampleModel/ham_model.mtl',
     texURL: '/sampleModel/ham_model.jpg',
+  };
+  const mockCowObject = {
+    prompt: 'a cow',
+    imgSRC: '/sampleModel/cow_model.png',
+    objURL: '/sampleModel/cow_model.obj',
+    mtlURL: '/sampleModel/cow_model.mtl',
+    texURL: '/sampleModel/cow_model.jpg',
+  };
+  const mockDuckObject = {
+    prompt: 'a duck',
+    imgSRC: '/sampleModel/duck_model.png',
+    objURL: '/sampleModel/duck_model.obj',
+    mtlURL: '/sampleModel/duck_model.mtl',
+    texURL: '/sampleModel/duck_model.jpg',
   };
   const mockBoyObject = {
-    prompt: 'a boy',
-    imgSRC: BoyPNG,
-    objURL: '/sampleModel/ham_model.obj',
-    mtlURL: '/sampleModel/ham_model.mtl',
-    texURL: '/sampleModel/ham_model.jpg',
+    prompt: 'young boy running',
+    imgSRC: '/sampleModel/boy_model.png',
+    objURL: '/sampleModel/boy_model.obj',
+    mtlURL: '/sampleModel/boy_model.mtl',
+    texURL: '/sampleModel/boy_model.jpg',
   };
-  const mockBurgerObject = {
-    prompt: 'a burger',
-    imgSRC: BurgerPNG,
-    objURL: '/sampleModel/ham_model.obj',
-    mtlURL: '/sampleModel/ham_model.mtl',
-    texURL: '/sampleModel/ham_model.jpg',
-  };
-  const mockPancakeObject = {
-    prompt: 'a bunny on pancakes',
-    imgSRC: PancakePNG,
-    objURL: '/sampleModel/ham_model.obj',
-    mtlURL: '/sampleModel/ham_model.mtl',
-    texURL: '/sampleModel/ham_model.jpg',
+  const mockAstronautObject = {
+    prompt: 'an astronaut',
+    imgSRC: '/sampleModel/astronaut_model.png',
+    objURL: '/sampleModel/astronaut_model.obj',
+    mtlURL: '/sampleModel/astronaut_model.mtl',
+    texURL: '/sampleModel/astronaut_model.jpg',
   };
   const mockObjectList = [
     mockBurgerObject,
-    mockDogObject,
+    mockCowObject,
     mockBoyObject,
-    mockPancakeObject,
+    mockDuckObject,
+    mockAstronautObject,
   ];
 
   return (

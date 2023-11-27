@@ -8,11 +8,11 @@
   },
   "Dialog": {
     "Message": {
-      "discardCurrentObject": "This will discard the current object. It cannot be undone.",
-      "discardProgress": "This will discard the progress on the current object. It cannot be undone."
+      "discardCurrentObject": "Creating a new object will discard the current object. It cannot be undone.",
+      "discardProgress": "Creating a new object will discard the progress on the current object. It cannot be undone."
     },
     "Title": {
-      "continueCreating": "Continue creating?"
+      "continueCreating": "Abandon current creation?"
     }
   },
   "DropdownMenu": {

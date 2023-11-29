@@ -143,9 +143,16 @@ pnpm install
 pnpm run dev
 ```
 
+The following environment variables need to be exported.
+```bash
+export TEMPORAL_SERVER_HOST_PORT=
+export GOOGLE_APPLICATION_CREDENTIALS=
+export GCS_BUCKET_NAME=
+```
+
 Starting the server:
 ```bash
-TEMPORAL_SERVER_HOST_PORT=0.tcp.ngrok.io:12269 GOOGLE_APPLICATION_CREDENTIALS=secrets/credentials.json PORT=8080 GCS_BUCKET_NAME=articulate-store-tflto go run cmd/main.go
+PORT=8080 go run cmd/main.go
 ```
 
 ### Testing

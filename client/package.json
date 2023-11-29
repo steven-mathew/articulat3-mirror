@@ -34,7 +34,6 @@
     "react-router-dom": "^6.16.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.158.0",
-    "three-stdlib": "^2.28.5",
     "uuid": "^9.0.1",
     "vitest": "^0.34.6"
   },

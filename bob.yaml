@@ -22,6 +22,7 @@ build:
   build-art-web:
     input: "client"
     cmd: pnpm install && pnpm --dir client run build
+    target: ./client/dist/
   build-art-release:
     cmds:
       - go build -v
@@ -45,19 +46,3 @@ run:
     path: ./.bin/articulate
     dependson:
       - build-art
-
-dependencies:
-  - postgresql_13
-  - gcc
-  - protobuf
-  - go_1_21
-  - golangci-lint
-  - nodejs-18_x
-  - nodejs-18_x.pkgs.pnpm
-  - nodejs-18_x.pkgs.typescript
-  - cargo
-  - rustc
-  - rustfmt
-  - libiconv
-  - clippy
-  - pre-commit

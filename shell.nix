@@ -18,11 +18,6 @@ pkgs.mkShellNoCC {
      nodejs-18_x
      nodejs-18_x.pkgs.pnpm
      nodejs-18_x.pkgs.typescript
-     cargo
-     rustc
-     rustfmt
-     libiconv
-     clippy
      pre-commit
   ];
 }

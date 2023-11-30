@@ -19,7 +19,7 @@ func (h *PromptHandler) GetPromptIntent(w http.ResponseWriter, r *http.Request, 
 
 	prompt, err := h.ctrl.PromptIntent(ctx, id)
 	if err != nil {
-		log.Err(err).Msg("unable to get prompt")
+		logger.Err(err).Msg("unable to get prompt")
 	}
 	res := promptResponseFromPrompt(prompt, reqId)
 

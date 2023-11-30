@@ -17,6 +17,9 @@ type Handlers struct {
 	*HealthHandler
 }
 
+//go:generate oapi-codegen -package oapigen -old-config-style -generate types -o oapigen/types.go openapi.yaml
+//go:generate oapi-codegen -package oapigen -old-config-style -generate chi-server,spec -o oapigen/server.go openapi.yaml
+
 // Sourced from https://github.com/hashicorp/consul-terraform-sync/blob/main/api/handler.go:
 
 // WriteResponse sets headers and JSON encodes the response body in the response writer

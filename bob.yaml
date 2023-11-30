@@ -1,6 +1,16 @@
 version: 0
 nixpkgs: https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz
 build:
+  generate-api:
+    input: api/openapi.json
+    cmd: |-
+      mkdir -p api/oapigen
+
+      oapi-codegen -package oapigen -generate types -o api/oapigen/types.go openapi.json
+      oapi-codegen -package oapigen -generate chi-server,spec -o api/oapigen/server.go openapi.json
+    target: |-
+      api/oapigen/types.go
+      api/oapigen/server.go
   tidy:
     input: "*"
     cmd: go mod tidy

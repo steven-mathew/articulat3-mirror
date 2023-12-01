@@ -12,9 +12,13 @@
 <p align="center">
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/deliverables/D1/planning.md">Planning</a> •
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md">Contributing</a> •
-    <a href="https://articulat3.fly.dev">Deployment</a>
+    <a href="https://www.159.203.51.70.sslip.io">Deployment</a> •
+    <a href="https://drive.google.com/file/d/1mTnIVwE3vDY4EDY3yWKPebrQcNy2nvbl/view?usp=sharing">Video Presentation</a>
 </p>
 <br />
+
+> [!NOTE]
+> Regarding the deployment, please note that the certificate is invalid so you will have to click through the advanced section and proceed. We used our limit of 5 (per week) issuance LetsEncrypt certificate requests while testing.
 
 ## Partner Intro
 
@@ -56,7 +60,7 @@ An easy-to-use web application for 3D content creation from a user-given text pr
 ### Creating a New 3D Graphic
 
 If you are looking to create a new 3D object to use in your product, follow these steps:
-1. Go to our web application using this [link](https://articulat3.fly.dev).
+1. Go to our web application using this [link](https://www.159.203.51.70.sslip.io). Please note that the certificate is invalid so you will have to click through the advanced section and proceed. We used our limit of 5 (per week) issuance LetsEncrypt certificate requests while testing. 
 2. You’ll be welcomed to our Create page. Here, you may enter a description of the 3D graphic you desire in the input bar. For example, if you need a 3D graphic of a hamburger, you may type in “A juicy hamburger” in the input bar.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 41 34 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/033841a5-1385-4fff-a65d-cde683a0c8bd">
@@ -80,7 +84,7 @@ If you are looking to create a new 3D object to use in your product, follow thes
 > For now, the gallery only features mock objects. By D4/5, it will feature newly generated objects.
 
 If you are looking to gather inspiration or search for existing 3D graphics, follow these steps:
-1. Go to our web application using this [link](https://articulat3.fly.dev) if you haven’t already.
+1. Go to our web application using this [link](https://www.159.203.51.70.sslip.io/gallery) if you haven’t already.
 2. Click on the Gallery tab in our navigation bar. This will take you to our Gallery page.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 41 34 PM copy" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/d1cd655e-1004-4ba7-a4f7-25331abe49ad">
@@ -184,9 +188,12 @@ We will track our progress on issues and feature stories through [Github Project
 
 #### Deployment Tools
 
-This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on fly.io while the task cluster is hosted on a UofT GPU node.
+> [!WARNING]
+> These instructions will be updated in D5. In our video presentation, we showed a demo of DigitalOcean deployment. The steps will be similar and fully automated. We will also automate the process of starting workers further through Terraform as well and include CD. 
 
-We are using terraform to provision the resources we need on Google Cloud. For extension in D4/5, we plan on provisioning *deployment* of the frontend and backend through terraform as well (not just the Google Cloud managed services), using fly.io as a plugin provider.
+This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on DigitalOcean while the task workers are hosted on UofT GPU nodes.
+
+We are using terraform to provision the resources we need on Google Cloud. 
 
 We will also be using Hashicorp Vault as extension to seal our secrets.
 
@@ -195,12 +202,6 @@ cd terraform
 terraform init
 terraform plan
 terraform apply
-```
-
-You will be requested to input some credentials. The frontend and backend are hosted on fly.io which can be deployed with:
-
-```bash
-flyctl launch
 ```
 
 > [!NOTE]

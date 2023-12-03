@@ -1,12 +1,23 @@
 import React from 'react';
 
-interface Props {
+interface LogoProps {
   className?: string;
+  /**
+   * The image source.
+   */
   src: string;
+  /**
+   * The link to be redirected to when the logo is clicked.
+   */
   link?: string;
 }
 
-export function Logo({ className, src, link }: Props) {
+/**
+ * Displays the logo that will redirect to `link` when clicked.
+ * @param props See `LogoProps`
+ * @returns A Logo component
+ */
+export function Logo({ className, src, link }: LogoProps) {
   return (
     <div data-testid="logo">
       <a href={link} target="_blank">

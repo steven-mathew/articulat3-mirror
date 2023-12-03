@@ -12,16 +12,42 @@ import {
 
 import { Button } from '@/components/ui/button';
 
-interface Props {
+interface AlertDialogProps {
+  /**
+   * The controlled open state of the dialog. Must be used in conjunction with `onOpenChange`.
+   * */
   open: boolean;
+  /**
+   * Event handler called when the open state of the dialog changes.
+   */
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
+  /**
+   * The title displayed in the dialog content.
+   */
   title: string;
+  /**
+   * The desscription displayed in the dialog content.
+   */
   description: string;
+  /**
+   * The text displayed inside the primary button of the dialog.
+   */
   primaryButtonText: string;
+  /**
+   * The action for `primaryButtonText`.
+   */
   primaryAction: () => void;
+  /**
+   * The text displayed inside the secondary button of the dialog.
+   */
   secondaryButtonText: string;
 }
 
+/**
+ * A modal dialog that interrupts the user with important content and expects a response.
+ * @param props See `AlertDialogProps`
+ * @returns An AlertDialog component
+ */
 export function AlertDialog({
   open,
   onOpenChange,
@@ -30,7 +56,7 @@ export function AlertDialog({
   primaryButtonText,
   primaryAction,
   secondaryButtonText,
-}: Props) {
+}: AlertDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent data-testid="alert-dialog" className="sm:max-w-[425px]">

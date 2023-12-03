@@ -29,6 +29,10 @@ export function App() {
   );
 }
 
+/**
+ * The 404 page that will be displayed when the URL doesn't correspond to an existing route.
+ * @returns A NoMatch page view
+ */
 function NoMatch() {
   return (
     <div className="mt-12 flex flex-col items-center justify-center gap-y-4">

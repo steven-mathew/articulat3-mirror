@@ -6,6 +6,11 @@ import { GalleryWaterfall } from '@/components/GalleryWaterfall';
 import { CTAButton } from '@/components/CTAButton';
 import Strings from '@/locales/en.json';
 
+/**
+ * The Gallery page where users can view and filter through previously generated 3D
+ * objects.
+ * @returns A Gallery page view
+ */
 export function Gallery() {
   const [searchValue, setSearchValue] = useState('');
 

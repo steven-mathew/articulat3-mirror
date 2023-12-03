@@ -6,14 +6,34 @@ import { cn } from '@/lib/cn';
 import { useTheme } from '@/components/ThemeProvider';
 import Strings from '@/locales/en.json';
 
-interface Props {
+interface ToggleThemeProps {
   className?: string;
+  /**
+   * The label indicating the current theme of the web application.
+   * Can be either `Strings.Global.lightMode` or `Strings.Global.darkMode`.
+   */
   label?: string;
+  /**
+   * The toggled state of the switch. Must be used in conjunction with `setToggled`.
+   */
   toggled: boolean;
+  /**
+   * Event handler called when the state of the switch changes.
+   */
   setToggled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function ToggleTheme({ className, label, toggled, setToggled }: Props) {
+/**
+ * Displays a control that allows the user to toggle between light and dark mode.
+ * @param props See `ToggleThemeProps`
+ * @returns A ToggleTheme component
+ */
+export function ToggleTheme({
+  className,
+  label,
+  toggled,
+  setToggled,
+}: ToggleThemeProps) {
   const { setTheme } = useTheme();
   const isLightMode = label === Strings.Global.lightMode;
   const [isLightIcon, setIcon] = useState(isLightMode);

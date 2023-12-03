@@ -1,54 +1,111 @@
-# Sub-Team 1: Frontend
+# articulat3 React
 
-View the D2 Sub-Team 1 Report [here](https://github.com/csc301-2023-fall/deliverable-2-44-1-chungh42-fabiann1-maijaspe/blob/main/deliverables/D2/deliverable-2-sub-team-1.md).
+#### [Development](#development-1)
 
-## Instructions
+##### [Project Structure](#project-structure-1)
 
-Click [here](https://deliverable-2-44-1-chungh42-fabiann1-maijaspe-2pvj7o1hy.vercel.app/) to see our static website live.
+##### [Components](#components-1)
 
-You’ll be immediately welcomed to the “Create” page that we have designed. On this page, you may do the following:
+##### [Usage](#usage-1)
 
-- Enter a prompt in the input bar and click the “Create” button to generate a 3D object reflecting your prompt. As explained in the sections above, the web application created by this sub-team for D2 is the UI with a “fake” backend; for now, you will be seeing the same GIF of a 3D graphic of a dog and a boy upon generation, regardless of your entered prompt.
-- Click on the “Gallery” link in the header to go to our "Gallery" page. For now, this will lead you to an empty page which will be completed in future deliverables.
-- Click on the logo in the header which to lead you to this github repo. This behaviour will be updated in future deliverables if we are working on other repositories.
-- Click the toggle button in the header to toggle the theme of the site.
+##### [Testing](#testing-1)
 
-### Unit Testing
+#### [Learning Resources](#learning-resources-1)
 
-We have basic unit tests for most of the composite components we have created for the "Create" page. The tests check for components existing, correct labeling of variables, and strings matching the expected constants. In future deliverables, we will be expanding on these unit tests and adding integration tests to test for more complex behaviours.
+#### [Contributing](#contributing-1)
 
-Here are the steps for running the unit tests:
+## Development
 
-1. Clone this repo
+### Project Structure
 
-   ```
-   git clone https://github.com/csc301-2023-fall/deliverable-2-44-1-chungh42-fabiann1-maijaspe.git
-   ```
+#### Tech Stack
 
-1. Install Nix
+The client uses the following architecture and technologies to develop the web application:
 
-   ```
-   sh <(curl -L https://nixos.org/nix/install) --daemon
+- [React TypeScript](https://react.dev/learn/typescript) as the development library and language
+- [Vite](https://vitejs.dev/) for development bundling
+- [Prettier](https://prettier.io/) for code formatting
+- [ESLint](https://eslint.org/) for static error prevention (outside of types)
+- [Jest](https://jestjs.io/) for unit testing our components
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [shadcn/ui](https://ui.shadcn.com/) for components
 
-   # You may need to add the following line in a nix.conf file
-   mkdir -p ~/.config/nix/ && echo “experimental-features = nix-command flakes” >> ~/.config/nix/nix.conf
-   ```
+#### Folder Structure
 
-1. Run Nix
-   ```
-   nix develop
-   ```
-1. Run tests
+```bash
+├── .eslintignore
+├── .eslintrc.js
+├── .prettierrc.json
+├── components.json
+├── index.html                # Entry point of appllication
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js        # Tailwind CSS config file
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+├── vite.setup.ts
+├── public                    # Public assets
+├── node_modules
+├── README.md
+└── src
+    ├── @types
+    ├── assets                # Static assets
+    ├── components            # UI components
+      ├── ...
+      ├── Component           # Composite components
+      ├── ...
+      └── ui                  # shadcn/ui components
+    ├── data                  # API
+    ├── lib
+    ├── locales
+      └── en.json             # String constants in English
+    ├── pages
+      ├── Create              # Create Page
+      ├── Gallery             # Gallery Page
+      ├── App.tsx             # App component
+      └── index.tsx           # React starting point
+    ├── styles                # Global CSS
+    ├── types
+      └── api.ts              # Interfaces for API responses
+    └── types.ts              # Interfaces for custom types
+```
 
-   ```
-   cd client
+### Components
 
-   # Running pnpm run test will ask you to install jsdom. Install and re-run the tests
-   pnpm run test
-   ```
+We use the [shadcn/ui](https://ui.shadcn.com/) collection to build our UI. Shadcn is a collection of re-usable components where you can install whatever component you need, and customize them to fit your theme. There's no need for any dependency installation. See the [documentation](https://ui.shadcn.com/docs) to learn more about shadcn and how to use their components.
 
-Here is a video showing how these tests work:
+To learn more about our UI components and pages, see the docstrings in the component `.tsx` files.
 
-## Our Application
+### Usage
 
-Click [here](https://deliverable-2-44-1-chungh42-fabiann1-maijaspe-2pvj7o1hy.vercel.app/) to see our website.
+Ensure that you have followed the [Development Requirements](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/README.md#development-requirements) to set up your local environment before running the client. To start the client:
+
+```bash
+cd client
+pnpm install
+pnpm run dev
+```
+
+### Testing
+
+We have basic unit tests for most of the composite components. You can find them in the `/components/{Component}/tests` folder under the specific components. The tests check for component existence, correct variable labels, and strings matching the expected constants. In the future, we hope to expand on these unit tests and add integration tests to test for more complex behaviours.
+
+Ensure that you have followed the [Development Requirements](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/README.md#development-requirements) to set up your local environment before testing. To run the unit tests:
+
+```bash
+cd client
+
+# Running pnpm run test will ask you to install jsdom. Install and re-run the tests
+pnpm run test
+```
+
+## Learning Resources
+
+- [TailwindCSS](https://tailwindcss.com/)
+- [shadcn/ui Docs](https://ui.shadcn.com/docs)
+- [React Typescript](https://www.typescriptlang.org/docs/handbook/react.html)
+
+## Contributing
+
+We will track our progress on issues and feature stories through [Github Projects](https://github.com/orgs/csc301-2023-fall/projects/3). Please make sure to read the [Contributing Guide](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md) before making a pull request!

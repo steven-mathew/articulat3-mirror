@@ -6,6 +6,10 @@ import { ThemeProvider } from '../ThemeProvider';
 
 import { Header } from '@/components/Header';
 
+/**
+ * Renders a page of the web application with the `Header` component.
+ * @returns A Page view
+ */
 export function Page() {
   return (
     <div className="h-screen flex flex-col items-center justify-center">

@@ -14,13 +14,30 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Strings from '@/locales/en.json';
 
-interface Props {
+interface ExportDropdownMenuProps {
+  /**
+   * Thumbnail (.png) file URL
+   */
   pngURL: string;
+  /**
+   * Model (.obj) file URL
+   */
   objURL: string;
+  /**
+   * Material (.mtl) file URL
+   */
   mtlURL: string;
+  /**
+   * Texture (.jpg) file URL
+   */
   texURL: string;
 }
 
+/**
+ * Event handler to locally download `url` with filename `name`.
+ * @param url The url to be downloaded
+ * @param name The downloaded file name
+ */
 const handleLocalDownload = (url: string, name: string) => {
   const link = document.createElement('a');
   link.href = url;
@@ -28,7 +45,17 @@ const handleLocalDownload = (url: string, name: string) => {
   link.click();
 };
 
-export function ExportDropdownMenu({ pngURL, objURL, mtlURL, texURL }: Props) {
+/**
+ * A dropdown menu with options to export thumbnail and object files in.
+ * @param props See `ExportDropdownMenuProps`
+ * @returns An ExportDropdownMenu component
+ */
+export function ExportDropdownMenu({
+  pngURL,
+  objURL,
+  mtlURL,
+  texURL,
+}: ExportDropdownMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

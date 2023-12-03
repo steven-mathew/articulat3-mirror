@@ -2,12 +2,18 @@ import React from 'react';
 
 import { cn } from '@/lib/cn';
 
-interface Props {
+interface SubtitleProps {
+  /** Subtitle text. */
   text: string;
   className?: string;
 }
 
-export function Subtitle({ text, className }: Props) {
+/**
+ * Displays subtitle text.
+ * @param props See `SubtitleProps`
+ * @returns A Subtitle component
+ */
+export function Subtitle({ text, className }: SubtitleProps) {
   return (
     <h3 data-testid="subtitle" className={cn('', className)}>
       {text}

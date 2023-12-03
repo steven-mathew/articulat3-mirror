@@ -9,6 +9,12 @@ import LogoSVG from '@/assets/logo.svg';
 import Strings from '@/locales/en.json';
 import { useTheme } from '@/components/ThemeProvider';
 
+/**
+ * Displays the navigation bar on the top of the screen. The navigation bar includes
+ * the logo on the left, the Create and Gallery links in the center, and the Light/Dark
+ * mode toggle on the right.
+ * @returns A Header component
+ */
 export function Header() {
   const { theme } = useTheme();
   const [isLightMode, setIsLightMode] = useState(theme === 'light');

@@ -3,15 +3,36 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/cn';
 
-interface Props {
+interface InputBarProps {
   className?: string;
+  /**
+   * The current value of the input bar.
+   */
   value: string;
+  /**
+   * Event handler called when input bar value changes.
+   */
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  /**
+   * The action called when user presses enter.
+   */
   enterOnChange: () => void;
+  /**
+   * The placeholder text for an empty input bar.
+   */
   placeholder?: string;
+  /**
+   * The disabled state of the input bar.
+   */
   disabled?: boolean;
 }
 
+/**
+ * Displays a form input field to register user's prompt to begin the 3D object
+ * generation process.
+ * @param props See 'InputBarProps'
+ * @returns An InputBar component
+ */
 export function InputBar({
   className,
   value,
@@ -19,7 +40,7 @@ export function InputBar({
   enterOnChange,
   placeholder,
   disabled,
-}: Props) {
+}: InputBarProps) {
   return (
     <Input
       data-testid="input-bar"
@@ -28,7 +49,8 @@ export function InputBar({
       onChange={onChange}
       onKeyDown={(event) => {
         if (event.key === 'Enter') {
-          event.preventDefault(); // stops event from being registered twice
+          // Stops event from being registered twice
+          event.preventDefault();
           enterOnChange();
         }
       }}

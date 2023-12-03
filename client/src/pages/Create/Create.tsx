@@ -14,8 +14,11 @@ import { usePromptIntentCreateMutation } from '@/data/prompts/prompt-create-muta
 import { usePromptQuery } from '@/data/prompts/prompt-query';
 import { useBlobQuery } from '@/data/blobs/blob-query';
 import { isDefined } from '@/lib/utilities/is-defined';
-// import Dog from '@/assets/dog.png';
 
+/**
+ * The Create page where users will enter prompts to start the 3D generation process.
+ * @returns A Create page view
+ */
 export function Create() {
   // Store objects in session storage
   const [inputValue, setInputValue] = useSessionStorage('inputValue', '');
@@ -144,7 +147,13 @@ export function Create() {
     //     }, 3000);
     //   }
     // }, [object3D.prompt]);
-  }, [data?.status, blobObjectURL, blobMaterialURL, blobThumbnailURL, blobTextureURL]);
+  }, [
+    data?.status,
+    blobObjectURL,
+    blobMaterialURL,
+    blobThumbnailURL,
+    blobTextureURL,
+  ]);
 
   // User clicks Create or presses Enter to submit prompt
   const onSubmitPrompt = useCallback(

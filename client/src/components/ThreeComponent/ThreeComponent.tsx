@@ -1,24 +1,43 @@
 import React, { useMemo, Suspense } from 'react';
-
 import { Mesh } from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
-// import { DDSLoader } from 'three-stdlib';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { Environment, OrbitControls, useTexture } from '@react-three/drei';
+import { OrbitControls, useTexture } from '@react-three/drei';
+// import { DDSLoader } from 'three-stdlib';
 
 import { cn } from '@/lib/cn';
 
-interface Props {
+interface ThreeComponentProps {
   className?: string;
+  /**
+   * Model (.obj) file to be displayed.
+   */
   objURL: string;
+  /**
+   * Material (.mtl) file to be displayed.
+   */
   mtlURL: string;
+  /**
+   * Texture (.jpg) file to be displayed.
+   */
   texURL: string;
 }
 
 // THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
-export function ThreeComponent({ className, objURL, mtlURL, texURL }: Props) {
+/**
+ * Displays the 3D object using the URLs in `ThreeComponentProps`. Allows the user to interact with
+ * the 3D object by dragging, zooming in/out, and rotating.
+ * @param props See `ThreeComponentProps`
+ * @returns A ThreeComponent component
+ */
+export function ThreeComponent({
+  className,
+  objURL,
+  mtlURL,
+  texURL,
+}: ThreeComponentProps) {
   const Scene = () => {
     const materials = useLoader(MTLLoader, mtlURL);
     const obj = useLoader(OBJLoader, objURL, (loader) => {
@@ -27,7 +46,7 @@ export function ThreeComponent({ className, objURL, mtlURL, texURL }: Props) {
     });
 
     const texture = useTexture(texURL);
-    // snippet of texture usage from Stack Overflow: https://stackoverflow.com/questions/68725185/react-three-fiber-add-texture-to-obj-model
+    // Snippet of texture usage from Stack Overflow: https://stackoverflow.com/questions/68725185/react-three-fiber-add-texture-to-obj-model
     const geometry = useMemo(() => {
       let g;
       obj.traverse((c) => {

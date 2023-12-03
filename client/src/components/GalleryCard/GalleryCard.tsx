@@ -5,11 +5,20 @@ import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
 import { ObjectCard } from '@/components/ObjectCard';
 import { Object3D } from '@/types';
 
-interface Props {
+interface GalleryCardProps {
+  /**
+   * The 3D object to be displayed.
+   */
   object3D: Object3D;
 }
 
-export function GalleryCard({ object3D }: Props) {
+/**
+ * A card that displays the `object3D` thumbnail and displays the prompt on hover.
+ * Clicking on the card will open up the `ObjectCard` component.
+ * @param props See `GalleryCardProps`
+ * @returns A GalleryCard component
+ */
+export function GalleryCard({ object3D }: GalleryCardProps) {
   return (
     <Dialog data-testid="gallery-card">
       <DialogTrigger asChild>

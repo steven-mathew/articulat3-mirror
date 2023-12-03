@@ -1,4 +1,4 @@
-# articulat3 - Team Corndogs
+# articulat3 - team 44
 ​
 <p align="center">
 <!-- <a href="https://tisl.cs.toronto.edu/" target="_blank"> -->
@@ -94,7 +94,7 @@ If you are looking to gather inspiration or search for existing 3D graphics, fol
 <img width="1436" alt="Screenshot 2023-11-19 at 6 08 51 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/f75b7d24-bbb1-433d-b8bf-123815797a72">
 <img width="1436" alt="Screenshot 2023-11-19 at 6 08 57 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/9e1b980c-6ec6-40e8-9bfb-1a2dc24ed0de">
 
-### Interacting With and Exporting your 3D Object
+### Interacting with and Exporting your 3D Object
 
 After generating a 3D object, if you are looking to interact with the object or export the object files, follow these steps:
 1. (Following from step 4 in [Creating a New 3D Graphic](#creating-a-new-3d-graphic)) click the download button on the top right of the object card.

@@ -13,7 +13,8 @@
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/deliverables/D1/planning.md">Planning</a> •
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md">Contributing</a> •
     <a href="https://www.159.203.51.70.sslip.io">Deployment</a> •
-    <a href="https://drive.google.com/file/d/1mTnIVwE3vDY4EDY3yWKPebrQcNy2nvbl/view?usp=sharing">Video Presentation</a>
+    <a href="https://drive.google.com/file/d/1mTnIVwE3vDY4EDY3yWKPebrQcNy2nvbl/view?usp=sharing">Video Presentation</a> •
+    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/files/13551103/D4.Presentation.Slides.pdf">Presentation Slides</a>
 </p>
 <br />
 

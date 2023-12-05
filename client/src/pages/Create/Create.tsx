@@ -88,20 +88,26 @@ export function Create() {
     },
   });
 
-  // Hook for getting the prompt ID
-  const { data } = usePromptQuery({ id: promptId }, { refetchInterval: 5000 });
-
-  // Hook to get thumbnail
-  const { data: blobThumbnailURL } = useBlobQuery({ id: blobThumbnailId });
-
-  // Hook to get object
-  const { data: blobObjectURL } = useBlobQuery({ id: blobObjectId });
-
-  // Hook to get texture
-  const { data: blobTextureURL } = useBlobQuery({ id: blobTextureId });
-
-  // Hook to get material
-  const { data: blobMaterialURL } = useBlobQuery({ id: blobMaterialId });
+  const { data } = usePromptQuery(
+    { id: promptId },
+    { refetchInterval: 15000, enabled: isGenerating },
+  );
+  const { data: blobThumbnailURL } = useBlobQuery(
+    { id: blobThumbnailId },
+    { enabled: data?.status === 'Completed' },
+  );
+  const { data: blobObjectURL } = useBlobQuery(
+    { id: blobObjectId },
+    { enabled: data?.status === 'Completed' },
+  );
+  const { data: blobTextureURL } = useBlobQuery(
+    { id: blobTextureId },
+    { enabled: data?.status === 'Completed' },
+  );
+  const { data: blobMaterialURL } = useBlobQuery(
+    { id: blobMaterialId },
+    { enabled: data?.status === 'Completed' },
+  );
 
   useEffect(() => {
     if (data?.status === 'Completed') {
@@ -124,7 +130,7 @@ export function Create() {
       });
     }
 
-    // Mock data version
+    // NOTE: mock data version for Create page
     //   if (object3D.prompt) {
     //     setTimeout(() => {
     //       // Once generation is done

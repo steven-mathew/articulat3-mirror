@@ -11,13 +11,18 @@ pkgs.mkShellNoCC {
      gotools
      git
      postgresql_13
-     gcc
      protobuf
-     go_1_21
-     golangci-lint
      nodejs-18_x
      nodejs-18_x.pkgs.pnpm
      nodejs-18_x.pkgs.typescript
+     gcc
+     protobuf
+     golangci-lint
+     cargo
+     rustc
+     rustfmt
+     libiconv
+     clippy
      pre-commit
   ];
 }

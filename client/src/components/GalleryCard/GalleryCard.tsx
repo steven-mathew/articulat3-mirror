@@ -1,24 +1,95 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
 
 import { ObjectCard } from '@/components/ObjectCard';
 import { Object3D } from '@/types';
+import { PromptIntent } from '@/types/api';
+import { useBlobQuery } from '@/data/blobs/blob-query';
+import { isDefined } from '@/lib/utilities/is-defined';
 
 interface GalleryCardProps {
   /**
-   * The 3D object to be displayed.
+   * The prompt object for the corresponding 3D object to be displayed.
    */
-  object3D: Object3D;
+  prompt: PromptIntent;
 }
 
 /**
- * A card that displays the `object3D` thumbnail and displays the prompt on hover.
+ * A card that displays the 3D object thumbnail and displays the prompt on hover.
  * Clicking on the card will open up the `ObjectCard` component.
  * @param props See `GalleryCardProps`
  * @returns A GalleryCard component
  */
-export function GalleryCard({ object3D }: GalleryCardProps) {
+export function GalleryCard({ prompt }: GalleryCardProps) {
+  const promptId = prompt.id;
+
+  // Defining the blob IDs for the different files
+  const blobThumbnailId = useMemo(() => {
+    if (!isDefined(promptId)) {
+      return undefined;
+    }
+    return `${promptId}_thumbnail.png`;
+  }, [promptId]);
+  const blobObjectId = useMemo(() => {
+    if (!isDefined(promptId)) {
+      return undefined;
+    }
+    return `${promptId}_model.obj`;
+  }, [promptId]);
+  const blobTextureId = useMemo(() => {
+    if (!isDefined(promptId)) {
+      return undefined;
+    }
+    return `${promptId}_texture_kd.jpg`;
+  }, [promptId]);
+  const blobMaterialId = useMemo(() => {
+    if (!isDefined(promptId)) {
+      return undefined;
+    }
+    return `${promptId}_model.mtl`;
+  }, [promptId]);
+
+  // Hook to get thumbnail
+  const { data: blobThumbnailURL } = useBlobQuery(
+    { id: blobThumbnailId },
+    { enabled: prompt.status === 'Completed' },
+  );
+
+  // Hook to get object
+  const { data: blobObjectURL } = useBlobQuery(
+    { id: blobObjectId },
+    { enabled: prompt.status === 'Completed' },
+  );
+
+  // Hook to get texture
+  const { data: blobTextureURL } = useBlobQuery(
+    { id: blobTextureId },
+    { enabled: prompt.status === 'Completed' },
+  );
+
+  // Hook to get material
+  const { data: blobMaterialURL } = useBlobQuery(
+    { id: blobMaterialId },
+    { enabled: prompt.status === 'Completed' },
+  );
+
+  const object3D = useMemo(() => {
+    return {
+      imgSRC: blobThumbnailURL,
+      prompt: prompt.prompt,
+      objURL: blobObjectURL,
+      mtlURL: blobMaterialURL,
+      texURL: blobTextureURL,
+    } as Object3D;
+  }, [
+    prompt.prompt,
+    blobThumbnailURL,
+    blobObjectURL,
+    blobMaterialURL,
+    blobTextureURL,
+  ]);
+
   return (
     <Dialog data-testid="gallery-card">
       <DialogTrigger asChild>

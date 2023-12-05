@@ -5,6 +5,7 @@ import { SearchBar } from '@/components/SearchBar';
 import { GalleryWaterfall } from '@/components/GalleryWaterfall';
 import { CTAButton } from '@/components/CTAButton';
 import Strings from '@/locales/en.json';
+import { usePromptIntentsQuery } from '@/data/prompts/prompts-query';
 
 /**
  * The Gallery page where users can view and filter through previously generated 3D
@@ -18,49 +19,52 @@ export function Gallery() {
     setSearchValue(event.target.value);
   };
 
-  // TODO: replace with json mock data file
-  const mockBurgerObject = {
-    prompt: 'a juicy burger',
-    imgSRC: '/sampleModel/ham_model.png',
-    objURL: '/sampleModel/ham_model.obj',
-    mtlURL: '/sampleModel/ham_model.mtl',
-    texURL: '/sampleModel/ham_model.jpg',
-  };
-  const mockCowObject = {
-    prompt: 'a cow',
-    imgSRC: '/sampleModel/cow_model.png',
-    objURL: '/sampleModel/cow_model.obj',
-    mtlURL: '/sampleModel/cow_model.mtl',
-    texURL: '/sampleModel/cow_model.jpg',
-  };
-  const mockDuckObject = {
-    prompt: 'a duck',
-    imgSRC: '/sampleModel/duck_model.png',
-    objURL: '/sampleModel/duck_model.obj',
-    mtlURL: '/sampleModel/duck_model.mtl',
-    texURL: '/sampleModel/duck_model.jpg',
-  };
-  const mockBoyObject = {
-    prompt: 'young boy running',
-    imgSRC: '/sampleModel/boy_model.png',
-    objURL: '/sampleModel/boy_model.obj',
-    mtlURL: '/sampleModel/boy_model.mtl',
-    texURL: '/sampleModel/boy_model.jpg',
-  };
-  const mockAstronautObject = {
-    prompt: 'an astronaut',
-    imgSRC: '/sampleModel/astronaut_model.png',
-    objURL: '/sampleModel/astronaut_model.obj',
-    mtlURL: '/sampleModel/astronaut_model.mtl',
-    texURL: '/sampleModel/astronaut_model.jpg',
-  };
-  const mockObjectList = [
-    mockBurgerObject,
-    mockCowObject,
-    mockBoyObject,
-    mockDuckObject,
-    mockAstronautObject,
-  ];
+  // Hook to get all prompts
+  const { data: promptList } = usePromptIntentsQuery();
+
+  // // NOTE: this is all the mock data for Gallery page
+  // const mockBurgerObject = {
+  //   prompt: 'a juicy burger',
+  //   imgSRC: '/sampleModel/ham_model.png',
+  //   objURL: '/sampleModel/ham_model.obj',
+  //   mtlURL: '/sampleModel/ham_model.mtl',
+  //   texURL: '/sampleModel/ham_model.jpg',
+  // };
+  // const mockCowObject = {
+  //   prompt: 'a cow',
+  //   imgSRC: '/sampleModel/cow_model.png',
+  //   objURL: '/sampleModel/cow_model.obj',
+  //   mtlURL: '/sampleModel/cow_model.mtl',
+  //   texURL: '/sampleModel/cow_model.jpg',
+  // };
+  // const mockDuckObject = {
+  //   prompt: 'a duck',
+  //   imgSRC: '/sampleModel/duck_model.png',
+  //   objURL: '/sampleModel/duck_model.obj',
+  //   mtlURL: '/sampleModel/duck_model.mtl',
+  //   texURL: '/sampleModel/duck_model.jpg',
+  // };
+  // const mockBoyObject = {
+  //   prompt: 'young boy running',
+  //   imgSRC: '/sampleModel/boy_model.png',
+  //   objURL: '/sampleModel/boy_model.obj',
+  //   mtlURL: '/sampleModel/boy_model.mtl',
+  //   texURL: '/sampleModel/boy_model.jpg',
+  // };
+  // const mockAstronautObject = {
+  //   prompt: 'an astronaut',
+  //   imgSRC: '/sampleModel/astronaut_model.png',
+  //   objURL: '/sampleModel/astronaut_model.obj',
+  //   mtlURL: '/sampleModel/astronaut_model.mtl',
+  //   texURL: '/sampleModel/astronaut_model.jpg',
+  // };
+  // const mockObjectList = [
+  //   mockBurgerObject,
+  //   mockCowObject,
+  //   mockBoyObject,
+  //   mockDuckObject,
+  //   mockAstronautObject,
+  // ];
 
   return (
     <div className="my-8 flex flex-col items-center gap-y-8">
@@ -77,7 +81,7 @@ export function Gallery() {
         placeholder={Strings.Gallery.search}
       />
       <GalleryWaterfall
-        object3DList={mockObjectList}
+        promptsList={promptList || []}
         filterValue={searchValue}
       />
       <CTAButton

@@ -14,7 +14,10 @@ export type PromptCreateVariables = {
   model: 'mvdream-sd21';
 };
 
-export async function createPromptIntent({ prompt, model }: PromptCreateVariables) {
+export async function createPromptIntent({
+  prompt,
+  model,
+}: PromptCreateVariables) {
   const { data, error } = await post(`/v1/prompt_intents`, {
     body: {
       prompt_intent: {

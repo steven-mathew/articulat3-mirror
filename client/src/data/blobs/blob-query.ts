@@ -8,7 +8,7 @@ export type BlobVariables = {
   id?: string;
 };
 
-export type BlobResponse = string
+export type BlobResponse = string;
 
 export async function getBlob({ id }: BlobVariables, signal?: AbortSignal) {
   if (!id) {
@@ -26,7 +26,7 @@ export async function getBlob({ id }: BlobVariables, signal?: AbortSignal) {
 
   // FIXME: 'BlobResponse' returns just a signed URL for now
   // D4/5 extension
-  return (data as unknown) as BlobResponse;
+  return data as unknown as BlobResponse;
 }
 
 export type BlobData = Awaited<ReturnType<typeof getBlob>>;

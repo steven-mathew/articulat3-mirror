@@ -35,13 +35,23 @@ func (db *MemoryDB) GetPromptIntent(promptId string) (types.PromptIntent, bool) 
 
 	for _, prompt := range *prompts {
 		if *prompt.Id == promptId {
-			// FIXME: we will want to copy prompt later on
-			return *prompt, true
+			return *prompt.Copy(), true
 		}
 	}
 
 	return types.PromptIntent{}, false
+}
 
+func (db *MemoryDB) GetPromptIntents() types.PromptIntents {
+	db.store.mu.RLock()
+	defer db.store.mu.RUnlock()
+
+    prompts := db.store.Prompts
+    if prompts == nil {
+        return types.PromptIntents{}
+    }
+
+    return *prompts.Copy()
 }
 
 func (db *MemoryDB) SetPromptIntent(prompt types.PromptIntent) error {

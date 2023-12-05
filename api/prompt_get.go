@@ -2,7 +2,6 @@ package api
 
 import (
 	"articulate/api/oapigen"
-	"fmt"
 	"net/http"
 
 	"github.com/rs/zerolog/log"
@@ -19,11 +18,15 @@ func (h *PromptHandler) GetPromptIntent(w http.ResponseWriter, r *http.Request, 
 
 	prompt, err := h.ctrl.PromptIntent(ctx, id)
 	if err != nil {
-		logger.Err(err).Msg("unable to get prompt")
+		logger.Trace().Err(err).Msg("prompt not found")
+        sendError(w, r, http.StatusNotFound, err)
+        return
 	}
-	res := promptResponseFromPrompt(prompt, reqId)
 
+	res := promptResponseFromPrompt(prompt, reqId)
 	writeResponse(w, r, http.StatusOK, res)
+
+    logger.Trace().Msgf("prompt retrieved %v", res)
 }
 
 func (h *PromptHandler) GetPromptIntents(w http.ResponseWriter, r *http.Request, params oapigen.GetPromptIntentsParams) {
@@ -32,11 +35,14 @@ func (h *PromptHandler) GetPromptIntents(w http.ResponseWriter, r *http.Request,
 
 	ctx := r.Context()
 	logger := log.Ctx(ctx)
+	logger.Trace().Msg("get all prompt request received")
+
 	reqId := requestIdFromContext(ctx)
 
-	err := fmt.Errorf("This method is unimplemented")
-	logger.Trace().Err(err).Msgf("unimplemented method")
+    prompts := h.ctrl.PromptIntents(ctx)
 
-	res := errorResponseFromError(err, reqId)
-	writeResponse(w, r, http.StatusNotImplemented, res)
+    res := promptsReponseFromPrompt(prompts, reqId)
+	writeResponse(w, r, http.StatusOK, res)
+
+    logger.Trace().Msgf("prompts retrieved %v", res)
 }

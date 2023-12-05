@@ -40,6 +40,17 @@ func (pm *PromptsManager) PromptIntent(ctx context.Context, promptId string) (ty
 	return prompt, nil
 }
 
+func (pm *PromptsManager) PromptIntents(ctx context.Context) types.PromptIntents {
+    prompts := pm.database.GetPromptIntents()
+
+    for _, p := range prompts {
+        status, _ := pm.promptWorkflowStatus(ctx, *p.Id)
+        p.Status = &status
+    }
+
+    return prompts
+}
+
 func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.PromptIntent) (types.PromptIntent, error) {
 	id := uuid.NewString()
 	prompt.Id = &id

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, XOctagon } from 'lucide-react';
 
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { ExportDropdownMenu } from '../ExportDropdownMenu';
@@ -51,19 +51,26 @@ export function ObjectCard({
         )}
       </CardHeader>
       <CardContent>
-        <div className="rounded-md border">
-          {isGenerating ? (
+        <div className="rounded-md border md:h-[380px] h-[240px] bg-card">
+          {isGenerating && (
             <div className="md:h-[380px] h-[240px] flex items-center justify-center">
               <Loader2 className="mr-2 h-12 w-12 animate-spin" />
             </div>
-          ) : (
-            object3D.objURL && (
-              <ThreeComponent
-                objURL={object3D.objURL}
-                mtlURL={object3D.mtlURL}
-                texURL={object3D.texURL}
-              />
-            )
+          )}
+          {!isGenerating && object3D.objURL && (
+            <ThreeComponent
+              objURL={object3D.objURL}
+              mtlURL={object3D.mtlURL}
+              texURL={object3D.texURL}
+            />
+          )}
+          {!isGenerating && !object3D.objURL && (
+            <div className="md:h-[380px] h-[240px] flex flex-col gap-y-4 items-center justify-center">
+              <XOctagon className="mr-2 h-12 w-12" />
+              <p className="text-center w-3/4">
+                Something went wrong! Your object is currently unavailable.
+              </p>
+            </div>
           )}
         </div>
       </CardContent>

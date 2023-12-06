@@ -36,9 +36,12 @@ export function Create() {
       texURL: '',
     } as Object3D),
   );
-
   // Currently generating an object
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isGenerating, setIsGenerating] = useSessionStorage(
+    'isGenerating',
+    false,
+  );
+
   const [openDialog, setOpenDialog] = useState(false);
   const { toast } = useToast();
 

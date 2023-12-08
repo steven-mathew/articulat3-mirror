@@ -92,13 +92,27 @@ jobs:
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
           eval `ssh-agent -s`
           ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
+
+          #
+          # NOTE:
+          #
+          # Currently, we are running the nomad job by remote ssh execution.
+          # For versioning the job file, it makes more sense to create an ssh tunnel,
+          # run the job through the runner (since we've installed nomad in a workflow step above).
+          # This would require the runner install nix as well, but would require changes to the job
+          # file, where we are getting the public rsa key.
+          # 
+          # If we use a tunnel, that part can be removed because the runner can
+          # clone from the repo.
+          #
+          
           # ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
           
-          ssh root@$INGRESS_DROPLET_IP "
+          # ssh root@$INGRESS_DROPLET_IP "
             nomad run \
               -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
               -var "letsencrypt_env=staging" \
               -var "production=false" \
               -var "commit_sha=$(git rev-parse HEAD)" \
-              job/hippo.nomad
-          "
+              deploy/hippo.nomad
+          # "

@@ -100,5 +100,5 @@ jobs:
               -var "letsencrypt_env=staging" \
               -var "production=false" \
               -var "commit_sha=$(git rev-parse HEAD)" \
-              deploy/webserver.nomad
+              job/hippo.nomad
           "

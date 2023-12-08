@@ -1,3 +1,4 @@
+
 name: Deploy Articulate Frontend and Backend
 
 on:
@@ -116,6 +117,9 @@ jobs:
           # ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
           
           ssh root@$INGRESS_DROPLET_IP "
+            git clone git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git
+            cd project-44-toronto-intelligence-m
+            git checkout $(git rev-parse HEAD)
             nomad run \
               -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
               -var "letsencrypt_env=staging" \

@@ -92,11 +92,13 @@ jobs:
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
           eval `ssh-agent -s`
           ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
-          ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
+          # ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
           
-          nomad run \
-            -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
-            -var "letsencrypt_env=staging" \
-            -var "production=false" \
-            -var "commit_sha=$(git rev-parse HEAD)" \
-            deploy/webserver.nomad
+          ssh root@$INGRESS_DROPLET_IP "
+            nomad run \
+              -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
+              -var "letsencrypt_env=staging" \
+              -var "production=false" \
+              -var "commit_sha=$(git rev-parse HEAD)" \
+              deploy/webserver.nomad
+          "

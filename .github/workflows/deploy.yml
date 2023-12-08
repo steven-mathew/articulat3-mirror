@@ -70,12 +70,12 @@ jobs:
           unzip nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip -d /usr/local/bin
           chmod +x /usr/local/bin/nomad
           
-      - name: Install Nix
-        uses: cachix/install-nix-action@v22
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            accept-flake-config = true
+      # - name: Install Nix
+      #   uses: cachix/install-nix-action@v22
+      #   with:
+      #     extra_nix_config: |
+      #       experimental-features = nix-command flakes
+      #       accept-flake-config = true
         
       - name: Deploy
         shell: bash
@@ -117,14 +117,14 @@ jobs:
           
           # ssh root@$INGRESS_DROPLET_IP "
 
-          nix develop --command bash -c '
+          # nix develop --command bash -c '
             nomad run \
               -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
               -var "letsencrypt_env=staging" \
               -var "production=false" \
               -var "commit_sha=$(git rev-parse HEAD)" \
               deploy/webserver.nomad
-          '
+          # '
             
           # nix develop -c nomad run \
           #   -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \

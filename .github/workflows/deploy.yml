@@ -62,6 +62,14 @@ jobs:
       #     known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_STAGING }}
       #     if_key_exists: "ignore"
 
+      - name: Install Nomad
+        env:
+          NOMAD_VERSION: "1.4.1"
+        run: |
+          curl -Os https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip
+          unzip nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip -d /usr/local/bin
+          chmod +x /usr/local/bin/nomad
+          
       - name: Deploy
         shell: bash
         run: |

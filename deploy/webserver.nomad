@@ -57,6 +57,7 @@ job "webserver" {
     count = 1
 
     update {
+      max_parallel      = 1
       min_healthy_time  = "10s"
       healthy_deadline  = "10m"
       progress_deadline = "15m"

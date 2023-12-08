@@ -80,6 +80,8 @@ jobs:
             ;;
           esac
 
+          echo $INGRESS_DROPLET_IP
+        
           ssh root@$INGRESS_DROPLET_IP "
             nomad run \
               -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \

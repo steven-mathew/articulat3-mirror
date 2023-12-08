@@ -70,6 +70,9 @@ jobs:
           unzip nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip -d /usr/local/bin
           chmod +x /usr/local/bin/nomad
           
+      - name: Install Nix
+        uses: cachix/install-nix-action@v22
+        
       - name: Deploy
         shell: bash
         run: |
@@ -106,13 +109,13 @@ jobs:
           # clone from the repo.
           #
           
-          # ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
+          ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
           
           # ssh root@$INGRESS_DROPLET_IP "
-            nomad run \
+            nix-develop -c nomad run \
               -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
               -var "letsencrypt_env=staging" \
               -var "production=false" \
               -var "commit_sha=$(git rev-parse HEAD)" \
-              deploy/hippo.nomad
+              deploy/webserver.nomad
           # "

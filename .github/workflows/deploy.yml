@@ -72,6 +72,10 @@ jobs:
           
       - name: Install Nix
         uses: cachix/install-nix-action@v22
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
         
       - name: Deploy
         shell: bash
@@ -112,10 +116,21 @@ jobs:
           ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
           
           # ssh root@$INGRESS_DROPLET_IP "
-            nix-develop -c nomad run \
+
+          nix develop --command bash -c '
+            nomad run \
               -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
               -var "letsencrypt_env=staging" \
               -var "production=false" \
               -var "commit_sha=$(git rev-parse HEAD)" \
               deploy/webserver.nomad
+          '
+            
+          # nix develop -c nomad run \
+          #   -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
+          #   -var "letsencrypt_env=staging" \
+          #   -var "production=false" \
+          #   -var "commit_sha=$(git rev-parse HEAD)" \
+          #   deploy/webserver.nomad
+            
           # "

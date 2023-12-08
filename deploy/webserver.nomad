@@ -113,9 +113,9 @@ job "webserver" {
       artifact {
         source   = "git::git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git"
         destination = "${NOMAD_TASK_DIR}/articulate"
-        options {
-            sshkey = "${base64encode(file(pathexpand("~/.ssh/id_rsa")))}"
-        }
+        # options {
+        #     sshkey = "${base64encode(file(pathexpand("~/.ssh/id_rsa")))}"
+        # }
       }
 
       env {

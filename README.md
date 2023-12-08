@@ -10,7 +10,7 @@
 <p align="center">
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/deliverables/D1/planning.md">Planning</a> •
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md">Contributing</a> •
-    <a href="https://www.159.203.51.70.sslip.io">Deployment</a> •
+    <a href="https://articulat3.com/">Deployment</a> •
     <a href="https://drive.google.com/file/d/1mTnIVwE3vDY4EDY3yWKPebrQcNy2nvbl/view?usp=sharing">Video Presentation</a> •
     <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/files/13551103/D4.Presentation.Slides.pdf">Presentation Slides</a>
 </p>
@@ -21,7 +21,7 @@
 
 ## What is articulat3?
 
-[articulate](https://www.159.203.51.70.sslip.io">articulat3) is an easy-to-use web application for 3D content creation based on a user-given text prompt. It features a "Gallery" page of existing 3D creations that can be browsed for inspiration and a "Create" page to easily generate a 3D graphic from text input. The product is a convenient, open-source solution for content creators, video game developers, and designers to quickly grab customized 3D graphics for their products.
+[articulate](https://articulat3.com/) is an easy-to-use web application for 3D content creation based on a user-given text prompt. It features a "Gallery" page of existing 3D creations that can be browsed for inspiration and a "Create" page to easily generate a 3D graphic from text input. The product is a convenient, open-source solution for content creators, video game developers, and designers to quickly grab customized 3D graphics for their products.
 
 ## Partner Intro
 

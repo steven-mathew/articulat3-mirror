@@ -96,7 +96,7 @@ jobs:
           
           nomad run \
             -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
-            -var letsencrypt_env="staging" \
+            -var "letsencrypt_env=staging" \
             -var "production=${{ github.event.inputs.environment }}" \
             -var "commit_sha=$(git rev-parse HEAD)" \
             deploy/webserver.nomad

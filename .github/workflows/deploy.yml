@@ -82,12 +82,12 @@ jobs:
 
           echo $INGRESS_DROPLET_IP
         
-          ssh root@$INGRESS_DROPLET_IP "
-            nomad run \
-              -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
-              -var letsencrypt_env="staging" \
-              -var "production=${{ github.event.inputs.environment }}" \
-              -var "commit_sha=$(git rev-parse HEAD)" \
-              hippo.nomad
-          "
+          # ssh root@$INGRESS_DROPLET_IP "
+          #   nomad run \
+          #     -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
+          #     -var letsencrypt_env="staging" \
+          #     -var "production=${{ github.event.inputs.environment }}" \
+          #     -var "commit_sha=$(git rev-parse HEAD)" \
+          #     hippo.nomad
+          # "
 

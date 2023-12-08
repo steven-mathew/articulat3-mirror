@@ -52,14 +52,14 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}
-          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_PRODUCTION }}
+          known_hosts: 'unnecessary'
           if_key_exists: "replace"
 
       - name: Load SSH key in production staging droplet
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}
-          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_STAGING }}
+          known_hosts: 'unnecessary'
           if_key_exists: "replace"
 
       - name: Deploy

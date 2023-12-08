@@ -99,4 +99,4 @@ jobs:
             -var letsencrypt_env="staging" \
             -var "production=${{ github.event.inputs.environment }}" \
             -var "commit_sha=$(git rev-parse HEAD)" \
-            hippo.nomad
+            deploy/webserver.nomad

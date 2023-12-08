@@ -13,7 +13,8 @@
     <a href="https://articulat3.com/">Deployment</a> •
     <a href="https://drive.google.com/file/d/1mTnIVwE3vDY4EDY3yWKPebrQcNy2nvbl/view?usp=sharing">Video Presentation</a> •
     <a href="https://drive.google.com/file/d/1H-kIZdSnYarLg6plSFs5I7K1QwJ3ku86/view?usp=sharing">Final Demo</a> •
-    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/files/13551103/D4.Presentation.Slides.pdf">Presentation Slides</a>
+    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/files/13551103/D4.Presentation.Slides.pdf">Presentation Slides</a> •
+    <a href="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/wiki">Wiki</a>
 </p>
 <br />
 

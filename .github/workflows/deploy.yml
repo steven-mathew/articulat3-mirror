@@ -48,19 +48,19 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' }} && ${{ inputs.commit != ''}}
         run: git checkout ${{ inputs.commit }}
 
-      - name: Load SSH key in production ingress droplet
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}
-          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_PRODUCTION }}
-          if_key_exists: "ignore"
+      # - name: Load SSH key in production ingress droplet
+      #   uses: shimataro/ssh-key-action@v2
+      #   with:
+      #     key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}
+      #     known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_PRODUCTION }}
+      #     if_key_exists: "ignore"
 
-      - name: Load SSH key in production staging droplet
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}
-          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_STAGING }}
-          if_key_exists: "ignore"
+      # - name: Load SSH key in production staging droplet
+      #   uses: shimataro/ssh-key-action@v2
+      #   with:
+      #     key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}
+      #     known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_STAGING }}
+      #     if_key_exists: "ignore"
 
       - name: Deploy
         shell: bash
@@ -80,13 +80,15 @@ jobs:
             ;;
           esac
 
-          echo $INGRESS_DROPLET_IP
-        
-          ssh -vvvA root@$INGRESS_DROPLET_IP "
-            nomad run \
-              -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
-              -var letsencrypt_env="staging" \
-              -var "production=${{ github.event.inputs.environment }}" \
-              -var "commit_sha=$(git rev-parse HEAD)" \
-              hippo.nomad
-          "
+          mkdir ~/.ssh
+          ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
+          eval `ssh-agent -s`
+          ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
+          ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
+          
+          nomad run \
+            -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
+            -var letsencrypt_env="staging" \
+            -var "production=${{ github.event.inputs.environment }}" \
+            -var "commit_sha=$(git rev-parse HEAD)" \
+            hippo.nomad

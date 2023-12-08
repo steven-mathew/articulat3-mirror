@@ -53,12 +53,14 @@ jobs:
         with:
           key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_PRODUCTION }}
+          if_key_exists: "ignore"
 
       - name: Load SSH key in production staging droplet
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_STAGING }}
+          if_key_exists: "ignore"
 
       - name: Deploy
         shell: bash

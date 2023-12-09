@@ -107,7 +107,6 @@ jobs:
           eval `ssh-agent -s`
           ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
           ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
-          chmod 0600 /tmp/worker_private_ssh_key
           
           nomad run \
             -var "user=${{ inputs.user }}" \

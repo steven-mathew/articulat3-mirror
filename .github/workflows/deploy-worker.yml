@@ -4,6 +4,11 @@ name: Deploy worker
 on:
   workflow_dispatch:
     inputs:
+      ref:
+        description: 'Git ref to deploy from (refs/tags/v* for tag)'
+        default: 'refs/heads/main'
+      commit:
+        description: 'Commit SHA to deploy from (optional)'
       user:
         description: 'The username to use for the worker using SSH'
       server:
@@ -108,4 +113,5 @@ jobs:
             -var "user=${{ inputs.user }}" \
             -var "server=${{ inputs.server }}" \
             -var "temporal_host_port=${INGRESS_DROPLET_IP}:7233" \
+            -var "commit_sha=$(git rev-parse HEAD)" \
             deploy/worker.nomad

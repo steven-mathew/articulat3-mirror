@@ -13,6 +13,18 @@ variable "temporal_host_port" {
   description = "Temporal host port for the worker to accept jobs from."
 }
 
+variable "git_ref" {
+  type        = string
+  default     = "refs/heads/main"
+  description = "Git ref to use for the spin repo clone. Default: refs/heads/main"
+}
+
+variable "commit_sha" {
+  type        = string
+  default     = ""
+  description = "Specific commit SHA to check out. Default: empty/none"
+}
+
 locals {
   worker_private_ssh_key = "${file("${pathexpand("/tmp/worker_private_ssh_key")}")}"
 }
@@ -61,8 +73,15 @@ job "worker" {
         set -euo pipefail
 
         readonly repo_dir="${NOMAD_TASK_DIR}/articulate"
+        echo $repo_dir
+
+        # Capture branch/tag name from full ref
+        readonly branch="$(echo ${var.git_ref} | cut -d'/' -f3-)"
 
         cd ${repo_dir}/dev/worker
+
+        # Check out commit if provided
+        [[ "${var.commit_sha}" == "" ]] || git checkout ${var.commit_sha}
 
         mkdir ~/.ssh
         ssh-keyscan -H ${var.server} >> ~/.ssh/known_hosts

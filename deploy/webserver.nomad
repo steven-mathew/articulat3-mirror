@@ -149,6 +149,7 @@ EOH
         # Check out commit if provided
         [[ "${var.commit_sha}" == "" ]] || git checkout ${var.commit_sha}
 
+        ls
         bob build build-art
         bob build build-art-web
         ./.bin/articulate

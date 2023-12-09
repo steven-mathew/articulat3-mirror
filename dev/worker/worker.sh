@@ -89,7 +89,7 @@ fi
 
 echo "Starting singularity worker..."
 
-cat <<EOT > /tmp/run-worker-process.sh
+cat <<EOT > ./run-worker-process.sh
 cd /root/MVDream-threestudio
 pip install -e extern/MVDream
 
@@ -98,8 +98,8 @@ export TEMPORAL_SERVER_HOST_PORT=${TEMPORAL_SERVER_HOST_PORT}
 /root/box/usr/local/go/bin/go run worker/main.go
 EOT
 
-chmod 700 /tmp/run-worker-process.sh
+chmod 700 ./run-worker-process.sh
 
-singularity exec --fakeroot --writable --nv --network "host" /home/$username/box /tmp/run-worker-process.sh
+singularity exec --fakeroot --writable --nv --network "host" /home/$username/box ./run-worker-process.sh
 
 wait

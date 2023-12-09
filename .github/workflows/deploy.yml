@@ -85,7 +85,8 @@ jobs:
 
           echo $SSH_PEM > /tmp/droplet_ssh_private_key.pem
           chmod 0600 /tmp/droplet_ssh_private_key.pem
-    
+
+          mkdir ~/.ssh
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
           ssh -i /tmp/droplet_ssh_private_key.pem -fN -v -L 4646:127.0.0.1:4646 -L 8200:127.0.0.1:8200 root@$INGRESS_DROPLET_IP
           

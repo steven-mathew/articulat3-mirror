@@ -25,6 +25,11 @@ variable "commit_sha" {
   description = "Specific commit SHA to check out. Default: empty/none"
 }
 
+variable "backend_fqdn" {
+  type        = string
+  description = "The fully-qualified domain name of the server the worker can make request to."
+}
+
 job "worker" {
   datacenters = ["dc1"]
   type = "service"
@@ -80,7 +85,7 @@ job "worker" {
         [[ "${var.commit_sha}" == "" ]] || git checkout ${var.commit_sha}
 
         # NOTE: Assumes this host can ssh to user@server. Make sure you configure this.
-        ./run-worker.sh -p 2233 -u ${var.user} -s ${var.server} -t ${var.temporal_host_port}
+        ./run-worker.sh -p 2233 -u ${var.user} -s ${var.server} -t ${var.temporal_host_port} -f ${var.backend_fqdn}
 
         EOF
         destination = "${NOMAD_TASK_DIR}/run.bash"

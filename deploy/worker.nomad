@@ -83,7 +83,6 @@ job "worker" {
         # Check out commit if provided
         [[ "${var.commit_sha}" == "" ]] || git checkout ${var.commit_sha}
 
-        mkdir -p ~/.ssh
         ssh-keyscan -H ${var.server} >> ~/.ssh/known_hosts
         eval `ssh-agent -s`
         ssh-add - <<< "${local.worker_private_ssh_key}"

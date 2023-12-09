@@ -70,11 +70,13 @@ jobs:
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
             ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
             export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL_PRODUCTION }}"
+            export production="true"
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
             ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
-            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL_PRODUCTION }}"
+            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL_STAGING }}"
+            export production="false"
             ;;
           *)
             echo "Unknown deploy environment"
@@ -89,7 +91,7 @@ jobs:
           nomad run \
             -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
             -var "letsencrypt_env=staging" \
-            -var "production=false" \
+            -var "production=$production" \
             -var "commit_sha=$(git rev-parse HEAD)" \
             deploy/webserver.nomad
             

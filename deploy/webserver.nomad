@@ -111,6 +111,10 @@ job "webserver" {
     task "webserver" {
       driver = "raw_exec"
 
+      vault {
+        policies = ["read-secret"]
+      }
+
       artifact {
         source   = "git::git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git"
         destination = "${NOMAD_TASK_DIR}/articulate"

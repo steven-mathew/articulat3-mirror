@@ -114,15 +114,22 @@ job "webserver" {
       artifact {
         source   = "git::git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git"
         destination = "${NOMAD_TASK_DIR}/articulate"
-        # options {
-        #     sshkey = "${base64encode(file(pathexpand("~/.ssh/id_rsa")))}"
-        # }
       }
 
       env {
         GOOGLE_APPLICATION_CREDENTIALS = "secrets/credentials.json"
         PORT = "${NOMAD_PORT_http}"
-        GCS_BUCKET_NAME = "articulate-store-tflto"
+        GCS_BUCKET_NAME = var.production ? "articulate-store-production" : "articulate-store-staging"
+      }
+
+      template {
+      data = <<EOH
+{{ with secret "secret/data/cert/gcs" }}
+{{ .Data.certificate }}
+{{ end }}
+EOH
+        destination   = "secrets/credentials.json"
+        change_mode   = "restart"
       }
 
       template {

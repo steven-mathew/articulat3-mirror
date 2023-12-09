@@ -81,16 +81,13 @@ jobs:
         shell: bash
         run: |
           export INGRESS_DROPLET_IP=
-          # export SSH_KEY=
 
           case "${{ github.event.inputs.environment }}" in
           production)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
-            # export SSH_KEY="${{ secrets.WORKER0_PRODUCTION }}"
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
-            # export SSH_KEY="${{ secrets.WORKER0_STAGING }}"
             ;;
           *)
             echo "Unknown deploy environment"

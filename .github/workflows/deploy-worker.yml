@@ -85,9 +85,11 @@ jobs:
           case "${{ github.event.inputs.environment }}" in
           production)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
+            echo "${{ secrets.WORKER0_PRODUCTION }}" > /tmp/worker_private_ssh_key
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
+            echo "${{ secrets.WORKER0_STAGING }}" > /tmp/worker_private_ssh_key
             ;;
           *)
             echo "Unknown deploy environment"
@@ -100,6 +102,7 @@ jobs:
           eval `ssh-agent -s`
           ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
           ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
+          chmod 0600 /tmp/worker_private_ssh_key
           
           nomad run \
             -var "user=${{ inputs.user }}" \

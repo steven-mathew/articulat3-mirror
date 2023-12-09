@@ -1,7 +1,7 @@
 variable "project_name" {
   description = "Name of the project to assign the droplet to."
   type        = string
-  default     = ""
+  default     = "articulate"
 }
 
 variable "project_purpose" {
@@ -31,7 +31,7 @@ variable "droplet_name" {
 variable "droplet_size" {
   description = "The size of Droplet to run for each node in the cluster (Default: s-2vcpu-2gb)"
   type        = string
-  default     = "s-1vcpu-2gb"
+  default     = "s-2vcpu-2gb"
 }
 
 variable "enable_letsencrypt" {

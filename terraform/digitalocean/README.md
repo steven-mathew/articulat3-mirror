@@ -39,6 +39,9 @@ Let's Encrypt may incur a rate limit on your domain. Create the A record for *.e
 making sure it points to the provisioned public IP address.
 See https://letsencrypt.org/docs/staging-environment/#rate-limits for more details.
 
+>[!NOTE]
+>Once you're done, copy the output of the `droplet_ssh_public_key_openssh` in https://github.com/settings/keys.
+
 ## Environment setup
 
 When Terraform finishes provisioning, it will supply URL and username/password

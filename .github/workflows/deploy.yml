@@ -79,16 +79,25 @@ jobs:
       #       accept-flake-config = true
         
       - name: Deploy
+        env:
+          VAULT_ADDR: "http://localhost:8200"
+          VAULT_TOKEN: "devroot"
         shell: bash
         run: |
           export INGRESS_DROPLET_IP=
+          mkdir ~/.ssh
+          eval `ssh-agent -s`
 
           case "${{ github.event.inputs.environment }}" in
           production)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
+            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
+            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
+            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
+            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
             ;;
           *)
             echo "Unknown deploy environment"
@@ -96,19 +105,13 @@ jobs:
             ;;
           esac
 
-          mkdir ~/.ssh
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
-          eval `ssh-agent -s`
-          ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
-          ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
-          ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
+          ssh -fN -v -L 4646:127.0.0.1:4646 -L 8200:127.0.0.1:8200 root@$INGRESS_DROPLET_IP
           
-          # nix develop --command bash -c '
-            nomad run \
-              -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
-              -var "letsencrypt_env=staging" \
-              -var "production=false" \
-              -var "commit_sha=$(git rev-parse HEAD)" \
-              deploy/webserver.nomad
-          # '
+          nomad run \
+            -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \
+            -var "letsencrypt_env=staging" \
+            -var "production=false" \
+            -var "commit_sha=$(git rev-parse HEAD)" \
+            deploy/webserver.nomad
             

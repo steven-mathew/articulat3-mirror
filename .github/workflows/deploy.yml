@@ -83,7 +83,7 @@ jobs:
             ;;
           esac
 
-          $SSH_PEM > /tmp/droplet_ssh_private_key.pem
+          echo $SSH_PEM > /tmp/droplet_ssh_private_key.pem
           chmod 0600 /tmp/droplet_ssh_private_key.pem
     
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts

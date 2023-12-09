@@ -25,10 +25,6 @@ variable "commit_sha" {
   description = "Specific commit SHA to check out. Default: empty/none"
 }
 
-locals {
-  worker_private_ssh_key = "${file("${pathexpand("/tmp/worker_private_ssh_key")}")}"
-}
-
 job "worker" {
   datacenters = ["dc1"]
   type = "service"
@@ -83,10 +79,7 @@ job "worker" {
         # Check out commit if provided
         [[ "${var.commit_sha}" == "" ]] || git checkout ${var.commit_sha}
 
-        ssh-keyscan -H ${var.server} >> ~/.ssh/known_hosts
-        eval `ssh-agent -s`
-        ssh-add - <<< "${local.worker_private_ssh_key}"
-
+        # NOTE: Assumes this host can ssh to user@server. Make sure you configure this.
         ./run-worker.sh -p 2233 -u ${var.user} -s ${var.server} -t ${var.temporal_host_port}
 
         EOF

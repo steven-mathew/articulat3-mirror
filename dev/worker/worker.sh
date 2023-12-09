@@ -48,7 +48,7 @@ fi
 
 if [ ! -d "$model_repo_dir/extern" ]; then
     git clone https://github.com/bytedance/MVDream extern/MVDream
-    # pip install -e extern/MVDream
+    pip install -e extern/MVDream
 fi
 
 cd $model_repo_dir
@@ -89,17 +89,17 @@ fi
 
 echo "Starting singularity worker..."
 
-cat <<EOT > /tmp/run-worker-process.sh
-cd /root/MVDream-threestudio
+cat <<EOT > run-worker-process.sh
+cd ~/MVDream-threestudio
 pip install -e extern/MVDream
 
-cd /root/$project_name/temporal
+cd ~/$project_name/temporal
 export TEMPORAL_SERVER_HOST_PORT=${TEMPORAL_SERVER_HOST_PORT}
 /root/box/usr/local/go/bin/go run worker/main.go
 EOT
 
-chmod 700 /tmp/run-worker-process.sh
+chmod 700 run-worker-process.sh
 
-singularity exec --fakeroot --writable --nv --network "host" /home/$username/box /tmp/run-worker-process.sh
+singularity exec --fakeroot --writable --nv --network "host" /home/$username/box ./run-worker-process.sh
 
 wait

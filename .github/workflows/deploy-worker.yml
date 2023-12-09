@@ -8,8 +8,14 @@ on:
         description: 'The username to use for the worker using SSH'
       server:
         description: 'The IP address or DNS hostname of the target server'
-      temporal_host_port:
-        description: 'Temporal host port for the worker to accept jobs from'
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: staging
+        type: choice
+        options:
+          - staging
+          - production
 
 # Construct a concurrency group to be shared across workflow runs.
 # The default behavior ensures that only one is running at a time, with

@@ -12,6 +12,7 @@ import (
 
 func main() {
 	hostPort := os.Getenv("TEMPORAL_SERVER_HOST_PORT")
+	serverFQDN := os.Getenv("SERVER_FQDN")
 
 	// The client and worker are heavyweight objects that should be created once per process.
 	c, err := client.Dial(client.Options{
@@ -30,7 +31,9 @@ func main() {
 	w := worker.New(c, "prompt-generation", workerOptions)
 
 	w.RegisterWorkflow(temporal.SessionFailureRecoveryWorkflow)
-	w.RegisterActivity(&temporal.Activities{})
+	w.RegisterActivity(&temporal.Activities{
+        ServerFQDN: serverFQDN,
+    })
 
 	err = w.Run(worker.InterruptCh())
 	if err != nil {

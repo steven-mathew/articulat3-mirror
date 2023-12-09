@@ -25,7 +25,9 @@ type (
 		PromptIntentId string
 	}
 
-	Activities struct{}
+	Activities struct {
+        ServerFQDN string
+    }
 )
 
 var (
@@ -210,7 +212,7 @@ func (a *Activities) SaveObject(ctx context.Context, input WorkflowInput) error 
 		// for example. we save 'a4332aa7-6d1f-46ec-ab54-f7e883c56c8f_model.mtl'
 		filename := input.PromptIntentId + "_" + filepath.Base(path)
 
-		sendBlobRequest(ctx, path, filename)
+		a.sendBlobRequest(ctx, path, filename)
 	}
 
 	return nil
@@ -241,11 +243,11 @@ func saveThumbnail(ctx context.Context, readPath, savePath string) error {
 	return saveImage(savePath, thumbnailLeft)
 }
 
-func sendBlobRequest(ctx context.Context, path string, name string) error {
+func (a *Activities) sendBlobRequest(ctx context.Context, path string, name string) error {
 	logger := activity.GetLogger(ctx)
 	logger.Info("Sending blob request")
 
-	url := "https://articulate.fly.dev/v1/blobs"
+    url := fmt.Sprintf("%s/v1/blobs", a.serverFQDN)
 
 	var body bytes.Buffer
 	multipartWriter := multipart.NewWriter(&body)

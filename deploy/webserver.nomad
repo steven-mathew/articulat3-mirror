@@ -124,7 +124,7 @@ job "webserver" {
 
       template {
       data = <<EOH
-{{ with secret "secret/data/cert/gcs" }}
+{{ with secret "secret/data/gcs" }}
 {{ .Data.certificate }}
 {{ end }}
 EOH

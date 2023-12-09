@@ -14,7 +14,7 @@ variable "temporal_host_port" {
 }
 
 locals {
-  ssh_worker_private_key = "${file("${pathexpand("~/.ssh/id_rsa")}")}"
+  worker_private_ssh_key = "${file("${pathexpand("/tmp/worker_private_ssh_key")}")}"
 }
 
 job "worker" {
@@ -68,7 +68,7 @@ job "worker" {
         mkdir ~/.ssh
         ssh-keyscan -H ${var.server} >> ~/.ssh/known_hosts
         eval `ssh-agent -s`
-        ssh-add - <<< "${local.ssh_worker_private_key}"
+        ssh-add - <<< "${local.worker_private_ssh_key}"
 
         ./run-worker.sh -p 2233 -u ${var.user} -s ${var.server} -t ${var.temporal_host_port}
 

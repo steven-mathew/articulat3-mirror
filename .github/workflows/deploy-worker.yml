@@ -69,9 +69,11 @@ jobs:
           case "${{ github.event.inputs.environment }}" in
           production)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
+            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
+            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
             ;;
           *)
             echo "Unknown deploy environment"

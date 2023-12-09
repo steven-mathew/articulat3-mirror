@@ -49,20 +49,6 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' }} && ${{ inputs.commit != ''}}
         run: git checkout ${{ inputs.commit }}
 
-      # - name: Load SSH key in production ingress droplet
-      #   uses: shimataro/ssh-key-action@v2
-      #   with:
-      #     key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}
-      #     known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_PRODUCTION }}
-      #     if_key_exists: "ignore"
-
-      # - name: Load SSH key in production staging droplet
-      #   uses: shimataro/ssh-key-action@v2
-      #   with:
-      #     key: ${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}
-      #     known_hosts: ${{ secrets.SSH_KNOWN_HOSTS_OF_STAGING }}
-      #     if_key_exists: "ignore"
-
       - name: Install Nomad
         env:
           NOMAD_VERSION: "1.4.1"
@@ -71,13 +57,6 @@ jobs:
           unzip nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip -d /usr/local/bin
           chmod +x /usr/local/bin/nomad
           
-      # - name: Install Nix
-      #   uses: cachix/install-nix-action@v22
-      #   with:
-      #     extra_nix_config: |
-      #       experimental-features = nix-command flakes
-      #       accept-flake-config = true
-        
       - name: Deploy
         env:
           VAULT_ADDR: "http://localhost:8200"
@@ -85,18 +64,17 @@ jobs:
         shell: bash
         run: |
           export INGRESS_DROPLET_IP=
-          mkdir ~/.ssh
-          eval `ssh-agent -s`
+          export SSH_PEM=
 
           case "${{ github.event.inputs.environment }}" in
           production)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
-            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
+            export SSH_PEM="${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
             export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
-            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
+            export SSH_PEM="${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
             export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
             ;;
           *)
@@ -105,8 +83,11 @@ jobs:
             ;;
           esac
 
+          $SSH_PEM > /tmp/droplet_ssh_private_key.pem
+          chmod 0600 /tmp/droplet_ssh_private_key.pem
+    
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
-          ssh -fN -v -L 4646:127.0.0.1:4646 -L 8200:127.0.0.1:8200 root@$INGRESS_DROPLET_IP
+          ssh -i /tmp/droplet_ssh_private_key.pem -fN -v -L 4646:127.0.0.1:4646 -L 8200:127.0.0.1:8200 root@$INGRESS_DROPLET_IP
           
           nomad run \
             -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \

@@ -25,6 +25,9 @@ Deploy with all defaults (http-based URLs):
 terraform apply
 ```
 
+>[!NOTE]
+>We used the following for our deployment:
+
 Deploy with all defaults and use Let's Encrypt to provision certs for TLS/https:
 
 ```console

@@ -27,7 +27,6 @@ job "worker" {
     healthy_deadline = "3m"
     progress_deadline = "60m"
     auto_revert = false
-    auto_promote = true
   }
 
   migrate {

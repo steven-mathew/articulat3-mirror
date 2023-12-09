@@ -142,20 +142,18 @@ nix develop
 
 ### Usage
 
-For the following commands, ensure you are running Nix, as shown [above](#installation). Also, ensure the following commands are running in separate terminals.
+The following environment variables need to be exported. Ensure that you are in the staging workspace for both gcloud and digitalocean.
 
-Starting the client:
 ```bash
-cd client
-pnpm install
-pnpm run dev
+cd terraform/digitalocean
+export TEMPORAL_SERVER_HOST_PORT="$(terraform output -raw public_ip_address):7233"
 ```
 
-The following environment variables need to be exported.
 ```bash
-export TEMPORAL_SERVER_HOST_PORT=
-export GOOGLE_APPLICATION_CREDENTIALS=
-export GCS_BUCKET_NAME=
+cd terraform/gcloud
+terraform output -raw cs_creds > ../../secrets/credentials.json
+export GOOGLE_APPLICATION_CREDENTIALS=secrets/credentials.json
+export GCS_BUCKET_NAME=articulate-store-staging
 ```
 
 Starting the server:

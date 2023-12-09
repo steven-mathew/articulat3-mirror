@@ -100,6 +100,7 @@ jobs:
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
           eval `ssh-agent -s`
           ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
+          ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
           ssh -fN -v -L 4646:127.0.0.1:4646 root@$INGRESS_DROPLET_IP
           
           # nix develop --command bash -c '

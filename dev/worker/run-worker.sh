@@ -3,13 +3,14 @@ unset -v server
 
 ssh_key_path=$HOME/.ssh/id_rsa.pub
 
-while getopts u:s:t:p: flag
+while getopts u:s:t:p:f: flag
 do
     case "${flag}" in
         u) username=${OPTARG};;
         s) server=${OPTARG};;
         t) temporal_server_host_port=${OPTARG};;
         p) port="${OPTARG:-22}";;
+        f) fqdn="${OPTARG}";;
     esac
 done
 
@@ -27,4 +28,4 @@ cleanup() {
 
 trap cleanup EXIT
 
-ssh -p $port $username@$server "USERNAME=${username} TEMPORAL_SERVER_HOST_PORT=${temporal_server_host_port} bash -s" < worker.sh
+ssh -p $port $username@$server "USERNAME=${username} TEMPORAL_SERVER_HOST_PORT=${temporal_server_host_port} SERVER_FQDN=${fqdn} bash -s" < worker.sh

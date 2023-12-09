@@ -247,7 +247,7 @@ func (a *Activities) sendBlobRequest(ctx context.Context, path string, name stri
 	logger := activity.GetLogger(ctx)
 	logger.Info("Sending blob request")
 
-    url := fmt.Sprintf("%s/v1/blobs", a.serverFQDN)
+    url := fmt.Sprintf("%s/v1/blobs", a.ServerFQDN)
 
 	var body bytes.Buffer
 	multipartWriter := multipart.NewWriter(&body)

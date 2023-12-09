@@ -7,6 +7,13 @@ unset -v server
 
 username=${USERNAME}
 temporal_server_host_port=${TEMPORAL_SERVER_HOST_PORT}
+server_fqdn=${SERVER_FQDN}
+
+if [ -z "$server_fqdn" ]; then
+    echo "SERVER_FQDN is not set"
+    exit 1
+fi
+
 
 if [ -z "$username" ]; then
     echo "USERNAME is not set"
@@ -95,6 +102,8 @@ pip install -e extern/MVDream
 
 cd ~/$project_name/temporal
 export TEMPORAL_SERVER_HOST_PORT=${TEMPORAL_SERVER_HOST_PORT}
+export SERVER_FQDN=${SERVER_FQDN}
+
 /root/box/usr/local/go/bin/go run worker/main.go
 EOT
 

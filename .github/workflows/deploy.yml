@@ -62,7 +62,6 @@ jobs:
           VAULT_TOKEN: "devroot"
         shell: bash
         run: |
-          export INGRESS_DROPLET_IP=
           mkdir ~/.ssh
           eval `ssh-agent -s`
 
@@ -70,12 +69,12 @@ jobs:
           production)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
             ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
-            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
+            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL_PRODUCTION }}"
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
             ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
-            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
+            export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL_PRODUCTION }}"
             ;;
           *)
             echo "Unknown deploy environment"
@@ -84,6 +83,7 @@ jobs:
           esac
 
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
+          # open ssh tunnel for nomad and vault
           ssh -fN -v -L 4646:127.0.0.1:4646 -L 8200:127.0.0.1:8200 root@$INGRESS_DROPLET_IP
           
           nomad run \

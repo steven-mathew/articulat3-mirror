@@ -15,3 +15,5 @@ package-lock.json
 .eslintcache
 
 /client/dist
+
+secrets

@@ -1,5 +1,7 @@
 # articulat3 - team 44
+
 ​
+
 <p align="center">
 <a href="https://www.159.203.51.70.sslip.io" target="_blank">
     <p align="center">
@@ -39,31 +41,32 @@
 
 ### 📢 _An input bar to enter a prompt and generate new 3D content_
 
-  Users can type a prompt that describes the 3D graphic they desire. Entering the prompt immediately starts the generation process and presents the user with the finalized 3D graphic once the process is complete. 
-  
-  Generating 3D objects is perfect for content creators who want to save time, as opposed to the alternative of having to learn complex 3D programs. [See User Story #1](./deliverables/D1/planning.md/#story-1)
-  
-  In the future, a suggested extension is to show the object generation progress by displaying a continuously updating thumbnail and/or a progress bar. For now, the user is notified that the object is being generated with a loading animation, followed by a toast upon completion. [See User Story #2](./deliverables/D1/planning.md/#story-2).
+Users can type a prompt that describes the 3D graphic they desire. Entering the prompt immediately starts the generation process and presents the user with the finalized 3D graphic once the process is complete.
+
+Generating 3D objects is perfect for content creators who want to save time, as opposed to the alternative of having to learn complex 3D programs. [See User Story #1](./deliverables/D1/planning.md/#story-1)
+
+Currently, we show the object generation progress by updating the thumbnail in step intervals. In the future, a suggested extension is to include a progress bar for more continuous progress updates. [See User Story #2](./deliverables/D1/planning.md/#story-2).
 
 ### 🖼️ _A searchable gallery featuring previously generated objects_
 
-  Users can browse through all previously generated 3D objects by any user on articulat3. This gallery is also searchable, allowing users to filter their browsing to their immediate needs and only display items similar to their search query.
+Users can browse through all previously generated 3D objects by any user on articulat3. This gallery is also searchable, allowing users to filter their browsing to their immediate needs and only display items similar to their search query.
 
-  Content creators can benefit from other users' creations for inspiration when making their own content. [See User Story #3](./deliverables/D1/planning.md/#story-3)
+Content creators can benefit from other users' creations for inspiration when making their own content. [See User Story #3](./deliverables/D1/planning.md/#story-3)
 
 ### 📁 _An interactable panel of 3D objects and an option to export the image and object​ files_
 
-  Users can click on 3D objects (their own, or other users' objects) and engage with them in an interactive panel. They can export the object's thumbnail image (.png), model file (.obj), material file (.mtl), and texture file (.jpg) depending on their needs.
+Users can click on 3D objects (their own, or other users' objects) and engage with them in an interactive panel. They can export the object's thumbnail image (.png), model file (.obj), material file (.mtl), and texture file (.jpg) depending on their needs.
 
-  Video game designers will benefit from the interactive object canvas, allowing them to effortlessly inspect an asset from various angles and zoom levels. [See User Story #4](./deliverables/D1/planning.md/#story-4)
+Video game designers will benefit from the interactive object canvas, allowing them to effortlessly inspect an asset from various angles and zoom levels. [See User Story #4](./deliverables/D1/planning.md/#story-4)
 
-  Hardware creators can also use their 3D object immediately with the ability to quickly export the object as various file types. [See User Story #5](./deliverables/D1/planning.md/#story-5)
+Hardware creators can also use their 3D object immediately with the ability to quickly export the object as various file types. [See User Story #5](./deliverables/D1/planning.md/#story-5)
 
 ## How to Use articulat3
 
 ### Creating a New 3D Graphic
 
 If you are looking to create a new 3D object, follow these steps:
+
 1. Go to [articulat3](https://www.159.203.51.70.sslip.io). Please note that the certificate is invalid so you must click to the Advanced section and proceed, to enter the web app.
 2. You’ll be welcomed to the Create page. Here, enter a description of the 3D graphic you desire in the input bar. For example, if you need a 3D graphic of a hamburger, type “A juicy hamburger”. Be as descriptive as you'd like.
 
@@ -81,10 +84,10 @@ If you are looking to create a new 3D object, follow these steps:
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 46 16 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/a2dde9f0-b01a-491e-a237-3301c71f3991">
 
-
 ### Searching for 3D Inspiration
 
 If you are looking to gather inspiration or search for existing 3D graphics, follow these steps:
+
 1. Go to [articulat3](https://www.159.203.51.70.sslip.io/gallery) if you haven’t already.
 2. Click on the Gallery tab in the top navigation bar. This will take you to the Gallery page.
 
@@ -98,6 +101,7 @@ If you are looking to gather inspiration or search for existing 3D graphics, fol
 ### Interacting with a 3D Object and Exporting
 
 After generating a 3D object, if you are looking to interact with the object or export the object files, follow these steps:
+
 1. Continuing from Step 4 in [Creating a New 3D Graphic](#creating-a-new-3d-graphic), click the download icon on the top right of the object card.
 
 <img width="1436" alt="Screenshot 2023-11-19 at 5 46 51 PM" src="https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/assets/60327675/a4601759-267d-48e9-b6fe-480c8bf73d06">
@@ -114,6 +118,7 @@ After generating a 3D object, if you are looking to interact with the object or 
 <br />
 
 ## Development Requirements
+
 <!-- >* What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
  >* Briefly describe instructions for setting up and running the application. You should address this part like how one would expect a README doc of real-world deployed application would be.
  >* You can see this [example](https://github.com/alichtman/shallow-backup#readme) to get started. -->
@@ -121,6 +126,7 @@ After generating a 3D object, if you are looking to interact with the object or 
 ### Installation
 
 In order to set up your local environment, follow these steps:
+
 1. Clone the repo
 
 ```bash
@@ -157,6 +163,7 @@ export GCS_BUCKET_NAME=articulate-store-staging
 ```
 
 Starting the server:
+
 ```bash
 PORT=8080 go run cmd/main.go
 ```
@@ -166,17 +173,20 @@ PORT=8080 go run cmd/main.go
 When running tests, ensure you are running Nix (as shown [above](#installation)).
 
 Frontend testing:
+
 ```bash
 # pnpm run test will ask you to install jsdom. Install and re-run the tests
 pnpm run test
 ```
 
 Backend testing:
+
 ```bash
 go test ./...
 ```
 
 ## Deployment and Github Workflow
+
 <!-- >* Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.​
 >* Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
 >* If applicable, specify any naming conventions or standards you decide to adopt.
@@ -186,16 +196,17 @@ go test ./...
 -->
 
 #### Pull Requests
+
 We tracked our progress on issues and feature stories on [Github Projects](https://github.com/orgs/csc301-2023-fall/projects/3). Please make sure to read the [Contributing Guide](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/blob/main/.github/CONTRIBUTING.md) before making a pull request!
 
 #### Deployment Tools
 
 > [!WARNING]
-> These instructions will be updated in D5. In our video presentation, we showed a demo of DigitalOcean deployment. The steps will be similar and fully automated. We will also automate the process of starting workers further through Terraform as well and include CD. 
+> These instructions will be updated in D5. In our video presentation, we showed a demo of DigitalOcean deployment. The steps will be similar and fully automated. We will also automate the process of starting workers further through Terraform as well and include CD.
 
 This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on DigitalOcean while the task workers are hosted on UofT GPU nodes.
 
-We use terraform to provision the resources we need on Google Cloud. 
+We use terraform to provision the resources we need on Google Cloud.
 
 We will also be using Hashicorp Vault as an extension to seal our secrets.
 
@@ -248,6 +259,7 @@ For our Go code, we followed the standards from [Mattermost](https://developers.
 A pre-commit hook lints all parts of the project. We also use CI to build and test.
 
 ## Licenses
+
 ​Licensed under MIT license ([LICENSE-MIT](LICENSE) or http://opensource.org/licenses/MIT) because it is permissive and allows anyone to distribute and use the code for any purpose. Our TISL partner’s future plans for this product are to be determined, making the MIT license the most suitable license to use as of now.
 
 <!-- Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, shall be licensed as in the README, without any additional terms or conditions. -->

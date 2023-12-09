@@ -1,4 +1,3 @@
-
 name: Deploy Articulate Frontend and Backend
 
 on:
@@ -56,7 +55,7 @@ jobs:
           curl -Os https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip
           unzip nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip -d /usr/local/bin
           chmod +x /usr/local/bin/nomad
-          
+        
       - name: Deploy
         env:
           VAULT_ADDR: "http://localhost:8200"
@@ -64,17 +63,18 @@ jobs:
         shell: bash
         run: |
           export INGRESS_DROPLET_IP=
-          export SSH_PEM=
+          mkdir ~/.ssh
+          eval `ssh-agent -s`
 
           case "${{ github.event.inputs.environment }}" in
           production)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_PRODUCTION }}"
-            export SSH_PEM="${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
+            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_PRODUCTION }}"
             export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
             ;;
           staging)
             export INGRESS_DROPLET_IP="${{ secrets.INGRESS_DROPLET_IP_STAGING }}"
-            export SSH_PEM="${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
+            ssh-add - <<< "${{ secrets.DROPLET_SSH_PRIVATE_KEY_STAGING }}"
             export VAULT_UNSEAL="{{ secrets.VAULT_UNSEAL }}"
             ;;
           *)
@@ -83,12 +83,8 @@ jobs:
             ;;
           esac
 
-          echo $SSH_PEM > /tmp/droplet_ssh_private_key.pem
-          chmod 0600 /tmp/droplet_ssh_private_key.pem
-
-          mkdir ~/.ssh
           ssh-keyscan -H $INGRESS_DROPLET_IP >> ~/.ssh/known_hosts
-          ssh -i /tmp/droplet_ssh_private_key.pem -fN -v -L 4646:127.0.0.1:4646 -L 8200:127.0.0.1:8200 root@$INGRESS_DROPLET_IP
+          ssh -fN -v -L 4646:127.0.0.1:4646 -L 8200:127.0.0.1:8200 root@$INGRESS_DROPLET_IP
           
           nomad run \
             -var "dns_domain=${INGRESS_DROPLET_IP}.sslip.io" \

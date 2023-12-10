@@ -31,11 +31,10 @@ export function GeneratingCard({ promptId }: ObjectCardProps ) {
     const handler = (event: MessageEvent<any>) => {
       try {
 
-        // FIXME: this is very dumb, we're just checking if there's a lot of data
+        // FIXME: this is very hacky, we're just checking if there's a lot of data
         // to guess if there's an image or not.
-        if (event.data.size > 1000) {
+        if (event.data.byteLength > 5000) {
             const blobData = new Blob([event.data])
-            blobData.type
             const srcBlob = URL.createObjectURL(blobData);
 
             setBlob(srcBlob);
@@ -54,9 +53,6 @@ export function GeneratingCard({ promptId }: ObjectCardProps ) {
 
     return () => websocket && websocket.removeEventListener('message', handler)
   }, [sendMessage, webSocketRef])
-
-
-
 
 
   return (

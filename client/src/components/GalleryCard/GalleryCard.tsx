@@ -90,6 +90,8 @@ export function GalleryCard({ prompt }: GalleryCardProps) {
     blobTextureURL,
   ]);
 
+  console.log(prompt)
+
   return (
     <Dialog data-testid="gallery-card">
       <DialogTrigger asChild>

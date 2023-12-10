@@ -2,6 +2,7 @@ package api
 
 import (
 	"articulate/api/oapigen"
+	"articulate/internal/websocket"
 	"context"
 	"embed"
 	"errors"
@@ -16,8 +17,6 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/rs/zerolog/log"
 	"go.temporal.io/sdk/client"
-
-	"github.com/gorilla/websocket"
 )
 
 const apiVersion = "v1"
@@ -26,24 +25,14 @@ type API struct {
 	ctrl   Server
 	port   int
 	server *http.Server
-
-	temporal client.Client
 }
 
 type Config struct {
 	Port       int
 	Controller Server
+
+	TemporalClient client.Client
 }
-
-var (
-	wsUpgrader = websocket.Upgrader{
-		ReadBufferSize:  2048,
-		WriteBufferSize: 2048,
-		CheckOrigin:     func(*http.Request) bool { return true },
-	}
-
-	connections = make(map[string]*websocket.Conn)
-)
 
 //go:embed openapi.json
 var openapiSpec []byte
@@ -69,6 +58,17 @@ func makeDistHandler() func(http.ResponseWriter, *http.Request) {
 		http.ServeFile(w, r, filesDir+r.URL.Path)
 	}
 }
+
+
+func makeWSHandler(tc client.Client) func(http.ResponseWriter, *http.Request) {
+	pool := websocket.NewPool(tc)
+	go pool.Start()
+
+	return func(w http.ResponseWriter, r *http.Request) {
+        serveWs(pool, w, r)
+	}
+}
+
 
 func NewAPI(ctx context.Context, conf Config) (*API, error) {
 	r := chi.NewRouter()
@@ -104,6 +104,7 @@ func NewAPI(ctx context.Context, conf Config) (*API, error) {
 
 		r.Get("/api-json", Spec())
 		r.Get("/*", makeDistHandler())
+        r.Get("/events", makeWSHandler(conf.TemporalClient))
 	})
 
 	http.ListenAndServe(fmt.Sprintf(":%d", api.port), r)

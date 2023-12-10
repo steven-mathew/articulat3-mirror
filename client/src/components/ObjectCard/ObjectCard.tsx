@@ -7,6 +7,7 @@ import { ExportDropdownMenu } from '../ExportDropdownMenu';
 import { ThreeComponent } from '@/components/ThreeComponent';
 import { cn } from '@/lib/cn';
 import { Object3D } from '@/types';
+import { GeneratingCard } from '../GeneratingCard';
 
 interface ObjectCardProps {
   /**
@@ -17,6 +18,7 @@ interface ObjectCardProps {
    * The 3D object to be displayed.
    */
   object3D: Object3D;
+  promptId?: string;
   className?: string;
 }
 
@@ -26,9 +28,11 @@ interface ObjectCardProps {
  * @param props See `ObjectCardProps`
  * @returns An ObjectCard component
  */
+
 export function ObjectCard({
   isGenerating,
   object3D,
+  promptId,
   className,
   ...props
 }: ObjectCardProps) {
@@ -52,7 +56,12 @@ export function ObjectCard({
       </CardHeader>
       <CardContent>
         <div className="rounded-md border md:h-[380px] h-[240px] bg-card">
-          {isGenerating && (
+          {isGenerating && promptId && (
+            <div className="md:h-[380px] h-[240px] flex items-center justify-center">
+              <GeneratingCard promptId={promptId} object3D={object3D} />
+            </div>
+          )}
+          {isGenerating && !promptId && (
             <div className="md:h-[380px] h-[240px] flex items-center justify-center">
               <Loader2 className="mr-2 h-12 w-12 animate-spin" />
             </div>

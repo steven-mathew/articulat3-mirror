@@ -278,7 +278,7 @@ export function Create() {
         </div>
         {object3D.prompt && (
           <div className="inline-flex items-center gap-x-4 py-4">
-            <ObjectCard isGenerating={isGenerating} object3D={object3D} />
+            <ObjectCard isGenerating={isGenerating} object3D={object3D} promptId={data?.id} />
           </div>
         )}
       </div>

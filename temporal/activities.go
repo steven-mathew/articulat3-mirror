@@ -1,3 +1,5 @@
+// This file needs refactoring and cleanup.
+
 package temporal
 
 import (
@@ -8,14 +10,15 @@ import (
 	"image"
 	"image/png"
 	"io"
+	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"time"
 
-	"github.com/fsnotify/fsnotify"
 	"go.temporal.io/sdk/activity"
 )
 
@@ -27,14 +30,41 @@ type (
 	}
 
 	Activities struct {
-        ServerFQDN string
-    }
+		ServerFQDN string
+	}
 )
 
 var (
-	defaultMaxSteps = 300
-	defaultModel    = "mvdream-sd21"
+	defaultMaxSteps         = 300
+	defaultValCheckInterval = 50
+	defaultNumSamplesPerRay = 128
+	defaultModel            = "mvdream-sd21"
 )
+
+func latestFile(dir string) (string, bool) {
+	files, err := ioutil.ReadDir(dir)
+
+	if err != nil {
+		return "", false
+	}
+
+	var latestFile string
+	var latestTime int64 = 0
+	for _, f := range files {
+		fi, _ := os.Stat(dir + f.Name())
+		if !fi.Mode().IsRegular() {
+			continue
+		}
+
+		currTime := fi.ModTime().Unix()
+		if currTime > latestTime {
+			latestTime = currTime
+			latestFile = f.Name()
+		}
+	}
+
+	return latestFile, true
+}
 
 func (a *Activities) TrainPrompt(ctx context.Context, input WorkflowInput) error {
 	logger := activity.GetLogger(ctx)
@@ -54,7 +84,9 @@ func (a *Activities) TrainPrompt(ctx context.Context, input WorkflowInput) error
 		fmt.Sprintf("tag='%s'", input.PromptIntentId),
 		"use_timestamp=false",
 		fmt.Sprintf("trainer.max_steps=%d", defaultMaxSteps),
+		fmt.Sprintf("trainer.val_check_interval=%d", defaultValCheckInterval),
 		fmt.Sprintf("system.prompt_processor.prompt='%s'", input.Prompt),
+		fmt.Sprintf("system.renderer.num_samples_per_ray=%d", defaultNumSamplesPerRay),
 	)
 	cmd.Dir = "../../MVDream-threestudio"
 	cmd.Stderr = os.Stderr
@@ -73,21 +105,13 @@ func (a *Activities) TrainPrompt(ctx context.Context, input WorkflowInput) error
 		close(doneChan)
 	}()
 
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		return err
-	}
-	defer watcher.Close()
-
-	ticker := time.NewTicker(10 * time.Second)
+	ticker := time.NewTicker(12 * time.Second)
 	defer ticker.Stop()
 
-	watcher.Add(
-		fmt.Sprintf(
-			"../../MVDream-threestudio/outputs/%s-rescale0.5/%s/save/",
-			defaultModel,
-			input.PromptIntentId,
-		),
+	dir := fmt.Sprintf(
+		"../../MVDream-threestudio/outputs/%s-rescale0.5/%s/save/",
+		defaultModel,
+		input.PromptIntentId,
 	)
 
 	for {
@@ -98,30 +122,55 @@ func (a *Activities) TrainPrompt(ctx context.Context, input WorkflowInput) error
 				return err
 			}
 		case err := <-doneChan:
-			// logger.Error("err", err)
 			return err
-
-		case event := <-watcher.Events:
-			logger.Info(event.Name)
-
-			if event.Has(fsnotify.Create) {
-				logger.Info("created", event.Name)
-
-				bytes, err := os.ReadFile(event.Name)
-				if err != nil {
-					return err
-				}
-
-				activity.RecordHeartbeat(ctx, bytes)
-			}
-		case watchErr, ok := <-watcher.Errors:
-			if !ok {
-				continue
-			}
-
-			logger.Error(fmt.Sprintf("failed to watch file: %s", watchErr.Error()))
 		case <-ticker.C:
-			activity.RecordHeartbeat(ctx, nil)
+			f, ok := latestFile(dir)
+
+			if !ok {
+				activity.RecordHeartbeat(ctx, nil)
+				break
+			}
+
+			filename := fmt.Sprintf(
+				"../../MVDream-threestudio/outputs/%s-rescale0.5/%s/save/%s",
+				defaultModel,
+				input.PromptIntentId,
+				f,
+			)
+
+			if !strings.HasSuffix(filename, ".png") {
+				break
+			}
+
+			thumbnailFile, err := os.Open(filename)
+			if err != nil {
+				thumbnailFile.Close()
+				return err
+			}
+
+			thumbnail, _, err := image.Decode(thumbnailFile)
+			if err != nil {
+				thumbnailFile.Close()
+				return err
+			}
+
+			width := thumbnail.Bounds().Dx()
+			height := thumbnail.Bounds().Dy()
+
+			thumbnailLeft := image.NewRGBA(image.Rect(0, 0, width/2, height))
+			for y := 0; y < height; y++ {
+				for x := 0; x < width/2; x++ {
+					thumbnailLeft.Set(x, y, thumbnail.At(x, y))
+				}
+			}
+
+			buff := &bytes.Buffer{}
+
+			png.Encode(buff, thumbnailLeft)
+
+			logger.Info(f)
+			activity.RecordHeartbeat(ctx, buff.Bytes())
+			thumbnailFile.Close()
 		}
 	}
 }
@@ -246,11 +295,9 @@ func saveThumbnail(ctx context.Context, readPath, savePath string) error {
 
 func (a *Activities) sendBlobRequest(ctx context.Context, path string, name string) error {
 	logger := activity.GetLogger(ctx)
-    url := fmt.Sprintf("%s/v1/blobs", a.ServerFQDN)
+	url := fmt.Sprintf("%s/v1/blobs", a.ServerFQDN)
 
-    // https://www.159.203.52.107.sslip.io/v1/blobs
-
-	logger.Info("Sending blob request to %s", url)
+	logger.Info("Sending blob request to", url)
 	logger.Info(url)
 
 	var body bytes.Buffer
@@ -281,12 +328,12 @@ func (a *Activities) sendBlobRequest(ctx context.Context, path string, name stri
 
 	request.Header.Set("Content-Type", multipartWriter.FormDataContentType())
 
-    tr := &http.Transport{
-        // We are sending an insecure request to the blob url which
-        // has a default certificate.
-        TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-    }
-    client := http.Client{Transport: tr}
+	tr := &http.Transport{
+		// We are sending an insecure request to the blob url which
+		// has a default certificate.
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := http.Client{Transport: tr}
 
 	response, err := client.Do(request)
 	if err != nil {

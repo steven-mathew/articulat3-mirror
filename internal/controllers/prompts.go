@@ -3,6 +3,8 @@ package controllers
 import (
 	"articulate/internal/database"
 	"articulate/internal/types"
+    "articulate/internal/websocket"
+
 	"articulate/temporal"
 	"context"
 	"fmt"
@@ -16,13 +18,15 @@ type PromptsManager struct {
 	database database.Database
 
 	temporalClient client.Client
+    pool *websocket.Pool
 }
 
-// NewPromptsManager returns a new PromptsManager for a given database and temporalClient
-func NewPromptsManager(db database.Database, tc client.Client) (*PromptsManager, error) {
+// NewPromptsManager returns a new PromptsManager for a given database, temporalClient, and websocket pool
+func NewPromptsManager(db database.Database, tc client.Client, pool *websocket.Pool) (*PromptsManager, error) {
 	return &PromptsManager{
 		database:       db,
 		temporalClient: tc,
+        pool: pool,
 	}, nil
 }
 
@@ -81,6 +85,7 @@ func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.P
 				PromptIntentId: *prompt.Id,
 			},
 		)
+
 		if err != nil {
 			log.Err(err).Msg("Unable to execute workflow")
             return types.PromptIntent{}, err

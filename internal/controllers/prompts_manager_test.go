@@ -26,7 +26,7 @@ func TestPromptCreate_PromptReturned(t *testing.T) {
 
 	db := database.NewPromptStore()
 
-	pm, err := NewPromptsManager(db, nil)
+	pm, err := NewPromptsManager(db, nil, nil)
 
 	expected := createPrompt()
 	actual, err := pm.PromptIntentCreate(ctx, expected)
@@ -41,7 +41,7 @@ func TestPromptGet_PromptReturnedWhenPromptPresent(t *testing.T) {
 	t.Parallel()
 
 	db := database.NewPromptStore()
-	pm, err := NewPromptsManager(db, nil)
+	pm, err := NewPromptsManager(db, nil, nil)
 
 	createdPrompt, err := pm.PromptIntentCreate(ctx, createPrompt())
 	actual, err := pm.PromptIntent(ctx, *createdPrompt.Id)

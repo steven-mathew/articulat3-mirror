@@ -5,6 +5,7 @@ import (
 	"articulate/internal/blobstore"
 	"articulate/internal/controllers"
 	"articulate/internal/database"
+	"articulate/internal/websocket"
 	"context"
 	"os"
 	"os/signal"
@@ -29,7 +30,7 @@ func newAPI(ctx context.Context) (*api.API, error) {
 		port = 8080
 	}
 
-	c, err := client.Dial(client.Options{
+	tc, err := client.Dial(client.Options{
 		HostPort: hostPort,
 	})
 
@@ -38,7 +39,7 @@ func newAPI(ctx context.Context) (*api.API, error) {
 		return nil, err
 	}
 
-	pm, err := controllers.NewPromptsManager(database.NewPromptStore(), c)
+	pm, err := controllers.NewPromptsManager(database.NewPromptStore(), tc, websocket.NewPool(tc))
 	if err != nil {
 		log.Err(err).Msg("unable to create OromptManager")
 		return nil, err
@@ -71,6 +72,7 @@ func newAPI(ctx context.Context) (*api.API, error) {
 	api, err := api.NewAPI(ctx, api.Config{
 		Controller: ctrls,
 		Port:       port,
+        TemporalClient: tc,
 	})
 	if err != nil {
 		log.Err(err).Msg("unable to create API")

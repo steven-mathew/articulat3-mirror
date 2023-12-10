@@ -245,9 +245,9 @@ func saveThumbnail(ctx context.Context, readPath, savePath string) error {
 
 func (a *Activities) sendBlobRequest(ctx context.Context, path string, name string) error {
 	logger := activity.GetLogger(ctx)
-	logger.Info("Sending blob request")
-
     url := fmt.Sprintf("%s/v1/blobs", a.ServerFQDN)
+
+	logger.Info("Sending blob request to", url)
 
 	var body bytes.Buffer
 	multipartWriter := multipart.NewWriter(&body)

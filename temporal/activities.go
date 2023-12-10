@@ -31,7 +31,7 @@ type (
 )
 
 var (
-	defaultMaxSteps = 1500
+	defaultMaxSteps = 300
 	defaultModel    = "mvdream-sd21"
 )
 
@@ -140,7 +140,7 @@ func (a *Activities) ExportModel(ctx context.Context, input WorkflowInput) error
 		fmt.Sprintf("resume=outputs/%s-rescale0.5/%s/ckpts/last.ckpt", defaultModel, input.PromptIntentId),
 		"system.exporter_type=mesh-exporter",
 		"system.exporter.context_type=cuda",
-		// "system.geometry.isosurface_threshold=5.",
+		"system.geometry.isosurface_threshold=3.",
 	)
 	cmd.Dir = "../../MVDream-threestudio"
 
@@ -247,7 +247,8 @@ func (a *Activities) sendBlobRequest(ctx context.Context, path string, name stri
 	logger := activity.GetLogger(ctx)
     url := fmt.Sprintf("%s/v1/blobs", a.ServerFQDN)
 
-	logger.Info("Sending blob request to", url)
+	logger.Info("Sending blob request to %s", url)
+	logger.Info(url)
 
 	var body bytes.Buffer
 	multipartWriter := multipart.NewWriter(&body)

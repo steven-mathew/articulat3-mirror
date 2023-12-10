@@ -1,11 +1,10 @@
 package websocket
 
 import (
-	"fmt"
-	"log"
 	"sync"
 
 	"github.com/gorilla/websocket"
+	"github.com/rs/zerolog/log"
 )
 
 type Client struct {
@@ -32,13 +31,11 @@ func (c *Client) Read() {
 	for {
 		messageType, p, err := c.Conn.ReadMessage()
 		if err != nil {
-			log.Println(err)
+			log.Err(err).Msg("Failed to read message")
 			return
 		}
 
         message := Message{ID: c.ID, Type: messageType, Body: string(p)}
 		c.Pool.Broadcast <- message
-		fmt.Printf("Message Received: %+v\n", message)
-
 	}
 }

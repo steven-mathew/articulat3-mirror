@@ -35,9 +35,9 @@ type (
 )
 
 var (
-	defaultMaxSteps         = 300
-	defaultValCheckInterval = 50
-	defaultNumSamplesPerRay = 128
+	defaultMaxSteps         = 400
+	defaultValCheckInterval = 20
+	defaultNumSamplesPerRay = 256
 	defaultModel            = "mvdream-sd21"
 )
 
@@ -105,7 +105,7 @@ func (a *Activities) TrainPrompt(ctx context.Context, input WorkflowInput) error
 		close(doneChan)
 	}()
 
-	ticker := time.NewTicker(12 * time.Second)
+	ticker := time.NewTicker(5 * time.Second)
 	defer ticker.Stop()
 
 	dir := fmt.Sprintf(
@@ -190,7 +190,7 @@ func (a *Activities) ExportModel(ctx context.Context, input WorkflowInput) error
 		fmt.Sprintf("resume=outputs/%s-rescale0.5/%s/ckpts/last.ckpt", defaultModel, input.PromptIntentId),
 		"system.exporter_type=mesh-exporter",
 		"system.exporter.context_type=cuda",
-		"system.geometry.isosurface_threshold=3.",
+		"system.geometry.isosurface_threshold=2.",
 	)
 	cmd.Dir = "../../MVDream-threestudio"
 
@@ -222,7 +222,6 @@ func (a *Activities) ExportModel(ctx context.Context, input WorkflowInput) error
 				return err
 			}
 		case err := <-doneChan:
-			// logger.Info(string(buf.Bytes()))
 			return err
 
 		case <-ticker.C:

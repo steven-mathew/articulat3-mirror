@@ -34,8 +34,6 @@ func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    fmt.Println(cid)
-
 	client := &websocket.Client{
         ID: cid,
 		Conn: conn,

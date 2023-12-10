@@ -3,6 +3,7 @@ package temporal
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"fmt"
 	"image"
 	"image/png"
@@ -247,6 +248,8 @@ func (a *Activities) sendBlobRequest(ctx context.Context, path string, name stri
 	logger := activity.GetLogger(ctx)
     url := fmt.Sprintf("%s/v1/blobs", a.ServerFQDN)
 
+    // https://www.159.203.52.107.sslip.io/v1/blobs
+
 	logger.Info("Sending blob request to %s", url)
 	logger.Info(url)
 
@@ -278,7 +281,13 @@ func (a *Activities) sendBlobRequest(ctx context.Context, path string, name stri
 
 	request.Header.Set("Content-Type", multipartWriter.FormDataContentType())
 
-	client := http.Client{}
+    tr := &http.Transport{
+        // We are sending an insecure request to the blob url which
+        // has a default certificate.
+        TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+    }
+    client := http.Client{Transport: tr}
+
 	response, err := client.Do(request)
 	if err != nil {
 		return err

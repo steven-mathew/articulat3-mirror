@@ -36,7 +36,7 @@ pip install -e extern/MVDream
 
 cd ~/$project_name/temporal
 export TEMPORAL_SERVER_HOST_PORT=${temporal_server_host_port}
-export SERVER_FQDN=${server_fqdn}
+export SERVER_FQDN=${fqdn}
 
 /root/box/usr/local/go/bin/go run worker/main.go
 EOT

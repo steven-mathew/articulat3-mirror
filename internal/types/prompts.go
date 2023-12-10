@@ -1,5 +1,6 @@
 package types
 
+// PromptIntent stores the intent of a prompt.
 type PromptIntent struct {
 	Id      *string      `mapstructure:"id" json:"id"`
 	Model   *string      `mapstructure:"model" json:"model"`
@@ -33,6 +34,7 @@ type ObjectFiles struct {
 //
 // type PromptModel = string
 
+// Copy returns a copy of the given PromptIntent.
 func (p *PromptIntent) Copy() *PromptIntent {
     if p == nil {
         return nil
@@ -46,6 +48,7 @@ func (p *PromptIntent) Copy() *PromptIntent {
     return p
 }
 
+// Len returns the length of an array of PromptIntents.
 func (ps *PromptIntents) Len() int {
 	if ps == nil {
 		return 0
@@ -54,6 +57,7 @@ func (ps *PromptIntents) Len() int {
 	return len(*ps)
 }
 
+// Copy returns a copy of an array of PromptIntents.
 func (ps *PromptIntents) Copy() *PromptIntents {
 	if ps == nil {
 		return nil

@@ -7,6 +7,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// GetPromptIntent retrieves the details of a PromptIntent that has been previously created.
 func (h *PromptHandler) GetPromptIntent(w http.ResponseWriter, r *http.Request, id string) {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -29,6 +30,7 @@ func (h *PromptHandler) GetPromptIntent(w http.ResponseWriter, r *http.Request, 
     logger.Trace().Msgf("prompt retrieved %v", res)
 }
 
+// GetPromptIntents returns a list of PromptIntents.
 func (h *PromptHandler) GetPromptIntents(w http.ResponseWriter, r *http.Request, params oapigen.GetPromptIntentsParams) {
 	h.mu.Lock()
 	defer h.mu.Unlock()

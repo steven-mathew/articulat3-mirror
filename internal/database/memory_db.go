@@ -5,15 +5,18 @@ import (
 	"sync"
 )
 
+// MemoryDB is an in memory database for a promptStore.
 type MemoryDB struct {
 	store *promptStore
 }
 
+// promptStore is a store for prompts with a read-write mutex lock.
 type promptStore struct {
 	mu      sync.RWMutex
 	Prompts *types.PromptIntents `mapstructure:"prompts"`
 }
 
+// newPromptStore returns a new promptStore.
 func newPromptStore() *promptStore {
 	return &promptStore{
 		mu:      sync.RWMutex{},
@@ -21,6 +24,7 @@ func newPromptStore() *promptStore {
 	}
 }
 
+// NewPromptStore returns a new MemoryDB containing a new promptStore.
 func NewPromptStore() *MemoryDB {
 	return &MemoryDB{
 		store: newPromptStore(),

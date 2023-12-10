@@ -6,6 +6,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// CreateBlob creates a blob by sending a request of type `binary`. Include the blob to
+// upload in the request and the blob parameters that should be used for saving the blob.
 func (h *BlobHandler) CreateBlob(w http.ResponseWriter, r *http.Request) {
 	h.mu.Lock()
 	defer h.mu.Unlock()

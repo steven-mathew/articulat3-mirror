@@ -1,5 +1,6 @@
 package types
 
+// Blob is a blob to be uploaded to Google Cloud Storage.
 type Blob struct {
 	Created  int          `mapstructure:"createdj" json:"created"`
 	Filename *string      `mapstructure:"filename" json:"filename"`

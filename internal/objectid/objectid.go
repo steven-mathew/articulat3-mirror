@@ -8,6 +8,7 @@ import (
 
 const objectIdLen = 12
 
+// ObjectId returns a unique object id for a given prefix.
 func ObjectId(prefix string) (string, error) {
 	if prefix == "" {
 		return prefix, nil

@@ -11,12 +11,14 @@ import (
 	"go.temporal.io/sdk/client"
 )
 
+// PromptsManager is a manager for prompts.
 type PromptsManager struct {
 	database database.Database
 
 	temporalClient client.Client
 }
 
+// NewPromptsManager returns a new PromptsManager for a given database and temporalClient
 func NewPromptsManager(db database.Database, tc client.Client) (*PromptsManager, error) {
 	return &PromptsManager{
 		database:       db,
@@ -24,6 +26,7 @@ func NewPromptsManager(db database.Database, tc client.Client) (*PromptsManager,
 	}, nil
 }
 
+// PromptIntent returns a PromptIntent from the database from the PromptsManager with given context and promptId.
 func (pm *PromptsManager) PromptIntent(ctx context.Context, promptId string) (types.PromptIntent, error) {
 	prompt, ok := pm.database.GetPromptIntent(promptId)
 	if !ok {
@@ -40,6 +43,7 @@ func (pm *PromptsManager) PromptIntent(ctx context.Context, promptId string) (ty
 	return prompt, nil
 }
 
+// PromptIntents returns all PromptIntents from the database from the PromptsManager.
 func (pm *PromptsManager) PromptIntents(ctx context.Context) types.PromptIntents {
     prompts := pm.database.GetPromptIntents()
 
@@ -51,6 +55,8 @@ func (pm *PromptsManager) PromptIntents(ctx context.Context) types.PromptIntents
     return prompts
 }
 
+// PromptIntentCreate creates and returns a new PromptIntent in the database and executes workflow in
+// temporalClient in PromptsManager.
 func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.PromptIntent) (types.PromptIntent, error) {
 	id := uuid.NewString()
 	prompt.Id = &id
@@ -85,6 +91,7 @@ func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.P
 	return prompt, nil
 }
 
+// promptWorkflowStatus returns workflow status from temporalClient in PromptsManager with given context and promptId.
 func (pm *PromptsManager) promptWorkflowStatus(ctx context.Context, promptId string) (string, error) {
 	wid := "prompt-generation_" + promptId
 

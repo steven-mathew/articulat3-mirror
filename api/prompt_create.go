@@ -8,6 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// CreatePromptIntent creates a new PromptIntent.
 func (h *PromptHandler) CreatePromptIntent(w http.ResponseWriter, r *http.Request) {
 	h.mu.Lock()
 	defer h.mu.Unlock()

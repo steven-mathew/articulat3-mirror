@@ -80,7 +80,8 @@ EOF
 set -e
 
 cd $app_repo_dir
-git pull
+git pull --rebase
+git rev-parse HEAD
 
 cd temporal
 
@@ -95,19 +96,6 @@ else
 fi
 
 echo "Starting singularity worker..."
-
-cat <<EOT > run-worker-process.sh
-cd ~/MVDream-threestudio
-pip install -e extern/MVDream
-
-cd ~/$project_name/temporal
-export TEMPORAL_SERVER_HOST_PORT=${TEMPORAL_SERVER_HOST_PORT}
-export SERVER_FQDN=${SERVER_FQDN}
-
-/root/box/usr/local/go/bin/go run worker/main.go
-EOT
-
-chmod 700 run-worker-process.sh
 
 singularity exec --fakeroot --writable --nv --network "host" /home/$username/box ./run-worker-process.sh
 

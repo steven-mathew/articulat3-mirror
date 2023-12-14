@@ -201,52 +201,9 @@ We tracked our progress on issues and feature stories on [Github Projects](https
 
 #### Deployment Tools
 
-> [!WARNING]
-> These instructions will be updated in D5. In our video presentation, we showed a demo of DigitalOcean deployment. The steps will be similar and fully automated. We will also automate the process of starting workers further through Terraform as well and include CD.
+Please see our [wiki](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/wiki/Deployment-and-Github-Workflow) for detailed instructions on deployment.
 
-This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on DigitalOcean while the task workers are hosted on UofT GPU nodes.
-
-We use terraform to provision the resources we need on Google Cloud.
-
-We will also be using Hashicorp Vault as an extension to seal our secrets.
-
-```bash
-cd terraform
-terraform init
-terraform plan
-terraform apply
-```
-
-> [!NOTE]
-> To proceed with the following steps, you will need a server with access to an NVIDIA GPU. Please install the necessary NVIDIA and CUDA drivers required by [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio).
-
-Now, `ssh` into the GPU server and clone both this repo and [MVDream-threestudio](https://github.com/bytedance/MVDream-threestudio):
-
-```bash
-git clone git@github.com:csc301-2023-fall/project-44-toronto-intelligence-m.git
-git clone git@github.com:bytedance/MVDream-threestudio.git
-```
-
-We use [Singularity](https://docs.sylabs.io/) to install all the necessary dependencies on your machine. [Singularity](https://docs.sylabs.io/) is an alternative to docker that is rootless and usually installed on HPC clusters.
-
-```bash
-cd project-44-toronto-intelligence-m/temporal
-singularity shell --writable --nv out
-singularity shell --fakeroot --writable --nv --network "host" out
-```
-
-You can run the temporal server and the workers. Using tmux or another preferred method, start the following two processes:
-
-```bash
-~/.temporalio/bin/temporal server start-dev
-```
-
-and
-
-```bash
-cd project-44-toronto-intelligence-m
-~/.local/go/bin/go run temporal/worker/main.go
-```
+This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on DigitalOcean while the task workers are hosted on UofT GPU nodes. We use terraform to provision the resources we need on Google Cloud and DigitalOcean.
 
 #### Our Github Workflow
 
@@ -254,9 +211,9 @@ cd project-44-toronto-intelligence-m
 
 For our Typescript code, we used [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) rules similar to those of [Shopify](https://github.com/Shopify/web-configs/tree/main)’s.
 
-For our Go code, we followed the standards from [Mattermost](https://developers.mattermost.com/contribute/more-info/server/style-guide/). The rust code is checked by [Clippy](https://github.com/rust-lang/rust-clippy).
+For our Go code, we followed the standards from [Mattermost](https://developers.mattermost.com/contribute/more-info/server/style-guide/).
 
-A pre-commit hook lints all parts of the project. We also use CI to build and test.
+A pre-commit hook lints all parts of the project. We also use CI/CD to build, test, and deploy.
 
 ## Licenses
 

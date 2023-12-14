@@ -205,7 +205,9 @@ Please see our [wiki](https://github.com/csc301-2023-fall/project-44-toronto-int
 
 This application is composed of a frontend, backend, and task cluster. Both the frontend and backend are hosted on DigitalOcean while the task workers are hosted on UofT GPU nodes. We use terraform to provision the resources we need on Google Cloud and DigitalOcean.
 
-#### Our Github Workflow
+#### Our Gitflow
+
+Please see our wiki on [Gitflow](https://github.com/csc301-2023-fall/project-44-toronto-intelligence-m/wiki/Gitflow).
 
 ## Coding Standards and Guidelines
 

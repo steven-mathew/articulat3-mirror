@@ -20,8 +20,8 @@
 </p>
 <br />
 
-> [!NOTE]
-> The deployment site's certificate is invalid, so you must click to the Advanced section and proceed to enter articulat3. We reached our limit of 5 LetsEncrypt certificate requests per week while testing.
+> [!WARNING]
+> As of Late december, our deployment's generation is not working since we no longer have access to the GPUs.
 
 ## What is articulat3?
 

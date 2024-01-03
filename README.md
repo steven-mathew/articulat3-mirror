@@ -1,4 +1,4 @@
-# articulat3 - team 44
+# articulat3
 
 ​
 

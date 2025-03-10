@@ -8,13 +8,11 @@ import (
 	gws "github.com/gorilla/websocket"
 )
 
-
 var (
 	upgrader = gws.Upgrader{
-		CheckOrigin:     func(*http.Request) bool { return true },
+		CheckOrigin: func(*http.Request) bool { return true },
 	}
 )
-
 
 func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 	fmt.Println("WebSocket Endpoint Hit")
@@ -24,18 +22,18 @@ func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "%+v\n", err)
 	}
 
-    query := r.URL.Query()
+	query := r.URL.Query()
 
-    // FIXME: prone to clients flooding with many client-id or just
-    // peering into a specific client-id
-    cid := query.Get("client-id")
-    if cid == "" {
-        conn.Close()
-        return
-    }
+	// FIXME: prone to clients flooding with many client-id or just
+	// peering into a specific client-id
+	cid := query.Get("client-id")
+	if cid == "" {
+		conn.Close()
+		return
+	}
 
 	client := &websocket.Client{
-        ID: cid,
+		ID:   cid,
 		Conn: conn,
 		Pool: pool,
 	}

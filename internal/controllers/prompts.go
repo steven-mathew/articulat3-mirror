@@ -3,7 +3,7 @@ package controllers
 import (
 	"articulate/internal/database"
 	"articulate/internal/types"
-    "articulate/internal/websocket"
+	"articulate/internal/websocket"
 
 	"articulate/temporal"
 	"context"
@@ -18,7 +18,7 @@ type PromptsManager struct {
 	database database.Database
 
 	temporalClient client.Client
-    pool *websocket.Pool
+	pool           *websocket.Pool
 }
 
 // NewPromptsManager returns a new PromptsManager for a given database, temporalClient, and websocket pool
@@ -26,7 +26,7 @@ func NewPromptsManager(db database.Database, tc client.Client, pool *websocket.P
 	return &PromptsManager{
 		database:       db,
 		temporalClient: tc,
-        pool: pool,
+		pool:           pool,
 	}, nil
 }
 
@@ -49,14 +49,14 @@ func (pm *PromptsManager) PromptIntent(ctx context.Context, promptId string) (ty
 
 // PromptIntents returns all PromptIntents from the database from the PromptsManager.
 func (pm *PromptsManager) PromptIntents(ctx context.Context) types.PromptIntents {
-    prompts := pm.database.GetPromptIntents()
+	prompts := pm.database.GetPromptIntents()
 
-    for _, p := range prompts {
-        status, _ := pm.promptWorkflowStatus(ctx, *p.Id)
-        p.Status = &status
-    }
+	for _, p := range prompts {
+		status, _ := pm.promptWorkflowStatus(ctx, *p.Id)
+		p.Status = &status
+	}
 
-    return prompts
+	return prompts
 }
 
 // PromptIntentCreate creates and returns a new PromptIntent in the database and executes workflow in
@@ -88,7 +88,7 @@ func (pm *PromptsManager) PromptIntentCreate(ctx context.Context, prompt types.P
 
 		if err != nil {
 			log.Err(err).Msg("Unable to execute workflow")
-            return types.PromptIntent{}, err
+			return types.PromptIntent{}, err
 		}
 		log.Info().Msgf("Started workflow WorkflowID: %s RunID: %s", we.GetID(), we.GetRunID())
 	}

@@ -70,9 +70,9 @@ func newAPI(ctx context.Context) (*api.API, error) {
 	}
 
 	api, err := api.NewAPI(ctx, api.Config{
-		Controller: ctrls,
-		Port:       port,
-        TemporalClient: tc,
+		Controller:     ctrls,
+		Port:           port,
+		TemporalClient: tc,
 	})
 	if err != nil {
 		log.Err(err).Msg("unable to create API")

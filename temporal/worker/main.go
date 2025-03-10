@@ -32,8 +32,8 @@ func main() {
 
 	w.RegisterWorkflow(temporal.SessionFailureRecoveryWorkflow)
 	w.RegisterActivity(&temporal.Activities{
-        ServerFQDN: serverFQDN,
-    })
+		ServerFQDN: serverFQDN,
+	})
 
 	err = w.Run(worker.InterruptCh())
 	if err != nil {

@@ -59,16 +59,14 @@ func makeDistHandler() func(http.ResponseWriter, *http.Request) {
 	}
 }
 
-
 func makeWSHandler(tc client.Client) func(http.ResponseWriter, *http.Request) {
 	pool := websocket.NewPool(tc)
 	go pool.Start()
 
 	return func(w http.ResponseWriter, r *http.Request) {
-        serveWs(pool, w, r)
+		serveWs(pool, w, r)
 	}
 }
-
 
 func NewAPI(ctx context.Context, conf Config) (*API, error) {
 	r := chi.NewRouter()
@@ -104,7 +102,7 @@ func NewAPI(ctx context.Context, conf Config) (*API, error) {
 
 		r.Get("/api-json", Spec())
 		r.Get("/*", makeDistHandler())
-        r.Get("/events", makeWSHandler(conf.TemporalClient))
+		r.Get("/events", makeWSHandler(conf.TemporalClient))
 	})
 
 	http.ListenAndServe(fmt.Sprintf(":%d", api.port), r)

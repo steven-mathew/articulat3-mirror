@@ -20,14 +20,14 @@ func (h *PromptHandler) GetPromptIntent(w http.ResponseWriter, r *http.Request, 
 	prompt, err := h.ctrl.PromptIntent(ctx, id)
 	if err != nil {
 		logger.Trace().Err(err).Msg("prompt not found")
-        sendError(w, r, http.StatusNotFound, err)
-        return
+		sendError(w, r, http.StatusNotFound, err)
+		return
 	}
 
 	res := promptResponseFromPrompt(prompt, reqId)
 	writeResponse(w, r, http.StatusOK, res)
 
-    logger.Trace().Msgf("prompt retrieved %v", res)
+	logger.Trace().Msgf("prompt retrieved %v", res)
 }
 
 // GetPromptIntents returns a list of PromptIntents.
@@ -41,10 +41,10 @@ func (h *PromptHandler) GetPromptIntents(w http.ResponseWriter, r *http.Request,
 
 	reqId := requestIdFromContext(ctx)
 
-    prompts := h.ctrl.PromptIntents(ctx)
+	prompts := h.ctrl.PromptIntents(ctx)
 
-    res := promptsReponseFromPrompt(prompts, reqId)
+	res := promptsReponseFromPrompt(prompts, reqId)
 	writeResponse(w, r, http.StatusOK, res)
 
-    logger.Trace().Msgf("prompts retrieved %v", res)
+	logger.Trace().Msgf("prompts retrieved %v", res)
 }

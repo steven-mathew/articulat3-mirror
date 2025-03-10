@@ -32,15 +32,15 @@ func promptResponseFromPrompt(prompt types.PromptIntent, requestID oapigen.Reque
 }
 
 func promptsReponseFromPrompt(prompts types.PromptIntents, requestID oapigen.RequestID) PromptsResponse {
-    ps := make([]oapigen.PromptIntent, len(prompts))
-    for i, p := range prompts {
-        ps[i] = oapigenPromptFromPrompt(*p)
-    }
+	ps := make([]oapigen.PromptIntent, len(prompts))
+	for i, p := range prompts {
+		ps[i] = oapigenPromptFromPrompt(*p)
+	}
 
-    return PromptsResponse{
-        PromptIntents: &ps,
-        RequestId: requestID,
-    }
+	return PromptsResponse{
+		PromptIntents: &ps,
+		RequestId:     requestID,
+	}
 }
 
 func (pr PromptRequest) ToPrompt() (types.PromptIntent, error) {
@@ -61,17 +61,17 @@ func oapigenPromptFromPrompt(prompt types.PromptIntent) oapigen.PromptIntent {
 		Prompt: *prompt.Prompt,
 		Model:  oapigen.PromptIntentModel(*prompt.Model),
 		Status: prompt.Status,
-        // TODO:
-        //
-        // We are using:
-        //
-        //  - promptId_model.obj
-        //  - promptId_model.mtl
-        //  - promptId_texture_kd.jpg
-        //  - promptId_thumbnail.png
-        //
-        // instead of:
-        //
+		// TODO:
+		//
+		// We are using:
+		//
+		//  - promptId_model.obj
+		//  - promptId_model.mtl
+		//  - promptId_texture_kd.jpg
+		//  - promptId_thumbnail.png
+		//
+		// instead of:
+		//
 		// BlobIds: &oapigen.ObjectFiles{
 		//           MaterialDefinitionBlobId: prompt.BlobIds.MaterialDefinitionBlobId,
 		//           ObjectModelBlobId: prompt.BlobIds.ObjectModelBlobId,

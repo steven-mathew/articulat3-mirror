@@ -24,7 +24,7 @@ func (bm *BlobsManager) Blob(ctx context.Context, blobId string) (string, error)
 	url, err := bm.store.GetSignedURL(ctx, blobId)
 	if err != nil {
 		log.Err(err).Msg("unable to get SignedURL")
-        return "", nil
+		return "", nil
 	}
 	return url, nil
 }

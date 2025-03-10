@@ -36,16 +36,16 @@ type ObjectFiles struct {
 
 // Copy returns a copy of the given PromptIntent.
 func (p *PromptIntent) Copy() *PromptIntent {
-    if p == nil {
-        return nil
-    }
+	if p == nil {
+		return nil
+	}
 
-    p.Id = &(*p.Id)
-    p.Model = &(*p.Model)
-    p.Prompt = &(*p.Prompt)
-    // p.Status = &(*p.Status)
+	p.Id = &(*p.Id)
+	p.Model = &(*p.Model)
+	p.Prompt = &(*p.Prompt)
+	// p.Status = &(*p.Status)
 
-    return p
+	return p
 }
 
 // Len returns the length of an array of PromptIntents.

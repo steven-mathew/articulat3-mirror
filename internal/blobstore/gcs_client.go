@@ -25,7 +25,7 @@ func NewGCSStore(cfg GCSConfig) (Store, error) {
 	client, err := storage.NewClient(context.Background(), option.WithCredentialsFile(cfg.CredentialsFilePath))
 	if err != nil {
 		log.Err(err).Msg("unable to create Client")
-        return nil, err
+		return nil, err
 	}
 	return &gcsStore{
 		bucket: cfg.Bucket,

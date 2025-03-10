@@ -13,11 +13,11 @@ type Client struct {
 	Pool *Pool
 	mu   sync.Mutex
 
-    WorkflowId string
+	WorkflowId string
 }
 
 type Message struct {
-    ID string
+	ID   string
 	Type int    `json:"type"`
 	Body string `json:"body"`
 }
@@ -35,7 +35,7 @@ func (c *Client) Read() {
 			return
 		}
 
-        message := Message{ID: c.ID, Type: messageType, Body: string(p)}
+		message := Message{ID: c.ID, Type: messageType, Body: string(p)}
 		c.Pool.Broadcast <- message
 	}
 }

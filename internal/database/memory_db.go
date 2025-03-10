@@ -50,12 +50,12 @@ func (db *MemoryDB) GetPromptIntents() types.PromptIntents {
 	db.store.mu.RLock()
 	defer db.store.mu.RUnlock()
 
-    prompts := db.store.Prompts
-    if prompts == nil {
-        return types.PromptIntents{}
-    }
+	prompts := db.store.Prompts
+	if prompts == nil {
+		return types.PromptIntents{}
+	}
 
-    return *prompts.Copy()
+	return *prompts.Copy()
 }
 
 func (db *MemoryDB) SetPromptIntent(prompt types.PromptIntent) error {
